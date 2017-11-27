@@ -1,0 +1,15 @@
+{
+  "name": "menwatch",
+  "version": "1.0.0",
+  "description": "using nodejs to building ecommerce",
+  "main": "index.js",
+  "repository": "https://github.com/nguyenlyminhman/menwatch.git",
+  "author": "nguyenlyminhman <nguyenlyminhman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1",
+    "pg": "^7.4.0"
+  }
+}
