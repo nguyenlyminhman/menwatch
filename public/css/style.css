@@ -3,6 +3,9 @@ Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
+
+
+Chinh sua button add to cart o dong 1676
 --*/
 body{
 	background:#fff;
@@ -57,7 +60,7 @@ body a{
 .search-bar input[type="text"] {
 	width: 100%;
 	padding: 8px 45px 8px 8px;
-	border: 1px solid #F5F5F5;
+	border: 1px solid #000;
 	background: none;
 	outline: none;
 	-webkit-appearance: none;
@@ -1456,22 +1459,23 @@ a.mask {
 	margin-right: 20px;
 }
 .address input[type="submit"] {
-    background: #73B6E1;
-    color: #FFF;
-    font-size: 1em;
+    background: none;
+    color: #000;
+    font-size: 15px;
     padding: 0.5em 1.2em;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     display: inline-block;
-    text-transform: uppercase;
-    border: none;
+    border: solid 1px #000;
     outline: none;
 	font-family: 'Lato-Regular';
 }
 .address input[type="submit"]:hover {
-    background: #000;
+    background: #73B6E1;
+    border: solid 1px #73B6E1;
+    color: #fff;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
@@ -1675,21 +1679,26 @@ ul.tag-men li span.women1 {
 }
 a.add-cart {
     text-decoration: none;
-    color: #fff;
-    background: #000;
-    padding: 0.4em 0.8em;
-    font-size: 1.15em;
-    text-transform: uppercase;
-    margin-top: 2em;
-    display: inline-block;
+    color: #000;
+	padding: 9px 25px;
+	font-size: 15px;
+	cursor: pointer;
+	margin: 20px 0 0 0px;
+	border: 1px solid #000;
+	background: none;
+	font-family: 'Lato-Regular';
+	outline: none;
 }
 a.add-cart:hover {
 	background: #73b6e1;
+	border: 1px solid #73b6e1;
+	color:#fff;
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
-	-o-transition: 0.5s all;
 	-moz-transition: 0.5s all;
 	-ms-transition: 0.5s all;
+	-o-transition: 0.5s all;
+
 }
 /*--starts-slide--*/
 .thumb-image { width: 305px; }
@@ -1860,14 +1869,32 @@ h3.ghj {
 	color:#999;
 }
 .account-right a{
-	font-size:13px;
+	/* font-size:13px;
 	padding:10px 12px;
 	color:#fff;
-	background:#73B6E1;
+    background:#73B6E1; */
+    color: #000;
+	padding: 9px 42px;
+	font-size: 15px;
+	cursor: pointer;
+	margin: 20px 0 0 0px;
+	border: 1px solid #000;
+	background: none;
+	font-family: 'Lato-Regular';
+	outline: none;
 }
 .account-right a:hover{
-	text-decoration:none;
-	background:#000;
+	/* text-decoration:none;
+    background:#000; */
+    text-decoration:none;
+    background: #73B6E1;
+	border: 1px solid #73B6E1;
+	color:#fff;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	-o-transition: 0.5s all;
 }
 .register{
 	padding:6em 0px;
