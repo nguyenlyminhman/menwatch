@@ -1,4 +1,4 @@
-const queryDB = require('../utils/Database');
+const queryDB = require('../utils/DatabaseConnection');
 
 class Staff {
     constructor(id, firstname, lastname, email, password) {

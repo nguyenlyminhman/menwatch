@@ -1,4 +1,4 @@
-const queryDB = require('../utils/Database');
+const queryDB = require('../utils/DatabaseConnection');
 
 class Customer {
     constructor(id, firstname, lastname, email, password, address, phone) {
@@ -10,20 +10,21 @@ class Customer {
         this.address = address;
         this.phone = phone;
     }
+
     addNewCustomer() {
-        const sql = 'INSERT INTO public."customer"(id, firstname, lastname, email, password, address, phone)' +
-            'VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
+        const sql = 'INSERT INTO public."Customer"(id, firstname, lastname, email, password, address, phone)' +
+            'VALUES ($1, $2, $3, $4, $5, $6, $7)';
         return queryDB(sql, ['default', this.firstname, this.lastname, this.email, this.password, this.address, this.phone]);
     }
 
-    getCustomerById() {
-        const sql = 'SELECT * FROM public."customer" where id=$1;'
-        return queryDB(sql, [this.idcustomer])
+    getCustomerInfoById() {
+        const sql = 'SELECT * FROM public."Customer" where id=$1;'
+        return queryDB(sql, [this.id])
             .then(results => results.rows);
     }
 
-    getCustomerByEmail() {
-        const sql = 'SELECT * FROM public."customer" where email=$1;'
+    getCustomerInfoByEmail() {
+        const sql = 'SELECT * FROM public."Customer" where email=$1;'
         return queryDB(sql, [this.email])
             .then(results => results.rows);
     }
@@ -38,4 +39,5 @@ class Customer {
         return queryDB(sql, [this.password, this.id]);
     }
 }
+
 module.exports = Customer;
