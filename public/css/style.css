@@ -37,12 +37,12 @@ body a{
 /*--starts-logo--*/
 .logo {
     text-align: center;
-    padding: 25px 0 20px 0px;
+    padding: 10px 0 10px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
 .logo a h1 {
-    font-size: 32px;
-    color: #000000;
+    font-size: 28px;
+    color: black;
     margin: 0;
     font-family: 'Lora-Regular';
     text-transform: uppercase;
@@ -1966,7 +1966,7 @@ h3.ghj {
     padding: 4em 0px;
 }
 .logo a h1 {
-    font-size: 28px;
+    font-size: 20px;
 }
 .logo {
     padding: 19px 0 12px 0px;
@@ -2402,7 +2402,7 @@ a.simpleCart_empty {
     margin: 3px 0 0 5px;
 }
 .logo a h1 {
-    font-size: 21px;
+    font-size: 20px;
 }
 .search-bar input[type="submit"] {
     background-size: 100%;
@@ -2647,7 +2647,7 @@ a.simpleCart_empty {
     padding: 4px 0px;
 }
 .logo a h1 {
-    font-size: 18px;
+    font-size: 20px;
 }
 .memenu>li.showhide span.title {
     margin: 11px 0 0 20px !important; 
