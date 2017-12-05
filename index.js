@@ -8,4 +8,4 @@ app.use(express.static('public'));
 app.use('admin', express.static('public/admin'));
 app.use('/', customer);
 
-app.listen(process.env.PORT || 8000, () => console.log('Sereeever is running !!!'));
+app.listen(process.env.PORT || 8088, () => console.log('Server is running !!!'));

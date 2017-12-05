@@ -1,10 +1,10 @@
-const Category = require('../model/Category');
+const Brand = require('../model/Brand');
 
 module.exports = async (req, res) => {
     try {
-        let mainMenu = await Category.getCategory();
+        let brand = await Brand.getBrand();
         // let subMenu = await menu.getParentCategory();
-        res.render('index', { mainMenu })
+        res.render('index', { brand })
     } catch (err) {
         res.send('Navigation menu erorr :' + err);
     }

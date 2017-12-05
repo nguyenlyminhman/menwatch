@@ -1,7 +1,7 @@
 const pg = require('pg');
 var config = {
     user: 'postgres', //env var: PGUSER
-    database: 'menstyle', //env var: PGDATABASE
+    database: 'menwatch', //env var: PGDATABASE
     password: 'sa', //env var: PGPASSWORD
     host: 'localhost', // Server hosting the postgres database
     port: 5432, //env var: PGPORT
