@@ -6,7 +6,7 @@ class Brand {
         this.brandname = brandname;
     }
 
-    static getBrand() {
+    static getAllBrand() {
         const sql = 'select * from public."Brand" ORDER BY id ASC';
         return queryDB(sql, [])
             .then(result => result.rows);

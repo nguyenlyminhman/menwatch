@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Men Watches A Ecommerce Category Flat NodeJs - Resposive Website Template</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -20,25 +21,25 @@
     <!--dropdown-->
     <script src="js/jquery.easydropdown.js"></script>
     <script type="text/javascript">
-        $(function() {
-        
+        $(function () {
+
             var menu_ul = $('.menu_drop > li > ul'),
-                   menu_a  = $('.menu_drop > li > a');
-            
+                menu_a = $('.menu_drop > li > a');
+
             menu_ul.hide();
-        
-            menu_a.click(function(e) {
+
+            menu_a.click(function (e) {
                 e.preventDefault();
-                if(!$(this).hasClass('active')) {
+                if (!$(this).hasClass('active')) {
                     menu_a.removeClass('active');
                     menu_ul.filter(':visible').slideUp('normal');
-                    $(this).addClass('active').next().stop(true,true).slideDown('normal');
+                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
                 } else {
                     $(this).removeClass('active');
-                    $(this).next().stop(true,true).slideUp('normal');
+                    $(this).next().stop(true, true).slideUp('normal');
                 }
             });
-        
+
         });
     </script>
 </head>
@@ -87,176 +88,46 @@
                                 <a href="/brand">BRAND</a>
                                 <div class="mepanel">
                                     <div class="row">
-                                        <div class="col1 me-one">
-                                            <h4>Shop</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">New Arrivals</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Blazers</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Swem Wear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Accessories</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Handbags</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">T-Shirts</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Watches</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">My Shopping Bag</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Style Zone</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">Shoes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Watches</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Brands</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Coats</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Accessories</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Trousers</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Popular Brands</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">499 Store</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Fastrack</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Casio</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Fossil</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Maxima</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Timex</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">TomTom</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Titan</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <% i = 0 ;%>
+                                            <% brand.forEach((data)=>{%>
+                                                <div class="col1 me-one">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="/product">
+                                                                <%=data.brandname%>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <% i++ %>
+                                                <% if(i % 3 == 0) {%>
+                                                </div> <div class="row">
+                                                <%}%>
+                                            <% }) %>
                                     </div>
                                 </div>
                             </li>
                             <li class="grid">
                                 <a href="/style">STYLE</a>
                                 <div class="mepanel">
-                                    <div class="row">
-                                        <div class="col1 me-one">
-                                            <h4>Shop</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">New Arrivals</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Blazers</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Swem Wear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Accessories</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Handbags</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">T-Shirts</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Watches</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">My Shopping Bag</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Style Zone</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">Shoes</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Watches</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Brands</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Coats</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Accessories</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Trousers</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Popular Brands</h4>
-                                            <ul>
-                                                <li>
-                                                    <a href="products.html">499 Store</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Fastrack</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Casio</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Fossil</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Maxima</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Timex</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">TomTom</a>
-                                                </li>
-                                                <li>
-                                                    <a href="products.html">Titan</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                        <div class="row">
+                                                <% i = 0 ;%>
+                                                    <% style.forEach((data)=>{%>
+                                                        <div class="col1 me-one">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/product">
+                                                                        <%=data.stylename%>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <% i++ %>
+                                                        <% if(i % 3 == 0) {%>
+                                                        </div> <div class="row">
+                                                        <%}%>
+                                                    <% }) %>
+                                            </div>
                                 </div>
                             </li>
                             <li class="grid">

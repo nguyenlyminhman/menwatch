@@ -5,7 +5,7 @@ class Style {
         this.id = id;
         this.stylename = stylename;
     }
-    static getProducer() {
+    static getAllStyle() {
         let sql = 'select * from public."Style" ORDER BY id ASC';
         return queryDB(sql, [])
             .then(result => result.rows);
@@ -18,10 +18,10 @@ class Style {
 }
 module.exports = Style;
 
-let style = new Style(', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
-pro.insertNewProduct()
-.then(() => console.log('ok man'))
-.catch(err=> console.log(err));
+// let style = new Style(', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+// pro.insertNewProduct()
+// .then(() => console.log('ok man'))
+// .catch(err=> console.log(err));
 
 // product.getProductById()
 // .then(s => console.log(s))
