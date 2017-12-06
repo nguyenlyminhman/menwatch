@@ -1,11 +1,14 @@
-// const Category = require('../model/Category');
+const Brand = require('../model/Brand');
+const Style = require('../model/Style');
 
-// module.exports = async (req, res) => {
-//     try {
-//         let mainMenu = await Category.getCategory();
-//         // let subMenu = await menu.getParentCategory();
-//         res.render('register', { mainMenu })
-//     } catch (err) {
-//         res.send('Navigation menu erorr :' + err);
-//     }
-// }
+
+module.exports = async (req, res) => {
+    try {
+        let brand = await Brand.getAllBrand();
+        let style = await Style.getAllStyle();
+        
+        res.render('register', { brand, style })
+    } catch (err) {
+        res.send('Navigation menu erorr :' + err);
+    }
+}

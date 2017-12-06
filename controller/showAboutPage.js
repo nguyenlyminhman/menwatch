@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         
-        res.render('contact', { brand, style })
+        res.render('about', { brand, style })
     } catch (err) {
         res.send('Navigation menu erorr :' + err);
     }

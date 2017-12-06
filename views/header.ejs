@@ -69,7 +69,7 @@
     <!--top-header-->
     <!--start-logo-->
     <div class="logo">
-        <a href="/index">
+        <a href="/">
             <h1>Men Watches</h1>
         </a>
     </div>
@@ -93,7 +93,7 @@
                                                 <div class="col1 me-one">
                                                     <ul>
                                                         <li>
-                                                            <a href="/product">
+                                                            <a href="/brand/<%=data.id%>">
                                                                 <%=data.brandname%>
                                                             </a>
                                                         </li>
@@ -101,7 +101,7 @@
                                                 </div>
                                                 <% i++ %>
                                                 <% if(i % 3 == 0) {%>
-                                                </div> <div class="row">
+                                                    </div> <div class="row">
                                                 <%}%>
                                             <% }) %>
                                     </div>
@@ -110,24 +110,24 @@
                             <li class="grid">
                                 <a href="/style">STYLE</a>
                                 <div class="mepanel">
-                                        <div class="row">
-                                                <% i = 0 ;%>
-                                                    <% style.forEach((data)=>{%>
-                                                        <div class="col1 me-one">
-                                                            <ul>
-                                                                <li>
-                                                                    <a href="/product">
-                                                                        <%=data.stylename%>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <% i++ %>
-                                                        <% if(i % 3 == 0) {%>
-                                                        </div> <div class="row">
-                                                        <%}%>
-                                                    <% }) %>
+                                    <div class="row">
+                                        <% i = 0 ;%>
+                                        <% style.forEach((data)=>{%>
+                                            <div class="col1 me-one">
+                                                <ul>
+                                                    <li>
+                                                        <a href="/style/<%=data.id%>">
+                                                            <%=data.stylename%>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
+                                            <% i++ %>
+                                            <% if(i % 3 == 0) {%>
+                                            </div> <div class="row">
+                                            <%}%>
+                                        <% }) %>
+                                    </div>
                                 </div>
                             </li>
                             <li class="grid">
