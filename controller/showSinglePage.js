@@ -1,29 +1,17 @@
-// const Category = require('../model/Category');
-// const Producer = require('../model/Producer');
-// const Product = require('../model/Product');
-// const ProductDetails = require('../model/ProductDetails');
-// const Image = require('../model/Image');
+const Style = require('../model/Style');
+const Brand = require('../model/Brand');
+const Product = require('../model/Product');
 
-// module.exports = async (req, res) => {
-//     const { idproduct } = req.params;
-//     const product = new Product(idproduct, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
-//     const image = new Image(undefined, idproduct, undefined);
-//     const size = new ProductDetails(idproduct, undefined);
+module.exports = async (req, res) => {
+    const { id } = req.params;
+    const products= new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
 
-//     try {
-//         let mainMenu = await Category.getCategory();
-//         let brandMenu = await Producer.getProducer();
-//         let productDetails = await product.getProductById();
-//         let productImage = await image.getImageByProductId();
-//         let productSize = await size.getProductSize();
-
-//         res.render('single', {
-//             mainMenu, brandMenu,
-//             productDetails,
-//             productImage,
-//             productSize
-//         })
-//     } catch (err) {
-//         res.send('Navigation menu erorr :' + err);
-//     }
-// }
+    try {
+        let brand = await Brand.getAllBrand();
+        let style = await Style.getAllStyle();
+        let product = await products.getProductById()
+        res.render('single', { style, brand, product })
+    } catch (err) {
+        res.send('Navigation menu erorr :' + err);
+    }
+}

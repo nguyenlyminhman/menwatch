@@ -14,27 +14,21 @@ class Product {
         this.pro_best_sale = pro_best_sale;
     }
 
-    getAllProduct() {
-        let sql = 'select * from public."product"';
+    static getAllProduct() {
+        let sql = 'select *  from public."Product" ORDER BY Id DESC';
         return queryDB(sql, [])
             .then(result => result.rows);
     }
 
     getProductByCategory() {
-        let sql = 'SELECT * FROM public."product" where idcategory = $1'
+        let sql = 'SELECT * FROM public."Product" where idcategory = $1'
         return queryDB(sql, [this.idcategory])
             .then(result => result.rows);
     }
 
     getProductById() {
-        let sql = 'SELECT * FROM public."product" where idproduct = $1'
-        return queryDB(sql, [this.idproduct])
-            .then(result => result.rows);
-    }
-
-    getBestSaleProduct() {
-        let sql = 'SELECT * FROM public."product" where pro_best_sale = true'
-        return queryDB(sql, [])
+        let sql = 'SELECT * FROM public."Product" where id = $1'
+        return queryDB(sql, [this.id])
             .then(result => result.rows);
     }
 
@@ -56,6 +50,6 @@ module.exports = Product;
 // // .then(() => console.log('ok man'))
 // // .catch(err=> console.log(err));
 
-// product.getProductById()
+// Product.getAllProduct()
 // .then(s => console.log(s))
-// .catch(w => console.log('not found' + w));
+// .catch(w => console.log('' + w));

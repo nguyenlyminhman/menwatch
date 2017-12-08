@@ -9,10 +9,10 @@ router.get('/about', require('./showAboutPage'));
 //router.get('/single', require('./showSinglePage'));
 router.get('/account', require('./showAccountPage'));
 router.get('/register', require('./showRegisterPage'));
-// router.get('/products', require('./showProductsPage'));
-
+router.get('/style', require('./showHomePage'));
+router.get('/brand', require('./showHomePage'));
 
 // router.get('/category/:cate_seolink/:idcategory', require('./showProductsPage'));
-// router.get('/product-details/:idproduct', require('./showSinglePage'));
+router.get('/product-details/:id', require('./showSinglePage'));
 
 module.exports = router;
