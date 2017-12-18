@@ -1,38 +1,43 @@
-const queryDB = require('../utils/Database');
+const queryDB = require('../utils/DatabaseConnection');
 
 class Customer {
-    constructor(idcustomer, cus_code, cus_email, cus_password, cus_fname, cus_lname, cus_phone, cus_address) {
-        this.idcustomer = idcustomer;
-        this.cus_code = cus_code;
-        this.cus_email = cus_email;
-        this.cus_password = cus_password;
-        this.cus_fname = cus_fname;
-        this.cus_lname = cus_lname;
-        this.cus_phone = cus_phone;
-        this.cus_address = cus_address;
+    constructor(id, fistname, lastname, email, password, address, phone) {
+        this.id = id;
+        this.fistname = fistname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
     }
     insertCustomer() {
-        const sql = 'INSERT INTO public."customer"(idcustomer, cus_code, cus_email, cus_password, cus_fname, cus_lname, cus_phone, cus_address)' +
-            'VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
-        return queryDB(sql, [this.idcustomer, this.cus_code, this.cus_email, this.cus_password, this.cus_fname, this.cus_lname, this.cus_phone, this.cus_address]);
+        const sql = 'INSERT INTO public."Customer"(id, fistname, lastname, email, password, address, phone)' +
+            'VALUES (default, $1, $2, $3, $4, $5, $6)';
+        return queryDB(sql, [this.fistname, this.lastname, this.email, this.password, this.address, this.phone]);
     }
 
-    getCustomerById() {
-        const sql = 'SELECT * FROM public."customer" where idcustomer=$1;'
-        return queryDB(sql, [this.idcustomer])
+    logginCustomer() {
+        const sql = 'SELECT * FROM public."Customer" where email=$1 AND password=$2;'
+        return queryDB(sql, [this.email, this.password])
             .then(results => results.rows);
     }
 
-    getCustomerByCode() {
-        const sql = 'SELECT * FROM public."customer" where cus_code=$1;'
-        return queryDB(sql, [this.cus_code])
+    getCustomerInfoById() {
+        const sql = 'SELECT * FROM public."Customer" where id=$1;'
+        return queryDB(sql, [this.id])
             .then(results => results.rows);
     }
 
-    updateCustomer() {
-        const sql = 'UPDATE public."customer" SET  cus_email=$1, cus_password=$2, cus_fname=$3, cus_lname=$4, cus_phone=$5, cus_address=$6'
-            + 'WHERE idcustomer= $7';
-        return queryDB(sql, [this.cus_email, this.cus_password, this.cus_fname, this.cus_lname, this.cus_phone, this.cus_address, this.idcustomer]);
+    getCustomerInfoByEmail() {
+        const sql = 'SELECT * FROM public."Customer" where email=$1;'
+        return queryDB(sql, [this.email])
+            .then(results => results.rows);
+    }
+
+    updateCustomerInfo() {
+        const sql = 'UPDATE public."customer" SET  firstname=$1, lastname=$2, address=$3, phone=$4'
+            + 'WHERE id= $5';
+        return queryDB(sql, [this.fistname, this.lastname, this.address, this.phone, this.id]);
     }
 }
 module.exports = Customer;

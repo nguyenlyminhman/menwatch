@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         let product = await products.getProductByBrand();
-        res.render('products', { style, brand, product })
+        res.render('products', { style, brand, product, title:'MenWatch-Product page...' })
     } catch (err) {
-        res.send('Navigation menu erorr : ' + err);
+        res.send('Brand page navigation error > ' + err);
     }
 }

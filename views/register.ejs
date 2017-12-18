@@ -1,13 +1,14 @@
-
-	<!--header-->
-	<% include header%>
+<!--header-->
+<% include header%>
 	<!--end of header-->
 	<!--start-breadcrumbs-->
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="breadcrumbs-main">
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li>
+						<a href="index.html">Home</a>
+					</li>
 					<li class="active">Register</li>
 				</ol>
 			</div>
@@ -20,31 +21,31 @@
 			<div class="register-top heading">
 				<h2>REGISTER</h2>
 			</div>
-			<div class="register-main">
-				<div class="col-md-6 account-left">
-					<input placeholder="First name" type="text" tabindex="1" required>
-						<input placeholder="Last name" type="text" tabindex="2" required>
-						<input placeholder="Email address" type="text" tabindex="3" required>
-						<input placeholder="Mobile" type="text" tabindex="3" required>
-						<ul>
-							<li><label class="radio left"><input type="radio" name="radio" checked=""><i></i>Male</label></li>
-							<li><label class="radio"><input type="radio" name="radio"><i></i>Female</label></li>
-							<div class="clearfix"></div>
-						</ul>
+			<form action="/register" method="Post">
+				<div class="register-main">
+					<div class="col-md-6 account-left">
+						<input placeholder="Email address" type="email" tabindex="1" required>
+						<input placeholder="Password" type="password" tabindex="2" required>
+						<input placeholder="Retype password" type="password" tabindex="3" required>
+
+					</div>
+					<div class="col-md-6 account-left">
+						<input placeholder="First name" type="text" tabindex="4" required>
+						<input placeholder="Last name" type="text" tabindex="5" required>
+						<input placeholder="Address" type="text" tabindex="6" required>
+						<input placeholder="Phone" type="text" tabindex="7" required>
+					</div>
+
+					<div class="clearfix"></div>
 				</div>
-				<div class="col-md-6 account-left">
-					<input placeholder="Password" type="password" tabindex="4" required>
-						<input placeholder="Retype password" type="password" tabindex="4" required>
+				<div class="address submit">
+					<input tabindex="8" type="submit" value="Register">
 				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="address submit">
-							<input type="submit" value="Submit">
-						</div>
+			</form>
 		</div>
 	</div>
 	<!--register-end-->
-	
+
 	<!--footer-->
 	<% include footer%>
-	<!--end of footer-->
+		<!--end of footer-->

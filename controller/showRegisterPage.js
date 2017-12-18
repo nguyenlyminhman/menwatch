@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         
-        res.render('register', { brand, style })
+        res.render('register', { brand, style, title:'MenWatch-Register page...' })
     } catch (err) {
-        res.send('Navigation menu erorr :' + err);
+        res.send('Register page navigation error > ' + err);
     }
 }

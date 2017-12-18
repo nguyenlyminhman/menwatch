@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const parser = require('body-parser').urlencoded({extended:true})
-const customer = require('./controller/customerRouter')
+const customer = require('./router/customerRouter')
 
 app.set('view engine', 'ejs');
 app.set('views', './views');

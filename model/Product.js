@@ -50,11 +50,11 @@ class Product {
 
 module.exports = Product;
 
-let product = new Product(undefined, undefined, 2, undefined, undefined, undefined, undefined, undefined, undefined);
-// // pro.insertNewProduct()
-// // .then(() => console.log('ok man'))
-// // .catch(err=> console.log(err));
+// let product = new Product(undefined, undefined, 2, undefined, undefined, undefined, undefined, undefined, undefined);
+// pro.insertNewProduct()
+// .then(() => console.log('ok man'))
+// .catch(err=> console.log(err));
 
-product.getProductByBrand()
-.then(s => console.log(s))
-.catch(w => console.log('' + w));
+// product.getProductByBrand()
+// .then(s => console.log(s))
+// .catch(w => console.log('' + w));
