@@ -27,7 +27,7 @@ function queryDB(sqlString, arrData) {
     });
 }
 
-queryDB('select * from "Customer"', [])
-.then(data => console.log(data.rows))
-.catch(err => console.log(err + ''));
+// queryDB('select * from "Customer"', [])
+// .then(data => console.log(data.rows))
+// .catch(err => console.log(err + ''));
 module.exports = queryDB;
