@@ -1,8 +1,10 @@
 const express = require('express');
+//const { hash, compare } = require('bcrypt');
 const router = express.Router();
+const passport = require('passport');
 const Customer = require('../model/Customer');
 
-
+require('../utils/Passport')(passport);
 
 
 //define the home page router
@@ -11,6 +13,7 @@ router.get('/contact', require('../controller/showContactPage'));
 router.get('/about', require('../controller/showAboutPage'));
 router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/account', require('../controller/showAccountPage'));
+router.post('/account',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/account' }));
 router.get('/register', require('../controller/showRegisterPage'));
 router.post('/register', (req, res) => {
     let { email, password, firstname, lastname, address, phone } = req.body;
@@ -18,7 +21,7 @@ router.post('/register', (req, res) => {
     customer.checkExistEmail()
         .then(result => {
             if (result.rowCount) {
-                res.redirect('register', msg='email was existed')
+                res.redirect('/register')
             } else {
                 customer.signup()
                     .then(res.redirect('/account'))

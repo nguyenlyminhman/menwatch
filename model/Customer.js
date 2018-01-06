@@ -67,8 +67,7 @@ class Customer {
 
     getCustomerInfoByEmail() {
         const sql = 'SELECT * FROM public."Customer" where email=$1;'
-        return queryDB(sql, [this.email])
-            .then(results => results.rows);
+        return queryDB(sql, [this.email]);
     }
 
     updateCustomerInfo() {
@@ -84,7 +83,12 @@ module.exports = Customer;
 // .then(()=>console.log('OKay'))
 // .catch(er=>console.log(er))
 
-// let cus = new Customer(undefined, undefined, 'man@gmail.com', '1234', undefined, undefined);
-// cus.logginCustomer()
-// .then(()=>console.log('OKay'))
+// let cus = new Customer(undefined, undefined, 'man@gmail.com', undefined , undefined, undefined);
+// cus.getCustomerInfoByEmail()
+// .then(result=>{
+//     compare('man',result.rows[0].password )
+//     .then(kq=>console.log(kq))
+//     .catch(err=>console.log(' ' + err))}
+//     //console.log(result.rows[0].password)
+// )
 // .catch(er=>console.log(er))

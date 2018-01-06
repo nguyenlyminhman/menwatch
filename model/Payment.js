@@ -19,10 +19,10 @@ class Payment {
 }
 module.exports = Payment;
 
-let payment = new Payment(undefined, "Pay COD");
-payment.addNewPayment()
-.then(() => console.log('ok man'))
-.catch(err=> console.log(err));
+// let payment = new Payment(undefined, "Pay COD");
+// payment.addNewPayment()
+// .then(() => console.log('ok man'))
+// .catch(err=> console.log(err));
 
 // Payment.getPayment()
 // .then(data =>console.log(data))
