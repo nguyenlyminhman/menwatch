@@ -17,7 +17,7 @@ module.exports = function (passport) {
     const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined);
     customer.getCustomerInfoByEmail()
       .then(result => {
-        done(null, result.rows[0]);
+        return done(null, result.rows[0]);
       }),
       err => { done(err, null); }
   });
