@@ -11,7 +11,7 @@ router.get('/contact', require('../controller/showContactPage'));
 router.get('/about', require('../controller/showAboutPage'));
 router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/account', require('../controller/showAccountPage'));
-//router.post('/account',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/account' }));
+router.post('/account',passport.authenticate('local', { successRedirect: '/', failureRedirect: '/account' }));
 router.get('/register', require('../controller/showRegisterPage'));
 router.post('/register', (req, res) => {
     let { email, password, firstname, lastname, address, phone } = req.body;
