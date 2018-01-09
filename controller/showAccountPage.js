@@ -5,7 +5,12 @@ module.exports = async (req, res) => {
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
-        res.render('account', { brand, style, title:'MenWatch-Account page...' });
+        res.render('account', {
+            brand,
+            style,
+            user: req.user,
+            title: 'MenWatch-Account page...'
+        });
     } catch (err) {
         res.send('Account page navigation error : ' + err);
     }

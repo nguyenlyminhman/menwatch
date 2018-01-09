@@ -6,7 +6,6 @@ const Customer = require('../model/Customer');
 
 require('../utils/Passport')(passport);
 
-
 //define the home page router
 router.get('/', require('../controller/showHomePage'));
 router.get('/contact', require('../controller/showContactPage'));
@@ -21,6 +20,7 @@ router.post('/register', (req, res) => {
     customer.checkExistEmail()
         .then(result => {
             if (result.rowCount) {
+                req.flash('fail', 'Email is exist')
                 res.redirect('/register')
             } else {
                 customer.signup()
@@ -36,5 +36,10 @@ router.get('/brand/:idBrand', require('../controller/showProductsByBrandPage'));
 // router.get('/category/:cate_seolink/:idcategory', require('./showProductsPage'));
 router.get('/product-details/:id', require('../controller/showSinglePage'));
 
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
 module.exports = router;
 

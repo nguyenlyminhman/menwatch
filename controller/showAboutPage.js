@@ -6,8 +6,13 @@ module.exports = async (req, res) => {
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
-        
-        res.render('about', { brand, style,title:'MenWatch-About page...' })
+
+        res.render('about', {
+            brand,
+            style,
+            user: req.user,
+            title: 'MenWatch-About page...'
+        })
     } catch (err) {
         res.send('About page navigation error > ' + err);
     }

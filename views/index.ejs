@@ -1,42 +1,54 @@
-	<!--header-->
-	<% include header %>
-	<!--end of header-->
 
-	<!--slider image-->
-	<% include slider_image%>
-	<!--end of slider image-->
+<!--header-->
+<% include header %>
+	<!--end of header-->
 	
-	<!--product-starts-->
-	<div class="product">
-		<div class="container">
-			<div class="product-top">
-				<div class="product-one">
-					<% i = 0 %>
-					<%product.forEach((data)=>{%>
-						<div class="col-md-3 product-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="product-details/<%=data.id%>" class="mask">
-									<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>" alt="" />
-								</a>
-								<div class="product-bottom">
-									<h3><%=data.name%> </h3>
-									<h4>
-											<a class="item_add" href="addtocart/<%=data.id%>"><i></i></a> <span class=" item_price">$ <%=data.price%></span>
-									</h4>
-								</div>
-								<div class="srch">
-									<a href="addtocart/<%=data.id%>" style="text-decoration: none"><span>Add to Cart</span></a>
-								</div>
+			<!--slider image-->
+			<% include slider_image%>
+				<!--end of slider image-->
+
+				<!--product-starts-->
+				<div class="product">
+					<div class="container">
+						<div class="product-top">
+							<div class="product-one">
+								<% i = 0 %>
+									<%product.forEach((data)=>{%>
+										<div class="col-md-3 product-left">
+											<div class="product-main simpleCart_shelfItem">
+												<a href="product-details/<%=data.id%>" class="mask">
+													<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>"
+													 alt="" />
+												</a>
+												<div class="product-bottom">
+													<h3>
+														<%=data.name%>
+													</h3>
+													<h4>
+														<a class="item_add" href="addtocart/<%=data.id%>">
+															<i></i>
+														</a>
+														<span class=" item_price">$
+															<%=data.price%>
+														</span>
+													</h4>
+												</div>
+												<div class="srch">
+													<a href="addtocart/<%=data.id%>" style="text-decoration: none">
+														<span>Add to Cart</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<% i++ %>
+											<% if(i % 4 == 0) {%>
+												&nbsp </div>
+							<div class="product-one">
+								<%}%>
+									<% }) %>
 							</div>
-						</div>
-					<% i++ %>
-					<% if(i % 4 == 0) {%>
-						&nbsp </div> <div class="product-one">
-					<%}%>
-				<% }) %>
-				</div>
-				
-				<!-- <div class="product-one">
+
+							<!-- <div class="product-one">
 					<div class="col-md-3 product-left">
 						<div class="product-main simpleCart_shelfItem">
 							<a href="single.html" class="mask">
@@ -119,13 +131,12 @@
 					</div>
 					<div class="clearfix"></div>
 				</div> -->
-			</div>
-		</div>
-	</div>
-	<!--product-end-->
-	
-	
-	<!--footer-->
-	<% include footer%>
-	<!--end of footer-->
-	
+						</div>
+					</div>
+				</div>
+				<!--product-end-->
+
+
+				<!--footer-->
+				<% include footer%>
+					<!--end of footer-->
