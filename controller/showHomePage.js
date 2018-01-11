@@ -3,7 +3,7 @@ const Style = require('../model/Style');
 const Product = require('../model/Product');
 
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();

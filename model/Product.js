@@ -33,8 +33,7 @@ class Product {
 
     getProductById() {
         let sql = 'SELECT * FROM public."Product" where id = $1'
-        return queryDB(sql, [this.id])
-            .then(result => result.rows);
+        return queryDB(sql, [this.id]);
     }
 
     insertNewProduct() {
