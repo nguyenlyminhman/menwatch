@@ -7,7 +7,7 @@ const Car = require('../model/Cart');
 const Product = require('../model/Product');
 
 require('../utils/Passport')(passport);
-
+// express()
 //define the home page router
 router.get('/', require('../controller/showHomePage'));
 router.get('/login', require('../controller/showAccountPage'));
@@ -27,11 +27,11 @@ router.post('/register', (req, res) => {
         })
         .catch(() => res.redirect('/register'));
 });
-router.get('/profile', notLoggedIn ,(req, res) => { res.render('profile') })
+router.get('/profile', notLoggedIn, (req, res) => { res.render('profile') })
 
 router.get('/contact', require('../controller/showContactPage'));
 router.get('/about', require('../controller/showAboutPage'));
-router.get('/checkout', require('../controller/showCheckOutPage'));
+
 router.get('/style', require('../controller/showHomePage'));
 router.get('/brand', require('../controller/showHomePage'));
 router.get('/style/:idStyle', require('../controller/showProductsByStylePage'));
@@ -46,11 +46,12 @@ router.get('/addtocart/:id', (req, res) => {
         result => {
             cart.add(result, result.rows[0].id);
             req.session.cart = cart;
-            console.log(req.session.cart);
+            // console.log(req.session.cart);
             res.redirect('/');
         })
 })
-
+router.get('/shopping-cart', require('../controller/showShoppingCartPage'));
+router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');

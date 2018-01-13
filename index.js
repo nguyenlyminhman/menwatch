@@ -1,6 +1,6 @@
 const express = require('express');
 const passport = require('passport');
-const parser = require('body-parser').urlencoded({extended: true});
+const parser = require('body-parser').urlencoded({ extended: true });
 const session = require('express-session');
 const cookiePaser = require('cookie-parser');
 const flash = require('express-flash');
@@ -21,6 +21,9 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: fals
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next();
+});
 app.use('/', customer);
 app.listen(process.env.PORT || 8088, () => console.log('Server is running !!!'));

@@ -2,6 +2,7 @@ module.exports = function Cart(cart) {
     this.items = cart.items || {};
     this.totalItems = cart.totalItems || 0;
     this.totalPrice = cart.totalPrice || 0;
+    this.img = cart.img || "";
 
     this.add = function(item, id) {
         var cartItem = this.items[id];
@@ -13,6 +14,7 @@ module.exports = function Cart(cart) {
         cartItem.price = cartItem.item.rows[0].price * cartItem.quantity;
         this.totalItems++;
         this.totalPrice += cartItem.item.rows[0].price;
+        this.img = cartItem.item.rows[0].image[Object.keys(cartItem.item.rows[0].image)[0]];
     };
 
     this.remove = function(id) {
