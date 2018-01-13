@@ -50,21 +50,27 @@
 
 <body>
     <!--top-header-->
+    <div class="fixed_cart" style="position: fixed; top: 40px; right: 0px; width: 60px; z-index: 100">
+        <a href="checkout" style="text-decoration: none; font-size: 2.1em; color: #4CB1CA">
+           5 <img src="images/cart-4.png" alt="" style="float: right"/>
+        </a>
+    </div>
+
     <div class="top-header">
         <div class="container">
             <div class="top-header-main">
                 <div class="col-md-6 top-header-left">
                 </div>
-                <%if(!user){%>
-                    <div class="col-md-6 top-header-left">
+                <div class="col-md-6 top-header-left">
+                    <%if(!user){%>
                         <div class="cart box_1">
-                            <a href="/login">
+                            <a href="/login" style="text-decoration: none;">
                                 <div class="total">
                                     <span class="">Login</span>
                                 </div>
                                 <img src="#" alt="" />
                             </a>
-                            <a href="/register">
+                            <a href="/register" style="text-decoration: none;">
                                 <div class="total">
                                     <span class="">Register</span>
                                 </div>
@@ -72,27 +78,25 @@
                             </a>
                             <div class="clearfix"> </div>
                         </div>
-                    </div>
-                    <%}else{%>
-                        <div class="col-md-6 top-header-left">
+                        <%}else{%>
                             <div class="cart box_1">
-                                <a href="/logout">
+                                <a href="/logout" style="text-decoration: none;">
                                     <div class="total">
                                         <span class="">Logout</span>
                                     </div>
                                     <img src="#" alt="" />
                                 </a>
-                                <a href="/register">
+                                <a href="/profile" style="text-decoration: none;">
                                     <div class="total">
-                                        <span class="">Profile</span>
+                                        <span class="">My Profile</span>
                                     </div>
                                     <img src="#" alt="" />
                                 </a>
                                 <div class="clearfix"> </div>
                             </div>
-                        </div>
-                        <%}%>
-                            <div class="clearfix"></div>
+                            <%}%>
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

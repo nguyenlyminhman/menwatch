@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const notLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const Customer = require('../model/Customer');
 const Car = require('../model/Cart');
 const Product = require('../model/Product');
@@ -9,9 +10,6 @@ require('../utils/Passport')(passport);
 
 //define the home page router
 router.get('/', require('../controller/showHomePage'));
-router.get('/contact', require('../controller/showContactPage'));
-router.get('/about', require('../controller/showAboutPage'));
-router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/login', require('../controller/showAccountPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/account' }));
 router.get('/register', require('../controller/showRegisterPage'));
@@ -29,6 +27,11 @@ router.post('/register', (req, res) => {
         })
         .catch(() => res.redirect('/register'));
 });
+router.get('/profile', notLoggedIn ,(req, res) => { res.render('profile') })
+
+router.get('/contact', require('../controller/showContactPage'));
+router.get('/about', require('../controller/showAboutPage'));
+router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/style', require('../controller/showHomePage'));
 router.get('/brand', require('../controller/showHomePage'));
 router.get('/style/:idStyle', require('../controller/showProductsByStylePage'));
@@ -53,4 +56,3 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 module.exports = router;
-

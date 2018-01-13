@@ -21,6 +21,7 @@ module.exports = function Cart(cart) {
         delete this.items[id];
     };
     
+    
     this.getItems = function() {
         var arr = [];
         for (var id in this.items) {

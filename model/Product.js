@@ -30,7 +30,13 @@ class Product {
         return queryDB(sql, [this.idStyle])
             .then(result => result.rows);
     }
-
+    //using for sigle page to show details
+    getProductDetailsById() {
+        let sql = 'SELECT * FROM public."Product" where id = $1'
+        return queryDB(sql, [this.id])
+            .then(result => result.rows);
+    }
+    //using for add to cart.
     getProductById() {
         let sql = 'SELECT * FROM public."Product" where id = $1'
         return queryDB(sql, [this.id]);
