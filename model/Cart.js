@@ -6,13 +6,11 @@ module.exports = function Cart(cart) {
     this.add = function(item, id) {
         var cartItem = this.items[id];
         if (!cartItem) {
-            cartItem = this.items[id] = {item: item, name:"", quantity: 0, price: 0};
+            cartItem = this.items[id] = {item: item, quantity: 0, price: 0};
         }
         cartItem.quantity++;
-        cartItem.name = cartItem.item.rows[0].name;
-        cartItem.image = cartItem.item.rows[0].image[Object.keys(cartItem.item.rows[0].image)[0]];
-        // cartItem.img = cartItem.item.rows[0].image[Object.keys(cartItem.item.rows[0].image)[0]];
-        // console.log(cartItem.item.rows[0].price);
+        // cartItem.name = cartItem.item.rows[0].name;
+        // cartItem.image = cartItem.item.rows[0].image[Object.keys(cartItem.item.rows[0].image)[0]];
         cartItem.price = cartItem.item.rows[0].price * cartItem.quantity;
         this.totalItems++;
         this.totalPrice += cartItem.item.rows[0].price;

@@ -23,16 +23,18 @@ module.exports = async (req, res, next) => {
                 user: req.user })
         }
         var cart = new Cart(req.session.cart);
-        console.log(cart);
+        // console.log(cart);
         console.log('....................................................');
-        Object.keys(cart.items).forEach(function (key) {
-            console.log(key + ' = ' + cart.items[key].name);
-        });
+        console.log(cart.getItems())
+        // Object.keys(cart.items).forEach(function (key) {
+        //     console.log(key + ' = ' + cart.items[key].name);
+        // });
+
         res.render('shopping_cart', {
             brand,
             style,
             product,
-            cartItem: cart.items,
+            cartItem: cart.getItems(),
             title: 'My shopping bag...',
             user: req.user
         })

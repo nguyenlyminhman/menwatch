@@ -52,7 +52,7 @@
 					<div class="in-check">
 						<ul class="unit">
 							<li>
-								<span>Item</span>
+								<span>Image</span>
 							</li>
 							<li>
 								<span>Product Name</span>
@@ -71,27 +71,27 @@
 								<h2>Your Shopping Bag is Empty</h2>
 							</div>
 							<%}else{%>
-								<%Object.keys(cartItem).forEach(key=>{%>
+								<%cartItem.forEach(product=>{%>
 									<ul class="cart-header">
 										<div class="close1"> </div>
 										<li class="ring-in">
-											<a href="product-details/<%=key%>">
-												<img src="images/<%=cartItem[key].image%>" class="img-responsive" style="height: 50%; width: 50%" alt="">
+											<a href="product-details/<%=product.item.rows[0].id%>">
+												<img src="images/<%=product.item.rows[0].image[Object.keys(product.item.rows[0].image)[0]]%>" class="img-responsive" style="height: 50%; width: 50%" alt="">
 											</a>
 										</li>
 										<li>
 											<span class="name">
-												<%=cartItem[key].name%>
+												<%=product.item.rows[0].name%>
 											</span>
 										</li>
 										<li>
 											<span class="cost">
-												<%=cartItem[key].price%>
+													<%=product.item.rows[0].price%>
 											</span>
 										</li>
 										<li>
 											<span>
-												<%=cartItem[key].quantity%>
+													<%=product.quantity%>
 											</span>
 										</li>
 										<div class="clearfix"> </div>
