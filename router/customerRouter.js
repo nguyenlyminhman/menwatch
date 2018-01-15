@@ -46,7 +46,8 @@ router.get('/addtocart/:id', (req, res) => {
         result => {
             cart.add(result, result.rows[0].id);
             req.session.cart = cart;
-            // console.log(req.session.cart);
+            // console.log(result.rows[0].name);
+            // console.log(Object.keys(cart.items));
             res.redirect('/');
         })
 })

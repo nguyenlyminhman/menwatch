@@ -3,22 +3,40 @@ const Style = require('../model/Style');
 const Product = require('../model/Product');
 const Cart = require('../model/Cart');
 
-
 module.exports = async (req, res, next) => {
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         let product = await Product.getAllProduct();
-        let cart = new Cart(req.session.cart);
+
+        // data.image[Object.keys(data.image)[2]]
+        // console.log(JSON.stringify(cartt.items));
+        // console.log(JSON.parse(JSON.stringify(cartt.items)));
+        // console.log(cartt.item[Object.keys(cartt.item)[0]]);
+
+        if (!req.session.cart) {
+            return res.render('shopping_cart', { brand,
+                style,
+                product,
+                cartItem: null,
+                title: 'My shopping bag...',
+                user: req.user })
+        }
+        var cart = new Cart(req.session.cart);
+        console.log(cart);
+        console.log('....................................................');
+        Object.keys(cart.items).forEach(function (key) {
+            console.log(key + ' = ' + cart.items[key].name);
+        });
         res.render('shopping_cart', {
             brand,
             style,
             product,
-            totalP: cart.totalPrice,
-            user: req.user,
-            title: 'My shopping bag...'
+            cartItem: cart.items,
+            title: 'My shopping bag...',
+            user: req.user
         })
     } catch (err) {
-        res.send('My shopping cart navigation error :' + err);
+        res.send('My shopping cart navigation error : ' + err);
     }
 }

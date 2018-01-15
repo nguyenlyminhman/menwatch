@@ -71,33 +71,44 @@
 								<h2>Your Shopping Bag is Empty</h2>
 							</div>
 							<%}else{%>
-
-								<ul class="cart-header">
-									<div class="close1"> </div>
-									<li class="ring-in">
-										<a href="single.html">
-											<img src="images/c-1.jpg" class="img-responsive" alt="">
-										</a>
-									</li>
-									<li>
-										<span class="name">
-										</span>
-									</li>
-									<li>
-										<span class="cost">
-
-										</span>
-									</li>
-									<li>
-										<span>1</span>
-									</li>
-									<div class="clearfix"> </div>
-								</ul>
+								<%Object.keys(cartItem).forEach(key=>{%>
+									<ul class="cart-header">
+										<div class="close1"> </div>
+										<li class="ring-in">
+											<a href="product-details/<%=key%>">
+												<img src="images/<%=cartItem[key].image%>" class="img-responsive" style="height: 50%; width: 50%" alt="">
+											</a>
+										</li>
+										<li>
+											<span class="name">
+												<%=cartItem[key].name%>
+											</span>
+										</li>
+										<li>
+											<span class="cost">
+												<%=cartItem[key].price%>
+											</span>
+										</li>
+										<li>
+											<span>
+												<%=cartItem[key].quantity%>
+											</span>
+										</li>
+										<div class="clearfix"> </div>
+									</ul>
+									<%})%>
 								<%}%>
 					</div>
+
 					<div class="ckeck-top heading" style="float: right">
 						<h2>Total:
-							<%=totalP%>$</h2>
+							<%if(!session.cart){%>
+								0 $
+							<%}else{%>
+								<%=session.cart.totalPrice%> $
+							<%}%>
+						</h2>
+
 						<br>
 						<div class="account-right">
 							<a href="/checkout">CheckOut</a>
