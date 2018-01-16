@@ -38,6 +38,7 @@ router.get('/style/:idStyle', require('../controller/showProductsByStylePage'));
 router.get('/brand/:idBrand', require('../controller/showProductsByBrandPage'));
 // router.get('/category/:cate_seolink/:idcategory', require('./showProductsPage'));
 router.get('/product-details/:id', require('../controller/showSinglePage'));
+router.get('/shopping-cart', require('../controller/showShoppingCartPage'));
 router.get('/addtocart/:id', (req, res) => {
     const id = req.params.id;
     const cart = new Car(req.session.cart ? req.session.cart : {});
@@ -48,10 +49,37 @@ router.get('/addtocart/:id', (req, res) => {
             req.session.cart = cart;
             // console.log(result.rows[0].name);
             // console.log(Object.keys(cart.items));
-            res.redirect('/');
+            res.redirect('/shopping-cart');
         })
 })
-router.get('/shopping-cart', require('../controller/showShoppingCartPage'));
+router.get('/removebyone/:id', (req, res) => {
+    const id = req.params.id;
+    const cart = new Car(req.session.cart ? req.session.cart : {});
+    const product = new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+    product.getProductById().then(
+        result => {
+            cart.reduceByOne(result.rows[0].id);
+            req.session.cart = cart;
+            // console.log(result.rows[0].name);
+            // console.log(Object.keys(cart.items));
+            res.redirect('/shopping-cart');
+        })
+})
+
+router.get('/remove/:id', (req, res) => {
+    const id = req.params.id;
+    const cart = new Car(req.session.cart ? req.session.cart : {});
+    const product = new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+    product.getProductById().then(
+        result => {
+            cart.remove(result.rows[0].id);
+            req.session.cart = cart;
+            // console.log(result.rows[0].name);
+            // console.log(Object.keys(cart.items));
+            res.redirect('/shopping-cart');
+        })
+})
+
 router.get('/checkout', require('../controller/showCheckOutPage'));
 router.get('/logout', (req, res) => {
     req.logout();

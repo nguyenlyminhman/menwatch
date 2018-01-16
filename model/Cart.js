@@ -16,6 +16,16 @@ module.exports = function Cart(cart) {
         this.totalPrice += cartItem.item.rows[0].price;
     };
 
+    this.reduceByOne = function(id) {
+                this.items[id].quantity--;
+                this.items[id].price -= this.items[id].item.rows[0].price;
+                this.totalItems--;
+                this.totalPrice -= this.items[id].item.rows[0].price;
+                if (this.items[id].quantity <= 0) {
+                    delete this.items[id];
+                }
+            };
+
     this.remove = function(id) {
         this.totalItems -= this.items[id].quantity;
         this.totalPrice -= this.items[id].price;
@@ -43,7 +53,7 @@ module.exports = function Cart(cart) {
 //             storedItem = this.items[id] = {item: item, qty: 0, price: 0};
 //         }
 //         storedItem.qty++;
-//         storedItem.price = parseInt(storedItem.item.price) * parseInt(storedItem.qty);
+//         storedItem.price = storedItem.item.price * storedItem.qty;
 //         console.log(storedItem.price);
 //         this.totalQty++;
 //         this.totalPrice += storedItem.item.price;

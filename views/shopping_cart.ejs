@@ -73,10 +73,11 @@
 							<%}else{%>
 								<%cartItem.forEach(product=>{%>
 									<ul class="cart-header">
-										<div class="close1"> </div>
+										<a href="remove/<%=product.item.rows[0].id%>" class="close1"> </a>
 										<li class="ring-in">
 											<a href="product-details/<%=product.item.rows[0].id%>">
-												<img src="images/<%=product.item.rows[0].image[Object.keys(product.item.rows[0].image)[0]]%>" class="img-responsive" style="height: 50%; width: 50%" alt="">
+												<img src="images/<%=product.item.rows[0].image[Object.keys(product.item.rows[0].image)[0]]%>" class="img-responsive" style="height: 50%; width: 50%"
+												 alt="">
 											</a>
 										</li>
 										<li>
@@ -86,27 +87,32 @@
 										</li>
 										<li>
 											<span class="cost">
-													<%=product.item.rows[0].price%>
+												<%=product.item.rows[0].price%>
 											</span>
 										</li>
 										<li>
+
 											<span>
+												<a href="removebyone/<%=product.item.rows[0].id%>" class="btn btn-warning"> - </a>
+												<div class="btn btn-default">
 													<%=product.quantity%>
+												</div>
+												<a href="addtocart/<%=product.item.rows[0].id%>" class="btn btn-success"> + </a>
 											</span>
 										</li>
 										<div class="clearfix"> </div>
 									</ul>
 									<%})%>
-								<%}%>
+										<%}%>
 					</div>
 
 					<div class="ckeck-top heading" style="float: right">
 						<h2>Total:
 							<%if(!session.cart){%>
 								0 $
-							<%}else{%>
-								<%=session.cart.totalPrice%> $
-							<%}%>
+								<%}else{%>
+									<%=session.cart.totalPrice%> $
+										<%}%>
 						</h2>
 
 						<br>
