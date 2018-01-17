@@ -58,7 +58,7 @@ router.get('/removebyone/:id', (req, res) => {
     const product = new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     product.getProductById().then(
         result => {
-            cart.reduceByOne(result.rows[0].id);
+            cart.reduceOneItem(result.rows[0].id);
             req.session.cart = cart;
             // console.log(result.rows[0].name);
             // console.log(Object.keys(cart.items));
@@ -72,7 +72,7 @@ router.get('/remove/:id', (req, res) => {
     const product = new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     product.getProductById().then(
         result => {
-            cart.remove(result.rows[0].id);
+            cart.removeItem(result.rows[0].id);
             req.session.cart = cart;
             // console.log(result.rows[0].name);
             // console.log(Object.keys(cart.items));

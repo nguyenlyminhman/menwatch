@@ -16,114 +16,43 @@
 	</div>
 	<!--end-breadcrumbs-->
 	<!--start-ckeckout-->
-	<div class="ckeckout">
+	<div class="register">
 		<div class="container">
-			<div class="ckeck-top heading">
-				<h2>CHECKOUT</h2>
+			<div class="register-top heading">
+				<h2>Check Out</h2>
+				<h4>Your Total:
+			<%if(!session.cart){%>
+				0 $
+				<%}else{%>
+					<%=session.cart.totalPrice%> $
+						<%}%>
+				</h4>
 			</div>
-			<div class="ckeckout-top">
-				<div class="cart-items">
-					<h3>My Shopping Bag (3)</h3>
-					<!-- <script>$(document).ready(function (c) {
-							$('.close1').on('click', function (c) {
-								$('.cart-header').fadeOut('slow', function (c) {
-									$('.cart-header').remove();
-								});
-							});
-						});
-					</script>
-					<script>$(document).ready(function (c) {
-							$('.close2').on('click', function (c) {
-								$('.cart-header1').fadeOut('slow', function (c) {
-									$('.cart-header1').remove();
-								});
-							});
-						});
-					</script>
-					<script>$(document).ready(function (c) {
-							$('.close3').on('click', function (c) {
-								$('.cart-header2').fadeOut('slow', function (c) {
-									$('.cart-header2').remove();
-								});
-							});
-						});
-					</script> -->
-
-					<div class="in-check">
-						<ul class="unit">
-							<li>
-								<span>Item</span>
-							</li>
-							<li>
-								<span>Product Name</span>
-							</li>
-							<li>
-								<span>Unit Price</span>
-							</li>
-							<li>
-								<span>Quantity</span>
-							</li>
-							<li> </li>
-							<div class="clearfix"> </div>
-						</ul>
-						<ul class="cart-header">
-							<div class="close1"> </div>
-							<li class="ring-in">
-								<a href="single.html">
-									<img src="images/c-1.jpg" class="img-responsive" alt="">
-								</a>
-							</li>
-							<li>
-								<span class="name">Analog Watches</span>
-							</li>
-							<li>
-								<span class="cost">$ 290.00</span>
-							</li>
-							<li>
-								<span>1</span>
-							</li>
-							<div class="clearfix"> </div>
-						</ul>
-						<ul class=" cart-header1">
-							<div class="close2"> </div>
-							<li class="ring-in">
-								<a href="single.html">
-									<img src="images/c-2.jpg" class="img-responsive" alt="">
-								</a>
-							</li>
-							<li>
-								<span class="name">Analog Watches</span>
-							</li>
-							<li>
-								<span class="cost">$ 300.00</span>
-							</li>
-							<li>
-								<span>1</span>
-							</li>
-							<div class="clearfix"> </div>
-						</ul>
-						<ul class="cart-header2">
-							<div class="close3"> </div>
-							<li class="ring-in">
-								<a href="single.html">
-									<img src="images/c-3.jpg" class="img-responsive" alt="">
-								</a>
-							</li>
-							<li>
-								<span class="name">Analog Watches</span>
-							</li>
-							<li>
-								<span class="cost">$ 360.00</span>
-							</li>
-							<li>
-								<span>1</span>
-							</li>
-							<div class="clearfix"> </div>
-						</ul>
+			
+			<form action="/checkout" method="Post">
+				<div class="register-main">
+					<div class="col-md-6 account-left">
+						<input placeholder="Email address" type="email" name="email" tabindex="1" required>
+						<input placeholder="Password" type="password" name="password" tabindex="2" required>
+						<input placeholder="Retype password" type="password" tabindex="3" required>
 					</div>
+					<div class="col-md-6 account-left">
+						<input placeholder="First name" type="text" name="firstname" tabindex="4" required>
+						<input placeholder="Last name" type="text" name="lastname" tabindex="5" required>
+						<input placeholder="Address" type="text" name="address" tabindex="6" required>
+						<input placeholder="Phone" type="text" name="phone" tabindex="7" required>
+					</div>
+					<div class="clearfix"></div>
 				</div>
-			</div>
+				<div class="address submit">
+					<input tabindex="8" type="submit" value="Check Out">
+				</div>
 		</div>
+	</div>
+
+
+	</form>
+	</div>
 	</div>
 	<!--end-ckeckout-->
 	<!--footer-->

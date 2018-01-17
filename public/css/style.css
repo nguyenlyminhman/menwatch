@@ -6,7 +6,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
 Chinh sua button add to cart o dong 1676
+
+Editting button register in register form and checkout
+Add more two attribute
+    float: right;
+    margin:0px 68px;
+
 --*/
+
+
 body{
 	background:#fff;
 	font-family: 'Lato-Regular';
@@ -1459,10 +1467,12 @@ a.mask {
 	margin-right: 20px;
 }
 .address input[type="submit"] {
+    float: right;
     background: none;
     color: #000;
     font-size: 15px;
     padding: 0.5em 1.2em;
+    margin:0px 68px;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
