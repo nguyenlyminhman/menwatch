@@ -45,6 +45,8 @@
             });
 
         });
+
+        
     </script>
 </head>
 
@@ -53,11 +55,11 @@
     <div class="fixed_cart" style="position: fixed; top: 40px; right: 0px; width: 60px; z-index: 100">
         <a href="shopping-cart" style="text-decoration: none; font-size: 2.1em; color: #4CB1CA">
             <%if(!session.cart){%>
-            0
+                0
                 <%}else{%>
-                   <%= session.cart.totalItems %>
-                    <%}%>
-            <img src="images/cart-4.png" alt="" style="float: right"/>
+                    <%= session.cart.totalItems %>
+                        <%}%>
+                            <img src="images/cart-4.png" alt="" style="float: right" />
         </a>
     </div>
 

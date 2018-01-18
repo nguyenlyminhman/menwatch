@@ -1,22 +1,21 @@
 const queryDB = require('../utils/DatabaseConnection');
 
 class Order {
-    constructor(idbill, idCustomer, idPayment, orderdate, receivedate, total, orderphone, orderaddress, ordername) {
+    constructor(id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment) {
         this.id = id;
         this.idCustomer = idCustomer;
-        this.idPayment = idPayment;
         this.orderdate = orderdate;
         this.receivedate = receivedate;
         this.total = total;
         this.orderphone = orderphone;
         this.orderaddress = orderaddress;
-        this.ordername = ordername;
+        this.payment = payment;
     }
 
     addNewOrder() {
-        const sql = 'INSERT INTO public.Order(id, idCustomer, idPayment, orderdate, receivedate, total, orderphone, orderaddress)' +
-            'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);'
-        return queryDB(sql, [this.id, this.idCustomer, this.idPayment, this.orderdate, this.receivedate, this.total, this.orderphone, this.orderaddress, this.ordername]);
+        const sql = 'INSERT INTO public.Order(id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment)' +
+            'VALUES ($1, $2, $3, $4, $5, $6, $7, $8);'
+        return queryDB(sql, [this.id, this.idCustomer, this.orderdate, this.receivedate, this.total, this.orderphone, this.orderaddress, this.payment]);
     }
 
     getOrderById() {
