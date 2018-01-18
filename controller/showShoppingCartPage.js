@@ -29,7 +29,6 @@ module.exports = async (req, res, next) => {
         // Object.keys(cart.items).forEach(function (key) {
         //     console.log(key + ' = ' + cart.items[key].name);
         // });
-
         res.render('shopping_cart', {
             brand,
             style,

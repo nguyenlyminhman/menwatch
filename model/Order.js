@@ -13,7 +13,7 @@ class Order {
     }
 
     addNewOrder() {
-        const sql = 'INSERT INTO public.Order(id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment)' +
+        const sql = 'INSERT INTO public."Order"(id, "idCustomer", orderdate, receivedate, total, orderphone, orderaddress, payment)' +
             'VALUES ($1, $2, $3, $4, $5, $6, $7, $8);'
         return queryDB(sql, [this.id, this.idCustomer, this.orderdate, this.receivedate, this.total, this.orderphone, this.orderaddress, this.payment]);
     }
@@ -32,3 +32,6 @@ class Order {
 }
 
 module.exports = Order;
+
+// var order = new Order(1, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', '12121212');
+// order.addNewOrder()

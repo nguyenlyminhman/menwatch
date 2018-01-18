@@ -5,6 +5,8 @@ const notLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const Customer = require('../model/Customer');
 const Car = require('../model/Cart');
 const Product = require('../model/Product');
+const Order = require('../model/Order');
+const OrderDetails = require('../model/OrderDetails');
 
 require('../utils/Passport')(passport);
 // express()
@@ -81,6 +83,50 @@ router.get('/remove/:id', (req, res) => {
 })
 
 router.get('/checkout', require('../controller/showCheckOutPage'));
+router.post('/checkout', function (req, res, next) {
+    if (!req.session.cart) {
+        return res.redirect('/shopping-cart');
+    }
+    var cart = new Car(req.session.cart);
+
+    var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
+
+    stripe.charges.create({
+        amount: cart.totalPrice * 100,
+        currency: "usd",
+        source: req.body.stripeToken, // obtained with Stripe.js
+        description: "Test Charge"
+    }, function (err, charge) {
+        if (err) {
+            console.log(err)
+            return res.redirect('/checkout');
+        }
+        //id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment)' +
+        var order = new Order(2, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', charge.id);
+        order.addNewOrder()
+        .then(
+            req.session.cart = null,
+            res.redirect('/')
+        );
+
+        // [user].forEach(a=>{
+        //     idcustomer = a.id;
+        // })
+        // var order = new Order({
+        //     user: req.user,
+        //     cart: cart,
+        //     address: req.body.address,
+        //     name: req.body.name,
+        //     paymentId: charge.id
+        // });
+        // order.save(function (err, result) {
+
+        //     req.session.cart = null;
+        //     res.redirect('/');
+        // });
+    });
+});
+
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');

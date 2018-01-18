@@ -8,7 +8,6 @@ module.exports = async (req, res) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         let product = await Product.getAllProduct();
-
         res.render('checkout', {
             brand,
             style,
