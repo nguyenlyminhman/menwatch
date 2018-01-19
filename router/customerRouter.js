@@ -101,8 +101,7 @@ router.post('/checkout', function (req, res, next) {
             console.log(err)
             return res.redirect('/checkout');
         }
-        //id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment)' +
-        var order = new Order(2, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', charge.id);
+        var order = new Order(3, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', charge.id);
         order.addNewOrder()
         .then(
             req.session.cart = null,
