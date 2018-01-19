@@ -27,4 +27,4 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/', customer);
-app.listen(process.env.PORT || 8088, () => console.log('Server is running !!!'));
+app.listen(process.env.PORT || 3000, () => console.log('Server is running !!!'));
