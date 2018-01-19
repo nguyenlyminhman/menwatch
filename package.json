@@ -6,6 +6,9 @@
   "repository": "https://github.com/nguyenlyminhman/menwatch.git",
   "author": "nguyenlyminhman <nguyenlyminhman@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
