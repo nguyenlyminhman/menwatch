@@ -13,3 +13,8 @@ class Brand {
     }
 }
 module.exports = Brand;
+
+// Brand.getAllBrand().then(rs => {
+//     console.log(JSON.stringify(rs))
+// }
+// )

@@ -5,7 +5,8 @@
     <title>
         <%=title%>
     </title>
-    <base href="/"><script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
+    <base href="../">
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script>
     <!-- <base href="/"> -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -24,7 +25,7 @@
     <script type="text/javascript" src="js/memenu.js"></script>
     <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
     <!--using for checkout-->
-    
+
     <!--dropdown-->
     <script src="js/jquery.easydropdown.js"></script>
     <script type="text/javascript">
@@ -51,8 +52,8 @@
     <!-- <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script> -->
     <!--top-header-->
-    <div class="fixed_cart" style="position: fixed; top: 40px; right: 0px; width: 60px; z-index: 100">
-        <a href="shopping-cart" style="text-decoration: none; font-size: 2.1em; color: #4CB1CA">
+    <div class="fixed_cart" style="position: fixed; top: 40px; right: 0px; width: 100px; z-index: 100">
+        <a id="cartqty" name="cartqty" href="shopping-cart" style="text-decoration: none; font-size: 2.1em; color: #4CB1CA; float: right">
             <%if(!session.cart){%>
                 0
                 <%}else{%>

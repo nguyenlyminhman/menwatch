@@ -41,16 +41,17 @@ router.get('/brand/:idBrand', require('../controller/showProductsByBrandPage'));
 // router.get('/category/:cate_seolink/:idcategory', require('./showProductsPage'));
 router.get('/product-details/:id', require('../controller/showSinglePage'));
 router.get('/shopping-cart', require('../controller/showShoppingCartPage'));
-router.get('/addtocart/:id', (req, res) => {
-    const id = req.params.id;
+router.get('/addtocart/:id/:qty', (req, res) => {
+    const { id, qty } = req.params;
     const cart = new Car(req.session.cart ? req.session.cart : {});
     const product = new Product(id, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     product.getProductById().then(
         result => {
-            cart.add(result, result.rows[0].id);
+            cart.add(result, result.rows[0].id, parseInt(qty));
             req.session.cart = cart;
             // console.log(result.rows[0].name);
-            // console.log(Object.keys(cart.items));
+            // console.log(Object.keys(cart.items))
+            // console.log(cart)
             res.redirect('/shopping-cart');
         })
 })
@@ -103,10 +104,10 @@ router.post('/checkout', function (req, res, next) {
         }
         var order = new Order(3, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', charge.id);
         order.addNewOrder()
-        .then(
+            .then(
             req.session.cart = null,
             res.redirect('/')
-        );
+            );
 
         // [user].forEach(a=>{
         //     idcustomer = a.id;

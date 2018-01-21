@@ -87,17 +87,14 @@
 										</li>
 										<li>
 											<span class="cost">
+												$
 												<%=product.item.rows[0].price%>
 											</span>
 										</li>
 										<li>
-
 											<span>
-												<a href="removebyone/<%=product.item.rows[0].id%>" class="btn btn-warning"> - </a>
-												<div class="btn btn-default">
-													<%=product.quantity%>
-												</div>
-												<a href="addtocart/<%=product.item.rows[0].id%>" class="btn btn-success"> + </a>
+												<input type="text" size="3" pattern="[1-9]" class="btn btn-default" name="qty<%=product.item.rows[0].id%>" id="qty<%=product.item.rows[0].id%>"
+												 value="<%=product.quantity%>" width="5px">
 											</span>
 										</li>
 										<div class="clearfix"> </div>
@@ -114,19 +111,36 @@
 									<%=session.cart.totalPrice%> $
 										<%}%>
 						</h2>
-
 						<br>
 						<div class="account-right">
 							<a href="/checkout">CheckOut</a>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
 	<!--end-ckeckout-->
 	<!--footer-->
-	<% include footer %>
-		<!--end of footer-->
+
+	<% cartItem.forEach(product => {%>
+		<script>
+			(function ($) {
+				$(document).ready(function () {
+					$('#qty<%=product.item.rows[0].id%>').change(function () {
+						var qty = document.getElementById('qty<%=product.item.rows[0].id%>').value;
+						if (qty > 20 || isNaN(qty)) {
+							alert('Quantity can not greater than 30 ');
+						} else {
+							$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
+							//alert('<%=(session.cart)[1]%>');
+							// alert('<%=Object.values(session.cart)[1]%>');
+							setInterval(function () { location.reload(); }, 1000);
+						}
+					});
+				});
+			})(jQuery);
+		</script>
+		<%}) %>
+			<% include footer %>
+				<!--end of footer-->
