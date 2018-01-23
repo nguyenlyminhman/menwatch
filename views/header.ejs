@@ -10,6 +10,8 @@
         crossorigin="anonymous"></script>
     <!-- <base href="/"> -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!--Custom-Theme-files-->
@@ -59,7 +61,7 @@
                 <%}else{%>
                     <%= session.cart.totalItems %>
                         <%}%>
-                            <img src="images/cart-4.png" alt="" style="float: right" />
+                            <img src="images/cart-4.png" alt="" style="float: right;" />
         </a>
     </div>
 
@@ -185,10 +187,12 @@
                     <div class="clearfix"> </div>
                 </div>
                 <div class="col-md-3 header-right">
-                    <div class="search-bar">
-                        <input type="text" value="SEARCH" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'SEARCH';}">
-                        <input type="submit" value="">
-                    </div>
+                    <form action="search" method="POST">
+                        <div class="search-bar">
+                            <input type="text" value="SEARCH" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'SEARCH';}">
+                            <input type="submit" value="">
+                        </div>
+                    </form>
                 </div>
                 <div class="clearfix"> </div>
             </div>

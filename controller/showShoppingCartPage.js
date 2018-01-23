@@ -34,7 +34,7 @@ module.exports = async (req, res, next) => {
             style,
             product,
             cartItem: cart.getItems(),
-            title: 'My shopping bag...',
+            title: 'My shopping bag',
             user: req.user
         })
     } catch (err) {

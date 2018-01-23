@@ -25,6 +25,7 @@
 							<div class="col-md-5 single-top-left">
 								<div class="flexslider">
 									<ul class="slides">
+										
 										<li data-thumb="images/<%= data.image[Object.keys(data.image)[0]]%>">
 											<div class="thumb-image">
 												<img src="images/<%= data.image[Object.keys(data.image)[0]]%>" data-imagezoom="true" class="img-responsive" alt="" />
@@ -66,22 +67,42 @@
 									</h5>
 									<ul class="tag-men">
 										<li>
-											<span><strong> Movement Type: </strong> &nbsp;&nbsp; <%= data.details[Object.keys(data.details)[1]]%></span>
+											<span>
+												<strong> Movement Type: </strong> &nbsp;&nbsp;
+												<%= data.details[Object.keys(data.details)[1]]%>
+											</span>
 										</li>
-										<li> <br /></li>
 										<li>
-											<span><strong>Case Size: </strong> &nbsp;&nbsp; <%= data.details[Object.keys(data.details)[0]]%></span>
+											<br />
 										</li>
-										<li> <br /></li>
 										<li>
-											<span><strong>Strap Material: </strong> &nbsp;&nbsp;<%= data.details[Object.keys(data.details)[2]]%></span>
+											<span>
+												<strong>Case Size: </strong> &nbsp;&nbsp;
+												<%= data.details[Object.keys(data.details)[0]]%>
+											</span>
 										</li>
-										<li> <br /></li>
 										<li>
-											<span><strong>Water Resistant: </strong> &nbsp;&nbsp;<%= data.details[Object.keys(data.details)[3]]%></span>
-											
+											<br />
 										</li>
-										<li> <br /></li>
+										<li>
+											<span>
+												<strong>Strap Material: </strong> &nbsp;&nbsp;
+												<%= data.details[Object.keys(data.details)[2]]%>
+											</span>
+										</li>
+										<li>
+											<br />
+										</li>
+										<li>
+											<span>
+												<strong>Water Resistant: </strong> &nbsp;&nbsp;
+												<%= data.details[Object.keys(data.details)[3]]%>
+											</span>
+
+										</li>
+										<li>
+											<br />
+										</li>
 									</ul>
 									<br />
 									<a href="addtocart/<%=data.id%>/1" class="add-cart item_add">ADD TO CART</a>
@@ -96,7 +117,9 @@
 										<img src="images/arrow.png" alt="">Description</a>
 									<ul>
 										<li class="subitem1">
-											<a><%=data.description %></a>
+											<a>
+												<%=data.description %>
+											</a>
 										</li>
 									</ul>
 								</li>

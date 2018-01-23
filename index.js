@@ -27,4 +27,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/', customer);
+
+// app.use(require('./controller/showErrorPage'));
 app.listen(process.env.PORT || 3000, () => console.log('Server is running !!!'));
+console.log()

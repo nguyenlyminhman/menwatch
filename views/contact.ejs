@@ -40,11 +40,11 @@
 					</div>
 				</div>
 				<div class="col-md-9 contact-right">
-					<form>
-						<input type="text" placeholder="Name">
-						<input type="text" placeholder="Phone">
-						<input type="text" placeholder="Email">
-						<textarea placeholder="Message" required=""></textarea>
+					<form action="/contact" method="POST">
+						<input type="email" name="email" placeholder="Email" required>
+						<input type="text" name="fullname" placeholder="Fullname" required>
+						<input type="text" name="phone" placeholder="Phone" required>
+						<textarea name="message" placeholder="Message" required=""></textarea>
 						<div class="submit-btn">
 							<input type="submit" value="SUBMIT">
 						</div>
@@ -63,4 +63,4 @@
 	<!--map-end-->
 	<!--footer-->
 	<%include footer%>
-	<!--end of footer-->
+		<!--end of footer-->

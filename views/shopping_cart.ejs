@@ -66,9 +66,13 @@
 							<li> </li>
 							<div class="clearfix"> </div>
 						</ul>
-						<%if(!session.cart){%>
+						<%if(!session.cart || session.cart.totalPrice == 0){%>
+
 							<div class="ckeck-top heading">
-								<h2>Your Shopping Bag is Empty</h2>
+								<h2>Your Shopping Bag is Empty</h2><br><br>
+								<div class="account-right">
+									<a href="/">Continue to Shopping </a>
+								</div>
 							</div>
 							<%}else{%>
 								<%cartItem.forEach(product=>{%>
@@ -122,25 +126,26 @@
 	</div>
 	<!--end-ckeckout-->
 	<!--footer-->
-
-	<% cartItem.forEach(product => {%>
-		<script>
-			(function ($) {
-				$(document).ready(function () {
-					$('#qty<%=product.item.rows[0].id%>').change(function () {
-						var qty = document.getElementById('qty<%=product.item.rows[0].id%>').value;
-						if (qty > 20 || isNaN(qty)) {
-							alert('Quantity can not greater than 30 ');
-						} else {
-							$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
-							//alert('<%=(session.cart)[1]%>');
-							// alert('<%=Object.values(session.cart)[1]%>');
-							setInterval(function () { location.reload(); }, 1000);
-						}
+	<%if(session.cart){%>
+		<% cartItem.forEach(product => {%>
+			<script>
+				(function ($) {
+					$(document).ready(function () {
+						$('#qty<%=product.item.rows[0].id%>').change(function () {
+							var qty = document.getElementById('qty<%=product.item.rows[0].id%>').value;
+							if (qty > 20 || isNaN(qty)) {
+								alert('Quantity can not greater than 30 ');
+							} else {
+								$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
+								//alert('<%=(session.cart)[1]%>');
+								// alert('<%=Object.values(session.cart)[1]%>');
+								setInterval(function () { location.reload(); }, 250);
+							}
+						});
 					});
-				});
-			})(jQuery);
-		</script>
-		<%}) %>
-			<% include footer %>
-				<!--end of footer-->
+				})(jQuery);
+			</script>
+			<%}) %>
+				<%} %>
+					<% include footer %>
+						<!--end of footer-->
