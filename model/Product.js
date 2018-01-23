@@ -42,6 +42,12 @@ class Product {
         return queryDB(sql, [this.id]);
     }
 
+    getProductByKeyword(keywords) {
+        let sql = 'SELECT * FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)  ORDER BY Id DESC'
+        return queryDB(sql, ["%" + keywords + "%"])
+            .then(result => result.rows);
+    }
+
     insertNewProduct() {
         let sql = 'INSERT INTO public."product"(cateid, proname, proprice, prodetails)VALUES ($1, $2, $3, $4);'
         return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails]);
@@ -51,14 +57,14 @@ class Product {
         let sql = 'UPDATE public.product SET  cateid=$1, proname=$2, proprice=$3, prodetails=$4 WHERE proid=$5'
         return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails, this.proid])
     }
-}
 
+}
 module.exports = Product;
 
-// let product = new Product(undefined, undefined, 2, undefined, undefined, undefined, undefined, undefined, undefined);
-// pro.insertNewProduct()
-// .then(() => console.log('ok man'))
-// .catch(err=> console.log(err));
+// let product = new Product();
+// product.getProductByKeyword("Case")
+//     .then(a => console.log(a))
+//     .catch(err => console.log(err));
 
 // product.getProductByBrand()
 // .then(s => console.log(s))
