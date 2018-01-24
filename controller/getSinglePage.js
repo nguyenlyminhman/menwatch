@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
         let style = await Style.getAllStyle();
         let product = await products.getProductDetailsById()
         res.render('single', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             style,
             brand,
             product,

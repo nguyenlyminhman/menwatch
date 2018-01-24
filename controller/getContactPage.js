@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         let style = await Style.getAllStyle();
 
         res.render('contact', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             brand,
             style,
             user: req.user,

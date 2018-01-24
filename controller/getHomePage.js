@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
         let product = await Product.getAllProduct();
 
         res.render('index', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             brand,
             style,
             product,

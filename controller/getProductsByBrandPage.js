@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         let product = await products.getProductByBrand();
         let brandname = await bname.getBrandById();
         res.render('products', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             style,
             brand,
             product,

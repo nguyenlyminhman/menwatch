@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         let stylename = await sname.getStyleById();
 
         res.render('products', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             style,
             brand,
             product,

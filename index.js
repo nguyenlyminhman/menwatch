@@ -21,7 +21,6 @@ app.use('admin', express.static('public/admin'));
 app.use(cookiePaser());
 app.use(parser);
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -29,6 +28,8 @@ app.use((req, res, next) => {
     res.locals.session = req.session;
     next();
 });
+app.use(flash());
+
 app.use('/', customer);
 
 // app.use(require('./controller/showErrorPage'));

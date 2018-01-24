@@ -19,7 +19,14 @@
 	<div class="register">
 		<div class="container">
 			<div class="register-top heading">
-				<h2>REGISTER</h2>
+				<%if (message.length > 0 ){%>
+					<div class="alert alert-danger">
+						<h4>
+							<%= message%>
+						</h4>
+					</div>
+					<%}%>
+						<h2>REGISTER</h2>
 			</div>
 			<form action="/register" method="Post">
 				<div class="register-main">
@@ -37,7 +44,6 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="address submit">
-					<input type="hidden" name="_csrf" value="<%=csrfToken%> ">
 					<input tabindex="8" type="submit" value="Register">
 				</div>
 			</form>

@@ -31,7 +31,7 @@ module.exports = function (passport) {
       customer.getCustomerInfoByEmail()
         .then(result => {
           if (!result.rowCount) {
-            return done(null, false, { message: 'Unknown user ' + email });
+            return done(null, false, { messages: email + ' is not in use.'});
           }
           compare(password, result.rows[0].password)
             .then(isValid => {

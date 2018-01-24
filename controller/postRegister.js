@@ -6,10 +6,13 @@ module.exports = async (req, res, next) => {
     customer.checkExistEmail()
         .then(result => {
             if (result.rowCount) {
+                req.flash('info', email + ' is already in use.')
                 res.redirect('/register')
             } else {
                 customer.signup()
-                    .then(res.redirect('/account'))
+                    .then(
+                    res.redirect('/login')
+                    )
             }
         })
         .catch(() => res.redirect('/register'));

@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
 
         if (!req.session.cart) {
             return res.render('shopping_cart', { brand,
-                csrfToken: req.csrfToken(),
+                // csrfToken: req.csrfToken(),
                 style,
                 product,
                 cartItem: null,
@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
         //     console.log(key + ' = ' + cart.items[key].name);
         // });
         res.render('shopping_cart', {
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
             brand,
             style,
             product,
