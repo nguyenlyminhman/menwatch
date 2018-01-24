@@ -20,15 +20,15 @@ require('../utils/Passport')(passport);
 //define the home page router
 router.get('/', require('../controller/getHomePage'));
 
-router.get('/login', require('../controller/getAccountPage'));
+router.get('/login',csurfProtection, require('../controller/getAccountPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
-router.get('/register', require('../controller/getRegisterPage'));
+router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, (req, res) => { res.render('profile') });
 
-router.get('/contact', require('../controller/getContactPage'));
-router.post('/contact', require('../controller/postContact'));
+router.get('/contact', csurfProtection, require('../controller/getContactPage'));
+router.post('/contact', csurfProtection, require('../controller/postContact'));
 router.get('/about', require('../controller/getAboutPage'));
 
 router.get('/style', require('../controller/getHomePage'));

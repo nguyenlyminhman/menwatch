@@ -1,7 +1,7 @@
 const Brand = require('../model/Brand');
 const Style = require('../model/Style');
 const Product = require('../model/Product');
-
+const perPage  = 8;
 
 module.exports = async (req, res, next) => {
     try {

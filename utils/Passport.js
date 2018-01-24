@@ -31,12 +31,12 @@ module.exports = function (passport) {
       customer.getCustomerInfoByEmail()
         .then(result => {
           if (!result.rowCount) {
-            return done(null, false, { messages: email + ' is not in use.'});
+            return done(null, false, { message: email + ' is not in use.' });
           }
           compare(password, result.rows[0].password)
             .then(isValid => {
               if (!isValid) {
-                return done(null, false);
+                return done(null, false, { message: 'Wrong password.' });
               } else {
                 return done(null, result.rows[0]);
               }

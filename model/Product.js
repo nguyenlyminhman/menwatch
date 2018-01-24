@@ -14,14 +14,14 @@ class Product {
     }
 
     static getAllProduct() {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC';
+        let sql = 'select *  from public."Product" ORDER BY Id DESC ';
         return queryDB(sql, [])
             .then(result => result.rows);
     }
 
     getProductByBrand() {
-        let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC'
-        return queryDB(sql, [this.idBrand])
+        let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC';
+        return queryDB(sql, [this.idBrand ])
             .then(result => result.rows);
     }
 

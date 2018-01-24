@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
         let style = await Style.getAllStyle();
 
         res.render('register', {
-            // csrfToken: req.csrfToken(),
+            csrfToken: req.csrfToken(),
             message: req.flash('info'),
             brand,
             style,
