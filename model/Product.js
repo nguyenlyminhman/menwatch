@@ -13,22 +13,37 @@ class Product {
         this.details = details;
     }
 
-    static getAllProduct() {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC ';
-        return queryDB(sql, [])
-            .then(result => result.rows);
+    static getAllProduct(limit, offset) {
+        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT $1 OFFSET $2';
+        return queryDB(sql, [limit, offset])
+        // .then(result => result.rows);
     }
 
+    getCountAllProduct() {
+        let sql = 'select COUNT(*)  from public."Product"';
+        return queryDB(sql, [])
+        // .then(result => result.rows);
+    }
     getProductByBrand() {
         let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC';
-        return queryDB(sql, [this.idBrand ])
-            .then(result => result.rows);
+        return queryDB(sql, [this.idBrand])
+        // .then(result => result.rows);
+    }
+
+    getCountProductByBrand() {
+        let sql = 'SELECT COUNT(*) FROM public."Product" where "idBrand" = $1';
+        return queryDB(sql, [this.idBrand])
     }
 
     getProductByStyle() {
         let sql = 'SELECT * FROM public."Product" where "idStyle" = $1 ORDER BY Id DESC'
         return queryDB(sql, [this.idStyle])
-            .then(result => result.rows);
+        // .then(result => result.rows);
+    }
+
+    getCountProductByStyle() {
+        let sql = 'SELECT COUNT(*) FROM public."Product" where "idStyle" = $1'
+        return queryDB(sql, [this.idStyle])
     }
     //using for sigle page to show details
     getProductDetailsById() {

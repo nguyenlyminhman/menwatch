@@ -18,7 +18,7 @@ require('../utils/Passport')(passport);
 
 // router.use(csurfProtection);
 //define the home page router
-router.get('/', require('../controller/getHomePage'));
+router.get('/:page', require('../controller/getHomePage'));
 
 router.get('/login',csurfProtection, require('../controller/getAccountPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));

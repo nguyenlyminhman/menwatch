@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
             // csrfToken: req.csrfToken(),
             style,
             brand,
-            product,
+            product: product.rows,
             user: req.user,
             breadcrumb: 'Brand',
             breadcrumb_name : brandname,
