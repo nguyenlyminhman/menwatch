@@ -11,6 +11,11 @@ class Brand {
         return queryDB(sql, [])
             .then(result => result.rows);
     }
+    getBrandById() {
+        const sql = 'select * from public."Brand" WHERE id = $1 ORDER BY id ASC';
+        return queryDB(sql, [this.id])
+            .then(result => result.rows[0].brandname);
+    }
 }
 module.exports = Brand;
 
@@ -18,3 +23,9 @@ module.exports = Brand;
 //     console.log(JSON.stringify(rs))
 // }
 // )
+// let a = new Brand(1, undefined)
+
+// a.getBrandById().then(a => {
+//     console.log(JSON.stringify(a));
+// }
+// );

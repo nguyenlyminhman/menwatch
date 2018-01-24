@@ -6,8 +6,9 @@
 		<div class="container">
 			<div class="breadcrumbs-main">
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">Products</li>
+					<li><a href="/">Home</a></li>
+					<li class=""> <%=breadcrumb%></li>
+					<li class=""> <%=breadcrumb_name%></li>
 				</ol>
 			</div>
 		</div>
@@ -32,8 +33,8 @@
 										<h4><a class="item_add" href=""><i></i></a> <span class=" item_price">$ <%=data.price%></span></h4>
 									</div>
 									<div class="srch srch1">
-										<a href="addtocart/<%=data.id%>" style="text-decoration: none"><span>Add to Cart</span></a>
-									</div>addtocart/<%=data.id%>/1
+										<a href="addtocart/<%=data.id%>/1" style="text-decoration: none"><span>Add to Cart</span></a>
+									</div>
 								</div>
 							</div>
 						<% i++ %>

@@ -7,6 +7,7 @@ module.exports = async (req, res, next) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         res.render('error', {
+            csrfToken: req.csrfToken(),
             style,
             brand,
             user: req.user,

@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
         let style = await Style.getAllStyle();
         let product = await Product.getAllProduct();
         res.render('checkout', {
+            csrfToken: req.csrfToken(),
             brand,
             style,
             product,

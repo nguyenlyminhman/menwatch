@@ -2,6 +2,7 @@
 <% include header%>
 	<!--end of header-->
 	<!--start-breadcrumbs-->
+	<%product.forEach((data)=>{%>
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="breadcrumbs-main">
@@ -9,7 +10,8 @@
 					<li>
 						<a href="/">Home</a>
 					</li>
-					<li class="active">Single</li>
+					<li class="">Product Details</li>
+					<li class=""><%=data.name%></li>
 				</ol>
 			</div>
 		</div>
@@ -20,7 +22,7 @@
 		<div class="container">
 			<div class="single-main">
 				<div class="col-md-9 single-main-left">
-					<%product.forEach((data)=>{%>
+					
 						<div class="sngl-top">
 							<div class="col-md-5 single-top-left">
 								<div class="flexslider">

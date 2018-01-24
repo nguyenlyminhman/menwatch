@@ -6,17 +6,22 @@ const checkLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 
 const Customer = require('../model/Customer');
 const Car = require('../model/Cart');
+const csurf = require('csurf');
+const csurfProtection = csurf();
+
 const Product = require('../model/Product');
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
 
 require('../utils/Passport')(passport);
 // express()
+
+router.use(csurfProtection);
 //define the home page router
 router.get('/', require('../controller/getHomePage'));
 
 router.get('/login', require('../controller/getAccountPage'));
-router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/account' }));
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get('/register', require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));

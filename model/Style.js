@@ -10,6 +10,11 @@ class Style {
         return queryDB(sql, [])
             .then(result => result.rows);
     }
+    getStyleById() {
+        const sql = 'select * from public."Style" WHERE id = $1 ORDER BY id ASC';
+        return queryDB(sql, [this.id])
+            .then(result => result.rows[0].stylename);
+    }
 
     addNewStyle(){
         let sql = 'INSERT INTO public."STYLE" (id, name) VALUES ($1, $2)';
