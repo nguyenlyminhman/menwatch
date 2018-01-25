@@ -18,7 +18,7 @@ require('../utils/Passport')(passport);
 
 // router.use(csurfProtection);
 //define the home page router
-router.get('/:page', require('../controller/getHomePage'));
+router.get('/', require('../controller/getHomePage'));
 
 router.get('/login',csurfProtection, require('../controller/getAccountPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
@@ -46,7 +46,7 @@ router.get('/remove/:id',require('../controller/removeCart'));
 router.get('/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
 router.post('/checkout', require('../controller/postCheckOut'));
 
-router.post('/search', require('../controller/postSearch'));
+router.post('/search/results', require('../controller/postSearch'));
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');

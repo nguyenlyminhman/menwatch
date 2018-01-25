@@ -12,10 +12,8 @@ module.exports = async (req, res, next) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
 
-        let product = await Product.getAllProduct(perPage, (page-1)* perPage);
-        let countProduct = await _product.getCountAllProduct();
+        let product = await Product.getAllProduct();
 
-        let pages = Math.floor(countProduct.rows[0].count / perPage)+1;
 
         res.render('index', {
             // csrfToken: req.csrfToken(),
@@ -24,8 +22,8 @@ module.exports = async (req, res, next) => {
             product: product.rows,
             user: req.user,
             title: 'MenWatch-Home page...',
-            current: page,
-            pages
+            // current: page,
+            // pages
         })
     } catch (err) {
         res.send('Home page navigation error > ' + err);

@@ -4,9 +4,15 @@
 
 	<!--slider image-->
 	<% include slider_image %>
-	<!--end of slider image-->
+		<!--end of slider image-->
 
 		<!--product-starts-->
+		<div class="container">
+			<div class="col-md-12" style="background-color: #73B6E1">
+				<p style="font-size: 2em; color: whitesmoke">Latest watch </p>
+			</div>
+		</div>
+
 		<div class="product">
 			<div class="container">
 				<div class="product-top">
@@ -49,46 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="product">
-			<div class="container">
-				<div class="product-top">
-					<div class="product-one">
-						<div class="col-md-12 product-left">
-							<div class="product-main simpleCart_shelfItem">
-									<% if (pages > 0) { %>
-										<ul class="pagination text-center">
-											<% if (current == 1) { %>
-												<li class="disabled"><a>First</a></li>
-											<% } else { %>
-												<li><a href="/1">First</a></li>
-											<% } %>
-											<% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-											<% if (i !== 1) { %>
-												<li class="disabled"><a>...</a></li>
-											<% } %>
-											<% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-												<% if (i == current) { %>
-													<li class="active"><a><%= i %></a></li>
-												<% } else { %>
-													<li><a href="/<%= i %>"><%= i %></a></li>
-												<% } %>
-												<% if (i == Number(current) + 4 && i < pages) { %>
-													<li class="disabled"><a>...</a></li>
-												<% } %>
-											<% } %>
-											<% if (current == pages) { %>
-												<li class="disabled"><a>Last</a></li>
-											<% } else { %>
-												<li><a href="/<%= pages %>">Last</a></li>
-											<% } %>
-										</ul>
-									<% } %>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<!--product-end-->
 		<!--footer-->
 		<% include footer%>

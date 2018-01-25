@@ -13,9 +13,15 @@ class Product {
         this.details = details;
     }
 
-    static getAllProduct(limit, offset) {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT $1 OFFSET $2';
-        return queryDB(sql, [limit, offset])
+    static getAllProduct() {
+        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 20';
+        return queryDB(sql, [])
+        // .then(result => result.rows);
+    }
+
+    static getBestSellProduct() {
+        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 20';
+        return queryDB(sql, [])
         // .then(result => result.rows);
     }
 
@@ -57,12 +63,17 @@ class Product {
         return queryDB(sql, [this.id]);
     }
 
-    getProductByKeyword(keywords) {
-        let sql = 'SELECT * FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)  ORDER BY Id DESC'
-        return queryDB(sql, ["%" + keywords + "%"])
-            .then(result => result.rows);
+    getProductByKeyword(keywords, limit, offset ) {
+        let sql = 'SELECT * FROM public."Product" WHERE "name" ILIKE $1  ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        return queryDB(sql, ["%"+keywords+"%", limit, offset])
+            //  .then(result => result.rows);
     }
 
+    getCountProductByKeyword(keywords) {
+        let sql = 'SELECT COUNT(*) FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)';
+        return queryDB(sql, ["%" + keywords + "%"])
+            // .then(result => result.rows);
+    }
     insertNewProduct() {
         let sql = 'INSERT INTO public."product"(cateid, proname, proprice, prodetails)VALUES ($1, $2, $3, $4);'
         return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails]);
@@ -76,8 +87,8 @@ class Product {
 }
 module.exports = Product;
 
-// let product = new Product();
-// product.getProductByKeyword("Case")
+let product = new Product();
+// product.getProductByKeyword("neutra", 1,1)
 //     .then(a => console.log(a))
 //     .catch(err => console.log(err));
 
