@@ -27,7 +27,6 @@ class Customer {
                 resolve();
             })
         })
-
     }
 
     // sigin1() {
@@ -74,6 +73,17 @@ class Customer {
         const sql = 'UPDATE public."customer" SET  firstname=$1, lastname=$2, address=$3, phone=$4'
             + 'WHERE id= $5';
         return queryDB(sql, [this.fistname, this.lastname, this.address, this.phone, this.id]);
+    }
+
+    updateCustomerPassword() {
+        return new Promise((resolve, reject) => {
+            hash(this.password, 8, (err, encryptedPassword) => {
+                if (err) return reject(err);
+                const sql = 'UPDATE public."Customer" SET password=$1 WHERE email=$2';
+                queryDB(sql, [encryptedPassword, this.email])
+                resolve();
+            })
+        })
     }
 }
 module.exports = Customer;

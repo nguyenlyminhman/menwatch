@@ -20,7 +20,9 @@ class Product {
     }
 
     static getBestSellProduct() {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 20';
+        let sql = 'Select * from public."Product" where "id" in (' +
+            'select "idProduct" as total_order from public."OrderDetails"' +
+            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 3)';
         return queryDB(sql, [])
         // .then(result => result.rows);
     }
@@ -63,16 +65,16 @@ class Product {
         return queryDB(sql, [this.id]);
     }
 
-    getProductByKeyword(keywords, limit, offset ) {
+    getProductByKeyword(keywords, limit, offset) {
         let sql = 'SELECT * FROM public."Product" WHERE "name" ILIKE $1  ORDER BY Id DESC LIMIT $2 OFFSET $3';
-        return queryDB(sql, ["%"+keywords+"%", limit, offset])
-            //  .then(result => result.rows);
+        return queryDB(sql, ["%" + keywords + "%", limit, offset])
+        //  .then(result => result.rows);
     }
 
     getCountProductByKeyword(keywords) {
         let sql = 'SELECT COUNT(*) FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)';
         return queryDB(sql, ["%" + keywords + "%"])
-            // .then(result => result.rows);
+        // .then(result => result.rows);
     }
     insertNewProduct() {
         let sql = 'INSERT INTO public."product"(cateid, proname, proprice, prodetails)VALUES ($1, $2, $3, $4);'

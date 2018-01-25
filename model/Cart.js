@@ -9,7 +9,7 @@ module.exports = function Cart(cart) {
             cartItem = this.items[id] = { item: item, quantity: 0, price: 0 };
         }
 
-        if (cartItem.quantity != qty) {
+        if (cartItem.quantity != qty || cartItem.quantity == qty) {
             this.totalItems = this.totalItems - cartItem.quantity;
             this.totalPrice = this.totalPrice - (cartItem.item.rows[0].price * cartItem.quantity);
             cartItem.quantity = qty;

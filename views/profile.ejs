@@ -1,12 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile</title>
-</head>
-<body>
-    this is profile page
-</body>
-</html>
+<!--header-->
+<%include header%>
+	<!--end of header-->
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li class="active">Account</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--account-starts-->
+	<div class="account">
+		<div class="container">
+			<div class="account-top heading">
+				<%if (message.length > 0 ){%>
+					<div class="alert alert-info">
+						<h4>
+							<%= message%>
+						</h4>
+					</div>
+					<%}%>
+						<h2>PROFILE</h2>
+			</div>
+			<div class="account-main">
+				<div class="col-md-6 account-left">
+					<h3>Change Password</h3>
+					<div class="account-bottom">
+						<form action="change-password" method="POST">
+							<input placeholder="Your new password" type="password" name="password" id="password" tabindex="1" required>
+							<input placeholder="Retype new password" type="password" id="confirm_password" tabindex="2" required>
+							<div class="address">
+								<!-- <a class="forgot" href="#">Forgot Your Password?</a> -->
+								<input type="submit" value="Change">
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 account-right account-left">
+					<h3>My Infomation</h3>
+					<p>
+						By updating your information when it was changed, you will be able to move through the checkout process faster. Your information
+						also help us to ease to contact and dilivery exacty to your address.
+					</p>
+					<a href="/change-information">Update Information</a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--account-end-->
+	<!--footer-->
+	<%include footer%>
+		<!--end of footer-->

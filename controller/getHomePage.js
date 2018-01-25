@@ -13,13 +13,14 @@ module.exports = async (req, res, next) => {
         let style = await Style.getAllStyle();
 
         let product = await Product.getAllProduct();
-
+        let hotProduct = await Product.getBestSellProduct();
 
         res.render('index', {
             // csrfToken: req.csrfToken(),
             brand,
             style,
             product: product.rows,
+            hotProduct: hotProduct.rows,
             user: req.user,
             title: 'MenWatch-Home page...',
             // current: page,

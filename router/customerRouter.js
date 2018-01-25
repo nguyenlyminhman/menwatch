@@ -25,7 +25,9 @@ router.post('/login', passport.authenticate('local', { successRedirect: '/', fai
 
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
-router.get('/profile', checkLoggedIn, (req, res) => { res.render('profile') });
+router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
+
+router.post('/change-password', require('../controller/postChangePassword'));
 
 router.get('/contact', csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));

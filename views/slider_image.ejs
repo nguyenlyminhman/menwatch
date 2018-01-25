@@ -45,7 +45,8 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div> <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
 </div>
 <!--banner-ends-->
 <!--Slider-Starts-Here-->
@@ -77,16 +78,22 @@
 <div class="about">
     <div class="container">
         <div class="about-top grid-1">
-            <div class="col-md-4 about-left">
-                <figure class="effect-bubba">
-                    <img class="img-responsive" src="images/abt-1.jpg" alt="" />
-                    <figcaption>
-                        <h2>Style</h2>
-                        <p></p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 about-left">
+            <% hotProduct.forEach((data)=>{%>
+                <div class="col-md-4 about-left">
+                    <a href="product-details/<%=data.id%>">
+                        <figure class="effect-bubba">
+                            <img class="img-responsive" src="images/<%= data.image[Object.keys(data.image)[0]]%>" alt="" />
+                            <figcaption>
+                                <h2>Best-Seller</h2>
+                                <p style="font-size: 1.5em">
+                                    <%=data.name%>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+                <% }) %>
+                    <!-- <div class="col-md-4 about-left">
                 <figure class="effect-bubba">
                     <img class="img-responsive" src="images/abt-2.jpg" alt="" />
                     <figcaption>
@@ -102,8 +109,8 @@
                         <h4>Peerage</h4>
                     </figcaption>
                 </figure>
-            </div>
-            <div class="clearfix"></div>
+            </div> -->
+                    <div class="clearfix"></div>
         </div>
     </div>
 </div>
