@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
     let email = req.user.email;
     let customer = new Customer(undefined, undefined, email, password, undefined, undefined);
 
-    customer.signup()
+    customer.updateCustomerPassword()
         .then(
         req.flash('info', 'Your password has updated.'),
         res.redirect('/profile')
