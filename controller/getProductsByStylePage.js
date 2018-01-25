@@ -3,15 +3,21 @@ const Brand = require('../model/Brand');
 const Product = require('../model/Product');
 
 module.exports = async (req, res) => {
-    const { idStyle } = req.params;
-    const sname = new Style(idStyle, undefined);
-    const products = new Product(undefined, idStyle, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+    let  id  = req.params.idStyle;
+    let page = req.params.page || 1;
+
+    let sname = new Style(id, undefined);
+    let _product = new Product();
+    
+    let perPage = 16;
 
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
-        let product = await products.getProductByStyle();
         let stylename = await sname.getStyleById();
+        let product = await _product.getProductByStyle(id, perPage, (page - 1) * perPage);
+        let countProduct = await _product.getCountProductByStyle(id);
+        let pages = Math.floor(countProduct.rows[0].count / perPage) + 1;
 
         res.render('products', {
             // csrfToken: req.csrfToken(),
@@ -21,9 +27,14 @@ module.exports = async (req, res) => {
             user: req.user,
             breadcrumb: 'Style',
             breadcrumb_name : stylename,
-            title: 'MenWatch-Product page...'
+            title: 'MenWatch-Product page...',
+            //using for pagination
+            current: page,
+            pages,
+            id,
+            link: 'style'
         })
     } catch (err) {
-        res.send('Style page navigation erorr > ' + err);
+        res.send('Style page erorr > ' + err);
     }
 }

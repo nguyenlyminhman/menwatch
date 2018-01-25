@@ -24,26 +24,26 @@ class Product {
         return queryDB(sql, [])
         // .then(result => result.rows);
     }
-    getProductByBrand() {
-        let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC';
-        return queryDB(sql, [this.idBrand])
+    getProductByBrand(idBrand, limit, offset) {
+        let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        return queryDB(sql, [idBrand, limit, offset])
         // .then(result => result.rows);
     }
 
-    getCountProductByBrand() {
+    getCountProductByBrand(idBrand) {
         let sql = 'SELECT COUNT(*) FROM public."Product" where "idBrand" = $1';
-        return queryDB(sql, [this.idBrand])
+        return queryDB(sql, [idBrand])
     }
 
-    getProductByStyle() {
-        let sql = 'SELECT * FROM public."Product" where "idStyle" = $1 ORDER BY Id DESC'
-        return queryDB(sql, [this.idStyle])
+    getProductByStyle(idStyle, limit, offset) {
+        let sql = 'SELECT * FROM public."Product" where "idStyle" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        return queryDB(sql, [idStyle, limit, offset])
         // .then(result => result.rows);
     }
 
-    getCountProductByStyle() {
+    getCountProductByStyle(idStyle) {
         let sql = 'SELECT COUNT(*) FROM public."Product" where "idStyle" = $1'
-        return queryDB(sql, [this.idStyle])
+        return queryDB(sql, [idStyle])
     }
     //using for sigle page to show details
     getProductDetailsById() {

@@ -34,8 +34,8 @@ router.get('/about', require('../controller/getAboutPage'));
 router.get('/style', require('../controller/getHomePage'));
 router.get('/brand', require('../controller/getHomePage'));
 
-router.get('/style/:idStyle', require('../controller/getProductsByStylePage'));
-router.get('/brand/:idBrand', require('../controller/getProductsByBrandPage'));
+router.get('/style/:idStyle/:page', require('../controller/getProductsByStylePage'));
+router.get('/brand/:idBrand/:page', require('../controller/getProductsByBrandPage'));
 
 router.get('/product-details/:id', require('../controller/getSinglePage'));
 

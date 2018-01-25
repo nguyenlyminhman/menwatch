@@ -1,57 +1,117 @@
-	<!--header-->
-	<%include header%>
+<!--header-->
+<%include header%>
 	<!--end of header-->
 	<!--start-breadcrumbs-->
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="breadcrumbs-main">
 				<ol class="breadcrumb">
-					<li><a href="/">Home</a></li>
-					<li class=""> <%=breadcrumb%></li>
-					<li class=""> <%=breadcrumb_name%></li>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li class="">
+						<%=breadcrumb%>
+					</li>
+					<li class="">
+						<%=breadcrumb_name%>
+					</li>
 				</ol>
 			</div>
 		</div>
 	</div>
 	<!--end-breadcrumbs-->
 	<!--prdt-starts-->
-	<div class="prdt"> 
+	<div class="prdt">
 		<div class="container">
 			<div class="prdt-top">
 				<div class="col-md-9 prdt-left">
-						
+
 					<div class="product-one">
 						<% i = 0 %>
-						<%product.forEach((data)=>{%>
-							<div class="col-md-4 product-left p-left">
-								<div class="product-main simpleCart_shelfItem">
-									<a href="/product-details/<%=data.id%>" class="mask">
-										<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>" alt="" />
-									</a>
-									<div class="product-bottom">
-										<h3><%=data.name%></h3>
-										<h4><a class="item_add" href=""><i></i></a> <span class=" item_price">$ <%=data.price%></span></h4>
-									</div>
-									<div class="srch srch1">
-										<a href="addtocart/<%=data.id%>/1" style="text-decoration: none"><span>Add to Cart</span></a>
+							<%product.forEach((data)=>{%>
+								<div class="col-md-4 product-left p-left">
+									<div class="product-main simpleCart_shelfItem">
+										<a href="/product-details/<%=data.id%>" class="mask">
+											<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>"
+											 alt="" />
+										</a>
+										<div class="product-bottom">
+											<h3>
+												<%=data.name%>
+											</h3>
+											<h4>
+												<a class="item_add" href="">
+													<i></i>
+												</a>
+												<span class=" item_price">$
+													<%=data.price%>
+												</span>
+											</h4>
+										</div>
+										<div class="srch srch1">
+											<a href="addtocart/<%=data.id%>/1" style="text-decoration: none">
+												<span>Add to Cart</span>
+											</a>
+										</div>
 									</div>
 								</div>
-							</div>
-						<% i++ %>
-						<% if(i % 3 == 0) {%>
-							&nbsp </div> <div class="product-one">
+								<% i++ %>
+									<% if(i % 3 == 0) {%>
+										&nbsp </div>
+					<div class="product-one">
 						<%}%>
-					<% }) %>
+							<% }) %>
 					</div>
-				</div>	
+				</div>
 				<!-- right menu -->
 				<%include right_menu%>
-				<!-- end of right menu -->
-				<div class="clearfix"></div>
+					<!-- end of right menu -->
+					<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
+	<div class="prdt">
+		<div class="container">
+			<div class="prdt-top">
+				<div class="col-md-9 prdt-left">
+					<div class="product-one">
+						<div class="col-md-9 product-left p-left">
+								<% if (pages > 0) { %>
+									<ul class="pagination text-center">
+										<% if (current == 1) { %>
+											<li class="disabled"><a>First</a></li>
+										<% } else { %>
+											<li><a href="/<%=link%>/<%=id%>/1">First</a></li>
+										<% } %>
+										<% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+										<% if (i !== 1) { %>
+											<li class="disabled"><a>...</a></li>
+										<% } %>
+										<% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+											<% if (i == current) { %>
+												<li class="active"><a><%= i %></a></li>
+											<% } else { %>
+												<li><a href="/<%=link%>/<%=id%>/<%= i %>"><%= i %></a></li>
+											<% } %>
+											<% if (i == Number(current) + 4 && i < pages) { %>
+												<li class="disabled"><a>...</a></li>
+											<% } %>
+										<% } %>
+										<% if (current == pages) { %>
+											<li class="disabled"><a>Last</a></li>
+										<% } else { %>
+											<li><a href="/<%=link%>/<%=id%>/<%= pages %>">Last</a></li>
+										<% } %>
+									</ul>
+								<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!--product-end-->
 	<!--footer-->
 	<%include footer%>
-	<!--end of footer-->
+		<!--end of footer-->

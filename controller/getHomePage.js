@@ -6,7 +6,7 @@ const Product = require('../model/Product');
 module.exports = async (req, res, next) => {
     try {
         let _product = new Product();
-        var page = req.params.page || 1;
+        let page = req.params.page || 1;
         let perPage = 16;
 
         let brand = await Brand.getAllBrand();
