@@ -20,7 +20,7 @@ require('../utils/Passport')(passport);
 //define the home page router
 router.get('/', require('../controller/getHomePage'));
 
-router.get('/login',csurfProtection, require('../controller/getAccountPage'));
+router.get('/login', csurfProtection, require('../controller/getAccountPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
@@ -28,6 +28,12 @@ router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
 
 router.post('/change-password', require('../controller/postChangePassword'));
+router.get('/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
+router.post('/information', require('../controller/postCustomerInfoPage'));
+
+router.get('/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
+router.post('/shipping-address', require('../controller/postCustomerShippingAddress'));
+
 
 router.get('/contact', csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));
@@ -39,11 +45,11 @@ router.get('/brand', require('../controller/getHomePage'));
 router.get('/style/:idStyle/:page', require('../controller/getProductsByStylePage'));
 router.get('/brand/:idBrand/:page', require('../controller/getProductsByBrandPage'));
 
-router.get('/product-details/:id', require('../controller/getSinglePage'));
+router.get('/product-details/:id', require('../controller/getProductDetails'));
 
 router.get('/shopping-cart', require('../controller/getShoppingCartPage'));
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
-router.get('/remove/:id',require('../controller/removeCart'));
+router.get('/remove/:id', require('../controller/removeCart'));
 
 router.get('/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
 router.post('/checkout', require('../controller/postCheckOut'));

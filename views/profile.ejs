@@ -1,3 +1,21 @@
+<%
+
+  // Add commas as thousand separators
+  function formatDate(date) {
+    if (date == null)
+    {
+      return "";
+    } else {
+      var date = new Date(date);
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+      return m + '/' + d + '/' + y;
+    }
+
+  }
+%>
+
 <!--header-->
 <%include header%>
 	<!--end of header-->
@@ -29,7 +47,7 @@
 						<h2>PROFILE</h2>
 			</div>
 			<div class="account-main">
-				<div class="col-md-6 account-left">
+				<div class="col-md-4 account-left">
 					<h3>Change Password</h3>
 					<div class="account-bottom">
 						<form action="change-password" method="POST">
@@ -42,18 +60,80 @@
 						</form>
 					</div>
 				</div>
-				<div class="col-md-6 account-right account-left">
-					<h3>My Infomation</h3>
-					<p>
-						By updating your information when it was changed, you will be able to move through the checkout process faster. Your information
-						also help us to ease to contact and dilivery exacty to your address.
+				<div class="col-md-4 account-right account-left">
+					<h3>Personal infomation</h3>
+					<p>Email:
+						<%= user.email  %>
 					</p>
-					<a href="/change-information">Update Information</a>
+					<p>Full name:
+						<%= customer.fistname  %>
+							<%= customer.lastname  %>
+					</p>
+					<a href="/information">Edit</a>
+				</div>
+				<div class="col-md-4 account-right account-left">
+					<h3>Shipping address</h3>
+
+					<p>Full name:
+						<%= customer.address  %>
+					</p>
+					<p>Phone:
+						<%= customer.phone  %>
+					</p>
+					<a href="/shipping-address">Edit</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>
+			<br/>
+			<br/>
+			<div class="account-top heading">
+				<h2>Recent orders</h2>
+			</div>
+			<div class="account-main">
+				<div class="col-md-12 account-left">
+					<div class="col-md-2 account-left">
+						<h3>OrderCode</h3>
+					</div>
+					<div class="col-md-3 account-right account-left">
+						<h3>OrderDate</h3>
+					</div>
+					<div class="col-md-3 account-right account-left">
+						<h3>Amount</h3>
+					</div>
+					<div class="col-md-3 account-right account-left">
+						<h3>Status</h3>
+					</div>
+					<div class="col-md-1 account-right account-left">
+							<h3></h3>
+						</div>
+				</div>
+				<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+				<%order.forEach(data=>{%>
+					<div class="col-md-12 account-left">
+						<div class="col-md-2 account-left">
+							<%=data.id%>
+						</div>
+						<div class="col-md-3 account-left">
+							<%=formatDate(data.orderdate)%>
+						</div>
+						<div class="col-md-3 account-left">
+							<%=data.total%>
+						</div>
+						<div class="col-md-3 account-left">
+							status
+						</div>
+						<div class="col-md-1 account-left">
+								View
+							</div>
+					</div>
+					<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+					<%})%>
+			</div>
+
 		</div>
 	</div>
+
+
 	<!--account-end-->
 	<!--footer-->
 	<%include footer%>

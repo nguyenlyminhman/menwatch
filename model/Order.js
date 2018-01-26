@@ -25,9 +25,9 @@ class Order {
     }
 
     getOrderInfoByCustomerId() {
-        const sql = 'SELECT *	FROM public."Order" where idCustomer=$1'
+        const sql = 'SELECT *	FROM public."Order" where "idCustomer"=$1'
         return queryDB(sql, [this.idCustomer])
-            .then(results => results.rows);
+            // .then(results => results.rows);
     }
 }
 

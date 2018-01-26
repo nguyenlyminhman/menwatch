@@ -54,7 +54,7 @@ class Customer {
     }
 
     checkExistEmail() {
-        const sql = 'SELECT * FROM public."Customer" where email=$1;'
+        const sql = 'SELECT * FROM public."Customer" where email=$1';
         return queryDB(sql, [this.email])
     }
 
@@ -65,16 +65,21 @@ class Customer {
     }
 
     getCustomerInfoByEmail() {
-        const sql = 'SELECT * FROM public."Customer" where email=$1;'
+        const sql = 'SELECT * FROM public."Customer" where email=$1'
         return queryDB(sql, [this.email]);
     }
 
     updateCustomerInfo() {
-        const sql = 'UPDATE public."customer" SET  firstname=$1, lastname=$2, address=$3, phone=$4'
-            + 'WHERE id= $5';
-        return queryDB(sql, [this.fistname, this.lastname, this.address, this.phone, this.id]);
+        const sql = 'UPDATE public."Customer" SET  fistname=$1, lastname=$2'
+            + 'WHERE email= $3';
+        return queryDB(sql, [this.fistname, this.lastname, this.email]);
     }
 
+    updateCustomerShippingAddress() {
+        const sql = 'UPDATE public."Customer" SET  address=$1, phone=$2'
+            + 'WHERE email= $3';
+        return queryDB(sql, [this.address, this.phone, this.email]);
+    }
     updateCustomerPassword() {
         return new Promise((resolve, reject) => {
             hash(this.password, 8, (err, encryptedPassword) => {
@@ -88,9 +93,9 @@ class Customer {
 }
 module.exports = Customer;
 
-// let cus = new Customer('Nguyen', 'Man', 'man@gmail.com', '1234', 'cai-lay', '12345');
-// cus.insertCustomer()
-// .then(()=>console.log('OKay'))
+// let cus = new Customer(undefined,undefined, 'man@gmail.com', undefined,undefined,undefined);
+// cus.checkExistEmail()
+// .then(resu=>console.log(resu.rows[0]))
 // .catch(er=>console.log(er))
 
 // let cus = new Customer(undefined, undefined, 'man@gmail.com', undefined , undefined, undefined);
