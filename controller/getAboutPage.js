@@ -15,6 +15,6 @@ module.exports = async (req, res) => {
             title: 'MenWatch-About page...'
         })
     } catch (err) {
-        res.send('About page navigation error > ' + err);
+        res.send('getAboutPage ' + err);
     }
 }

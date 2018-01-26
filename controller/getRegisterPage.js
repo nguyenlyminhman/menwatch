@@ -21,6 +21,6 @@ module.exports = async (req, res) => {
         })
 
     } catch (err) {
-        res.send('Register page navigation error > ' + err);
+        res.send('getRegisterPage error > ' + err);
     }
 }

@@ -16,9 +16,9 @@ module.exports = async (req, res) => {
             brand,
             product,
             user: req.user,
-            title: 'Product details...'
+            title: 'Product details'
         })
     } catch (err) {
-        res.send('Single page navigation error > ' + err);
+        res.send('getProductDetails error : ' + err);
     }
 }

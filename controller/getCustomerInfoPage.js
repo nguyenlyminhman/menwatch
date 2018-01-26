@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
             });
         })
     } catch (err) {
-        res.send('Customer information error : ' + err);
+        res.send('getCustomerInfoPage error : ' + err);
     }
 }
 

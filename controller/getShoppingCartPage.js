@@ -40,6 +40,6 @@ module.exports = async (req, res, next) => {
             user: req.user
         })
     } catch (err) {
-        res.send('My shopping cart navigation error : ' + err);
+        res.send('getShoppingCartPage error : ' + err);
     }
 }

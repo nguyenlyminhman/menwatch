@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
             });
         })
     } catch (err) {
-        res.send('Shipping address error : ' + err);
+        res.send('getCustomerShippingAddress error : ' + err);
     }
 }
 

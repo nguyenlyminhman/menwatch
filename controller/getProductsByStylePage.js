@@ -35,6 +35,6 @@ module.exports = async (req, res) => {
             link: 'style'
         })
     } catch (err) {
-        res.send('Style page erorr > ' + err);
+        res.send('getProductsByStylePage erorr : ' + err);
     }
 }

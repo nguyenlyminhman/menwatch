@@ -34,6 +34,6 @@ module.exports = async (req, res) => {
 
         })
     } catch (err) {
-        res.send('Brand page navigation error > ' + err);
+        res.send('getProductsByBrandPage error : ' + err);
     }
 }

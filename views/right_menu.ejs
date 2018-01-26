@@ -14,7 +14,9 @@
 						<label class="radio">
 							<input type="radio" name="brand">
 							<i></i>
-							<%=data.brandname%>
+							<a href="/brand/<%=data.id%>/1" class="radio" style="text-decoration: none">
+								<%=data.brandname%>
+							</a>
 						</label>
 						<%})%>
 				</div>
@@ -34,7 +36,9 @@
 						<label class="radio">
 							<input type="radio" name="style">
 							<i></i>
-							<%=data.stylename%>
+							<a href="/style/<%=data.id%>/1" class="radio" style="text-decoration: none">
+								<%=data.stylename%>
+							</a>
 						</label>
 						<%})%>
 				</div>

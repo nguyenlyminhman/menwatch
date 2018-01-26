@@ -19,6 +19,6 @@ module.exports = async (req, res) => {
             title: 'MenWatch-Cart page...'
         })
     } catch (err) {
-        res.send('Cart page navigation erorr > ' + err);
+        res.send('getCartPage : ' + err);
     }
 }

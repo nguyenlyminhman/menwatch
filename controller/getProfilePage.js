@@ -26,6 +26,6 @@ module.exports = async (req, res) => {
 
         })
     } catch (err) {
-        res.send('Account page navigation error : ' + err);
+        res.send('getProfilePage error : ' + err);
     }
 }

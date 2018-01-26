@@ -16,125 +16,125 @@
   }
 %>
 
-<!--header-->
-<%include header%>
-	<!--end of header-->
-	<!--start-breadcrumbs-->
-	<div class="breadcrumbs">
-		<div class="container">
-			<div class="breadcrumbs-main">
-				<ol class="breadcrumb">
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li class="active">Account</li>
-				</ol>
+	<!--header-->
+	<%include header%>
+		<!--end of header-->
+		<!--start-breadcrumbs-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="breadcrumbs-main">
+					<ol class="breadcrumb">
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li class="active">Account</li>
+					</ol>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!--end-breadcrumbs-->
-	<!--account-starts-->
-	<div class="account">
-		<div class="container">
-			<div class="account-top heading">
-				<%if (message.length > 0 ){%>
-					<div class="alert alert-info">
-						<h4>
-							<%= message%>
-						</h4>
-					</div>
-					<%}%>
-						<h2>PROFILE</h2>
-			</div>
-			<div class="account-main">
-				<div class="col-md-4 account-left">
-					<h3>Change Password</h3>
-					<div class="account-bottom">
-						<form action="change-password" method="POST">
-							<input placeholder="Your new password" type="password" name="password" id="password" tabindex="1" required>
-							<input placeholder="Retype new password" type="password" id="confirm_password" tabindex="2" required>
-							<div class="address">
-								<!-- <a class="forgot" href="#">Forgot Your Password?</a> -->
-								<input type="submit" value="Change">
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="col-md-4 account-right account-left">
-					<h3>Personal infomation</h3>
-					<p>Email:
-						<%= user.email  %>
-					</p>
-					<p>Full name:
-						<%= customer.fistname  %>
-							<%= customer.lastname  %>
-					</p>
-					<a href="/information">Edit</a>
-				</div>
-				<div class="col-md-4 account-right account-left">
-					<h3>Shipping address</h3>
-
-					<p>Full name:
-						<%= customer.address  %>
-					</p>
-					<p>Phone:
-						<%= customer.phone  %>
-					</p>
-					<a href="/shipping-address">Edit</a>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<br/>
-			<br/>
-			<div class="account-top heading">
-				<h2>Recent orders</h2>
-			</div>
-			<div class="account-main">
-				<div class="col-md-12 account-left">
-					<div class="col-md-2 account-left">
-						<h3>OrderCode</h3>
-					</div>
-					<div class="col-md-3 account-right account-left">
-						<h3>OrderDate</h3>
-					</div>
-					<div class="col-md-3 account-right account-left">
-						<h3>Amount</h3>
-					</div>
-					<div class="col-md-3 account-right account-left">
-						<h3>Status</h3>
-					</div>
-					<div class="col-md-1 account-right account-left">
-							<h3></h3>
+		<!--end-breadcrumbs-->
+		<!--account-starts-->
+		<div class="account">
+			<div class="container">
+				<div class="account-top heading">
+					<%if (message.length > 0 ){%>
+						<div class="alert alert-info">
+							<h4>
+								<%= message%>
+							</h4>
 						</div>
+						<%}%>
+							<h2>PROFILE</h2>
 				</div>
-				<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
-				<%order.forEach(data=>{%>
+				<div class="account-main">
+					<div class="col-md-4 account-left">
+						<h3>Change Password</h3>
+						<div class="account-bottom">
+							<form action="change-password" method="POST">
+								<input placeholder="Your new password" type="password" name="password" id="password" tabindex="1" required>
+								<input placeholder="Retype new password" type="password" id="confirm_password" tabindex="2" required>
+								<div class="address">
+									<!-- <a class="forgot" href="#">Forgot Your Password?</a> -->
+									<input type="submit" value="Change">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-4 account-right account-left">
+						<h3>Personal infomation</h3>
+						<p>Email:
+							<%= user.email  %>
+						</p>
+						<p>Full name:
+							<%= customer.fistname  %>
+								<%= customer.lastname  %>
+						</p>
+						<a href="/information">Edit</a>
+					</div>
+					<div class="col-md-4 account-right account-left">
+						<h3>Payment address</h3>
+
+						<p>Full name:
+							<%= customer.address  %>
+						</p>
+						<p>Phone:
+							<%= customer.phone  %>
+						</p>
+						<a href="/shipping-address">Edit</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<br/>
+				<br/>
+				<div class="account-top heading">
+					<h2>Recent orders</h2>
+				</div>
+				<div class="account-main">
 					<div class="col-md-12 account-left">
 						<div class="col-md-2 account-left">
-							<%=data.id%>
+							<h3>OrderCode</h3>
 						</div>
-						<div class="col-md-3 account-left">
-							<%=formatDate(data.orderdate)%>
+						<div class="col-md-3 account-right account-left">
+							<h3>OrderDate</h3>
 						</div>
-						<div class="col-md-3 account-left">
-							<%=data.total%>
+						<div class="col-md-3 account-right account-left">
+							<h3>Amount</h3>
 						</div>
-						<div class="col-md-3 account-left">
-							status
+						<div class="col-md-3 account-right account-left">
+							<h3>Status</h3>
 						</div>
-						<div class="col-md-1 account-left">
-								View
-							</div>
+						<div class="col-md-1 account-right account-left">
+							<h3></h3>
+						</div>
 					</div>
 					<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
-					<%})%>
+					<%order.forEach(data=>{%>
+						<div class="col-md-12 account-left">
+							<div class="col-md-2 account-left">
+								<%=data.id%>
+							</div>
+							<div class="col-md-3 account-left">
+								<%=formatDate(data.orderdate)%>
+							</div>
+							<div class="col-md-3 account-left">
+								<%=data.total%>
+							</div>
+							<div class="col-md-2 account-left">
+								<%=data.status%>
+							</div>
+							<div class="col-md-2 account-left">
+								<img src="images/tracking.png" /><a href="tracking-order/<%=data.id%>">Tracking order</a>
+							</div>
+						</div>
+						<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+						<%})%>
+				</div>
+
 			</div>
-
 		</div>
-	</div>
 
 
-	<!--account-end-->
-	<!--footer-->
-	<%include footer%>
-		<!--end of footer-->
+		<!--account-end-->
+		<!--footer-->
+		<%include footer%>
+			<!--end of footer-->

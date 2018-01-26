@@ -27,6 +27,6 @@ module.exports = async (req, res, next) => {
             // pages
         })
     } catch (err) {
-        res.send('Home page navigation error > ' + err);
+        res.send('getHomePage error : ' + err);
     }
 }

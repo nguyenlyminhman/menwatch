@@ -1,0 +1,111 @@
+<%
+
+  // Add commas as thousand separators
+  function formatDate(date) {
+    if (date == null)
+    {
+      return "";
+    } else {
+      var date = new Date(date);
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+      return m + '/' + d + '/' + y;
+    }
+
+  }
+%>
+
+    <!--header-->
+    <%include header%>
+        <!--end of header-->
+        <!--start-breadcrumbs-->
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="breadcrumbs-main">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="active">Account</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!--end-breadcrumbs-->
+        <!--account-starts-->
+        <div class="account">
+            <div class="container">
+                <div class="account-top heading">
+                    <h2>PROFILE</h2>
+                </div>
+                <div class="account-main">
+                    <div class="col-md-4 account-left">
+                        <h3>Change Password</h3>
+                        <div class="account-bottom">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 account-right account-left">
+                        <h3>Personal infomation</h3>
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                    </div>
+                    <div class="col-md-4 account-right account-left">
+                        <h3>Payment address</h3>
+
+                        <p>
+                        </p>
+                        <p>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <br/>
+                <br/>
+                <div class="account-top heading">
+                    <h2>Recent orders</h2>
+                </div>
+                <div class="account-main">
+                    <div class="col-md-12 account-left">
+                        <div class="col-md-2 account-left">
+                            <h3>Hình</h3>
+                        </div>
+                        <div class="col-md-3 account-right account-left">
+                            <h3>Name</h3>
+                        </div>
+                        <div class="col-md-3 account-right account-left">
+                            <h3>quantity</h3>
+                        </div>
+                        <div class="col-md-1 account-right account-left">
+                            <h3></h3>
+                        </div>
+                    </div>
+                    <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+                    <%product.forEach(data=>{%>
+                        <div class="col-md-12 account-left">
+                            <div class="col-md-3 account-left">
+                                Hình
+                            </div>
+                            <div class="col-md-3 account-left">
+                                <%=data.name%>
+                            </div>
+                            <div class="col-md-3 account-left">
+                            </div>
+                            <div class="col-md-3 account-left">
+                            </div>
+                        </div>
+                        <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+                        <%})%>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--account-end-->
+        <!--footer-->
+        <%include footer%>
+            <!--end of footer-->

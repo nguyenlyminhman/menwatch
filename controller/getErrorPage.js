@@ -14,6 +14,6 @@ module.exports = async (req, res, next) => {
             title: 'Error - Page not found'
         })
     } catch (err) {
-        res.send('Brand page navigation error > ' + err);
+        res.send('getErrorPage error : ' + err);
     }
 }

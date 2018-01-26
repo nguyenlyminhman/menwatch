@@ -20,7 +20,7 @@ require('../utils/Passport')(passport);
 //define the home page router
 router.get('/', require('../controller/getHomePage'));
 
-router.get('/login', csurfProtection, require('../controller/getAccountPage'));
+router.get('/login', csurfProtection, require('../controller/getLoginPage'));
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
 
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
@@ -34,6 +34,7 @@ router.post('/information', require('../controller/postCustomerInfoPage'));
 router.get('/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
 router.post('/shipping-address', require('../controller/postCustomerShippingAddress'));
 
+// router.get('/tracking-order/:id', require('../controller/getTrackingOrder'));
 
 router.get('/contact', csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));

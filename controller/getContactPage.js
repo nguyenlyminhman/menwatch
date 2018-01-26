@@ -12,9 +12,9 @@ module.exports = async (req, res) => {
             brand,
             style,
             user: req.user,
-            title: 'MenWatch-Contact page...'
+            title: 'Contact'
         })
     } catch (err) {
-        res.send('Contact page navigation error :' + err);
+        res.send('getContactPage error :' + err);
     }
 }
