@@ -27,7 +27,7 @@
                         <li>
                             <a href="/">Home</a>
                         </li>
-                        <li class="active">Account</li>
+                        <li class="">Order details</li>
                     </ol>
                 </div>
             </div>
@@ -37,70 +37,68 @@
         <div class="account">
             <div class="container">
                 <div class="account-top heading">
-                    <h2>PROFILE</h2>
+                    <h2>Order Details</h2>
                 </div>
                 <div class="account-main">
-                    <div class="col-md-4 account-left">
-                        <h3>Change Password</h3>
+                    <div class="col-md-3 account-left">
+                        <h3>OrderNo :
+                            <%=idOrder%>
+                        </h3>
                         <div class="account-bottom">
-
                         </div>
                     </div>
-                    <div class="col-md-4 account-right account-left">
-                        <h3>Personal infomation</h3>
-                        <p>
-                        </p>
-                        <p>
-                        </p>
+                    <div class="col-md-3 account-right account-left">
+                        <h3>Order date :
+                            <%=formatDate(orderDate)%>
+                        </h3>
                     </div>
-                    <div class="col-md-4 account-right account-left">
-                        <h3>Payment address</h3>
-
-                        <p>
-                        </p>
-                        <p>
-                        </p>
+                    <div class="col-md-3 account-right account-left">
+                        <h3>Status :
+                            <%=status%>
+                        </h3>
+                    </div>
+                    <div class="col-md-3 account-right account-left">
+                        <h3>Total : $
+                            <%=total%>
+                        </h3>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <br/>
-                <br/>
                 <div class="account-top heading">
-                    <h2>Recent orders</h2>
                 </div>
                 <div class="account-main">
-                    <div class="col-md-12 account-left">
-                        <div class="col-md-2 account-left">
-                            <h3>Hình</h3>
-                        </div>
-                        <div class="col-md-3 account-right account-left">
-                            <h3>Name</h3>
-                        </div>
-                        <div class="col-md-3 account-right account-left">
-                            <h3>quantity</h3>
-                        </div>
-                        <div class="col-md-1 account-right account-left">
-                            <h3></h3>
-                        </div>
-                    </div>
+
                     <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
                     <%product.forEach(data=>{%>
                         <div class="col-md-12 account-left">
-                            <div class="col-md-3 account-left">
-                                Hình
+                            <div class="col-md-3 account-right account-left">
+                                <img src="images/<%= data.image[Object.keys(data.image)[0]]%>" class="img-responsive" width="30%" height="30%" alt="" />
                             </div>
                             <div class="col-md-3 account-left">
                                 <%=data.name%>
                             </div>
                             <div class="col-md-3 account-left">
+                                $
+                                <%=data.price%>
                             </div>
-                            <div class="col-md-3 account-left">
+                            <div class="col-md-3 account-right account-left">
+                                X &nbsp;&nbsp;&nbsp;
+                                <%=data.quantity%>
                             </div>
                         </div>
                         <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
                         <%})%>
                 </div>
+                <div class="account-main">
+                    <div class="col-md-4 account-right account-left">
+                        <h3>Receiver information</h3>
+                        <p> Name: <%=receiver%></p>
+                        <p> Address: <%=orderaddress%></p>
+                        <p> Phone: <%=orderphone%></p>
+                    </div>
 
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
 

@@ -11,20 +11,21 @@ module.exports = async (req, res) => {
         let style = await Style.getAllStyle();
         let orderDetails = new OrderDetails(undefined, id, undefined, undefined);
 
-        orderDetails.getOrderDetailsByOrderId().then(rs => {
-            let a = null;
-            a = rs;
-            rs.forEach(element => {
-                qty: element.quantity;
-                let _product = new Product(element.idProduct, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
-                _product.getProductById().then()
-            })
+        orderDetails.getOrderDetailsByOrderId().then(odetails => {
+            
             res.render('tracking_order', {
                 brand,
                 style,
                 user: req.user,
-                quantity: qty,
-                product: _product.getProductById(),
+                product: odetails.rows,
+                idOrder: id,
+
+                status: odetails.rows[0].status,
+                orderDate: odetails.rows[0].orderdate,
+                total: odetails.rows[0].total,
+                receiver: odetails.rows[0].receiver,
+                orderaddress: odetails.rows[0].orderaddress,
+                orderphone: odetails.rows[0].orderphone,
                 title: 'Order details'
             });
         });
@@ -34,13 +35,3 @@ module.exports = async (req, res) => {
         res.send('getTrackingOrder error : ' + err);
     }
 }
-
-// res.render('profile', {
-//     message: req.flash('info'),
-//     brand,
-//     style,
-//     user: req.user,
-//     customer: result.rows[0],
-//     order: orderResult.rows,
-//     title: 'My profile'
-// });

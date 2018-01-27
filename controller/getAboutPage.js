@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
             brand,
             style,
             user: req.user,
-            title: 'MenWatch-About page...'
+            title: 'About'
         })
     } catch (err) {
         res.send('getAboutPage ' + err);

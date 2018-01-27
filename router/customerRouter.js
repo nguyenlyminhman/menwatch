@@ -28,13 +28,13 @@ router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
 
 router.post('/change-password', require('../controller/postChangePassword'));
-router.get('/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
-router.post('/information', require('../controller/postCustomerInfoPage'));
+router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
+router.post('/profile/information', require('../controller/postCustomerInfoPage'));
 
-router.get('/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
-router.post('/shipping-address', require('../controller/postCustomerShippingAddress'));
+router.get('/profile/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
+router.post('/profile/shipping-address', require('../controller/postCustomerShippingAddress'));
 
-// router.get('/tracking-order/:id', require('../controller/getTrackingOrder'));
+router.get('/tracking-order/:id', checkLoggedIn, require('../controller/getTrackingOrder'));
 
 router.get('/contact', csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));
@@ -52,7 +52,7 @@ router.get('/shopping-cart', require('../controller/getShoppingCartPage'));
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
 router.get('/remove/:id', require('../controller/removeCart'));
 
-router.get('/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
+router.get('/shopping-cart/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
 router.post('/checkout', require('../controller/postCheckOut'));
 
 router.post('/search/results', require('../controller/postSearch'));

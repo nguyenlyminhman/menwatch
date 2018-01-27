@@ -27,7 +27,7 @@
 						<li>
 							<a href="/">Home</a>
 						</li>
-						<li class="active">Account</li>
+						<li class="">Profile</li>
 					</ol>
 				</div>
 			</div>
@@ -69,18 +69,18 @@
 							<%= customer.fistname  %>
 								<%= customer.lastname  %>
 						</p>
-						<a href="/information">Edit</a>
+						<a href="/profile/information">Edit</a>
 					</div>
 					<div class="col-md-4 account-right account-left">
-						<h3>Payment address</h3>
+						<h3>Address</h3>
 
-						<p>Full name:
+						<p>Address:
 							<%= customer.address  %>
 						</p>
 						<p>Phone:
 							<%= customer.phone  %>
 						</p>
-						<a href="/shipping-address">Edit</a>
+						<a href="/profile/shipping-address">Edit</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>

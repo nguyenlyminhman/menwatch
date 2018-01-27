@@ -9,7 +9,10 @@
                     <li>
                         <a href="/">Home</a>
                     </li>
-                    <li class="active">Account</li>
+                    <li class="">
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li class="">Information</li>
                 </ol>
             </div>
         </div>
@@ -32,19 +35,19 @@
                 <div class="col-md-6 account-left">
                     <h3>My infomation</h3>
                     <p>Email:
-                            <%= user.email  %>
-                        </p>
-                        <p>First name:
-                            <%= customer.fistname  %>
-                        </p>
-                        <p>Last name:
-                                    <%= customer.lastname  %>
-                            </p>
+                        <%= user.email  %>
+                    </p>
+                    <p>First name:
+                        <%= customer.fistname  %>
+                    </p>
+                    <p>Last name:
+                        <%= customer.lastname  %>
+                    </p>
                 </div>
                 <div class="col-md-6 account-right account-left">
                     <h3>Edit infomation</h3>
                     <div class="account-bottom">
-                        <form action="information" method="POST">
+                        <form action="/profile/information" method="POST">
                             <input placeholder="First name" type="text" name="firstname" id="firstname" tabindex="1" required>
                             <input placeholder="Last name" type="text" name="lastname" id="lastname" tabindex="2" required>
                             <div class="address">
