@@ -28,6 +28,14 @@ router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
 
 router.post('/change-password', require('../controller/postChangePassword'));
+router.get('/reset-password', csurfProtection,require('../controller/getResetPassword'));
+router.post('/reset-password', require('../controller/postResetPassword'))
+
+
+
+
+
+
 router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
 router.post('/profile/information', require('../controller/postCustomerInfoPage'));
 
@@ -62,4 +70,5 @@ router.get('/logout', (req, res) => {
 });
 
 router.use(require('../controller/getErrorPage'));
+
 module.exports = router;
