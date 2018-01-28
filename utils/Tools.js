@@ -29,13 +29,24 @@
 //     text += possible.charAt(Math.floor(Math.random() * possible.length));
 //   }
 //   return text;
-// }
-module.exports = { randomPassword };
-// let a  = randomPassword();
-// console.log(a)
-function getOrder_Code() {
-    let p_time = new Date();
-    return p_time.getTime();
-  }
+// // }
+// module.exports = { randomPassword };
+// // let a  = randomPassword();
+// // console.log(a)
+// function getOrder_Code() {
+//     let p_time = new Date();
+//     return p_time.getTime();
+//   }
+//+ dd.getMonth() + dd.getDate() + dd.getHours()+dd.getMinutes() + dd.getTime()
+// var dd = new Date();
+// var OrderNo = dd.getFullYear() + "" + dd.getMonth() + 1 + "" + dd.getDate() + "" + dd.getHours() + "" + dd.getMinutes() + "" + dd.getSeconds()
+// console.log(a + "" + b);
 
-  console.log()
+const Customer = require('../model/Customer')
+const Order = require('../model/Order');
+let customer = new Customer(undefined, undefined, 'man@gmail.com', undefined, undefined, undefined);
+customer.getCustomerInfoByEmail().then(u=>{
+  var order = new Order(12, u.rows[0].id, '2011-01-01', '2011-02-02' , 100, '0988788778', 'orderaddress', 'charge.id', 'Pending', 'receiver');
+  order.addNewOrder();
+  
+})
