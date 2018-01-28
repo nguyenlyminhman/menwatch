@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
             brand,
             style,
             user: req.user,
-            title: 'MenWatch-Register page...',
+            title: 'Register',
             messages: messages,
             hasErrors: messages.length > 0
         })

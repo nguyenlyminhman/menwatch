@@ -30,6 +30,12 @@
 //   }
 //   return text;
 // }
-// module.exports = { randomPassword };
+module.exports = { randomPassword };
 // let a  = randomPassword();
 // console.log(a)
+function getOrder_Code() {
+    let p_time = new Date();
+    return p_time.getTime();
+  }
+
+  console.log()

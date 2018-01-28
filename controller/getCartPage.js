@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
             brand,
             product,
             user: req.user,
-            title: 'MenWatch-Cart page...'
+            title: 'Shopping cart'
         })
     } catch (err) {
         res.send('getCartPage : ' + err);

@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             user: req.user,
             breadcrumb: 'Style',
             breadcrumb_name : stylename,
-            title: 'MenWatch-Product page...',
+            title: stylename,
             //using for pagination
             current: page,
             pages,

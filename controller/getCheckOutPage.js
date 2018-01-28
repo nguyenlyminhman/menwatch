@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
             style,
             product,
             user: req.user,
-            title: 'MenWatch-Checkout page...'
+            title: 'Checkout'
         })
     } catch (err) {
         res.send('getCheckOutPage error :' + err);

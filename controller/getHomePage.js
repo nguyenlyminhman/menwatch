@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
             product: product.rows,
             hotProduct: hotProduct.rows,
             user: req.user,
-            title: 'MenWatch-Home page...',
+            title: 'Home ',
             // current: page,
             // pages
         })
