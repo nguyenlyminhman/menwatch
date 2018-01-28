@@ -1441,7 +1441,8 @@ a.mask {
 .account-bottom {
     margin-top: 2.2em;
 }
-.account-left input[type="text"],.account-left input[type="password"] , .account-left input[type="email"]{
+.account-left input[type="text"], .account-left input[type="password"] , 
+.account-left input[type="email"], .account-left input[type="date"]{
     width: 90%;
     margin: 0px;
     color: #000;
@@ -1451,7 +1452,8 @@ a.mask {
     border: 1px solid #000;
     font-family: 'Lato-Regular';
     font-size: 14px;
-	margin-bottom:20px;
+    margin-bottom:20px;
+    height: 3em
 }
 .address {
     margin-top: 10px;

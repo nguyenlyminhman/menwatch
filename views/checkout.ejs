@@ -9,7 +9,9 @@
 					<li>
 						<a href="/">Home</a>
 					</li>
-					<li class=""><a href="/shopping-cart">Shopping cart</a></li>
+					<li class="">
+						<a href="/shopping-cart">Shopping cart</a>
+					</li>
 					<li class="">Check out</li>
 				</ol>
 			</div>
@@ -21,33 +23,42 @@
 		<div class="container">
 			<div class="register-top heading">
 				<h2>Check Out</h2>
-				<h4>Your Total:
-					<%if(!session.cart){%>
-						0 $
-						<%}else{%>
-							<%=session.cart.totalPrice%> $
-								<%}%>
-				</h4>
+				<h2>
+					<p style="background-color: #73b6e1; color: whitesmoke">Your Total:
+						<%if(!session.cart){%>
+							0 $
+							<%}else{%>
+								<%=session.cart.totalPrice%> $
+									<%}%>
+					</p>
+				</h2>
 			</div>
 			<div id="charge-error" class="alert alert-danger hidden">
 
 			</div>
 			<form action="/checkout" method="Post" id="checkout-form">
 				<div class="register-main">
-					<h2> Order information</h2>
+					<h2>
+						<p style="color: #73b6e1"> Receiver information</p>
+					</h2>
 				</div>
 				<div class="register-main">
 					<div class="col-md-6 account-left">
-						<input placeholder="Order address" type="text" name="orderaddress" tabindex="1" required>
+						<input placeholder="Fullname" type="text" name="receiver" tabindex="1" required>
+						<input placeholder="Address" type="text" name="orderaddress" tabindex="2" required>
 					</div>
 					<div class="col-md-6 account-left">
-						<input placeholder="Order phone" type="text" name="orderphone" tabindex="2" required>
+						<input placeholder="Phone" type="text" name="orderphone" tabindex="3" required>
+						<input placeholder="Receive date" type="date" name="receivedate" min="" tabindex="4" required>
+
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<br>
 				<div class="register-main">
-					<h2> Card information</h2>
+					<h2>
+						<p style="color: #73b6e1"> Card information </p>
+					</h2>
 				</div>
 				<div class="register-main">
 					<div class="col-md-6 account-left">

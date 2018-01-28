@@ -31,11 +31,6 @@ router.post('/change-password', require('../controller/postChangePassword'));
 router.get('/reset-password', csurfProtection,require('../controller/getResetPassword'));
 router.post('/reset-password', require('../controller/postResetPassword'))
 
-
-
-
-
-
 router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
 router.post('/profile/information', require('../controller/postCustomerInfoPage'));
 
@@ -60,7 +55,9 @@ router.get('/shopping-cart', require('../controller/getShoppingCartPage'));
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
 router.get('/remove/:id', require('../controller/removeCart'));
 
-router.get('/shopping-cart/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
+// router.get('/shopping-cart/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
+router.get('/shopping-cart/checkout', require('../controller/getCheckOutPage'));
+
 router.post('/checkout', require('../controller/postCheckOut'));
 
 router.post('/search/results', require('../controller/postSearch'));

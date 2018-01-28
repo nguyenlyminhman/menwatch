@@ -1,4 +1,5 @@
 const Order = require('../model/Order');
+const OrderDetails = require('../model/OrderDetails');
 const Cart = require('../model/Cart');
 
 
@@ -8,7 +9,14 @@ module.exports = async (req, res) => {
     }
     var cart = new Cart(req.session.cart);
     var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
-    // const { }
+    //get value from checkout page
+    const { receiver, orderaddress, orderphone, receivedate } = req.body;
+    var d = new Date();
+    //using year, month, date, hour, minute and second to create order id.
+    const OrderNo = d.getFullYear() + "" + d.getMonth() + 1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
+    //get current date
+    const currentDate = d.getFullYear() + "" + d.getMonth() + 1 + "" + d.getDate() 
+    //using stripe get information from card payment
     stripe.charges.create({
         amount: cart.totalPrice * 100,
         currency: "usd",
@@ -19,7 +27,8 @@ module.exports = async (req, res) => {
             console.log(err)
             return res.redirect('/checkout');
         }
-        var order = new Order(3, 12, '01-01-2011', '02-02-2012', 123, '12222', 'okok', charge.id);
+        var order = new Order(OrderNo, 12, currentDate, receivedate , req.session.totalPrice, orderphone, orderaddress, charge.id, 'Pending', receiver);
+        // var orderDetails = new OrderDetails();
         order.addNewOrder()
             .then(
             req.session.cart = null,

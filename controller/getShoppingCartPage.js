@@ -15,8 +15,9 @@ module.exports = async (req, res, next) => {
         // console.log(cartt.item[Object.keys(cartt.item)[0]]);
 
         if (!req.session.cart) {
-            return res.render('shopping_cart', { brand,
+            return res.render('shopping_cart', { 
                 // csrfToken: req.csrfToken(),
+                brand,
                 style,
                 product,
                 cartItem: null,

@@ -33,5 +33,4 @@ app.use(flash());
 app.use('/', customer);
 
 // app.use(require('./controller/showErrorPage'));
-app.listen(process.env.PORT || 3000, () => console.log('Server is running !!!'));
-console.log()
+app.listen(process.env.PORT || 3000, () => console.log('Server is running at port 3000.'));
