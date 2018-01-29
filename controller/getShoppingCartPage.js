@@ -31,12 +31,19 @@ module.exports = async (req, res, next) => {
         // Object.keys(cart.items).forEach(function (key) {
         //     console.log(key + ' = ' + cart.items[key].name);
         // });
+        // cart.getItems().forEach(a=>{
+        //     console.log(a.item.rows[0].id)
+
+        //     console.log(a.quantity)
+        // })
+
         res.render('shopping_cart', {
             // csrfToken: req.csrfToken(),
             brand,
             style,
             product,
             cartItem: cart.getItems(),
+            
             title: 'My shopping bag',
             user: req.user
         })

@@ -36,7 +36,7 @@
 			<div id="charge-error" class="alert alert-danger hidden">
 
 			</div>
-			<form action="/checkout" method="Post" id="checkout-form">
+			<form action="/shopping-cart/checkout" method="Post" id="checkout-form">
 				<div class="register-main">
 					<h2>
 						<p style="color: #73b6e1"> Receiver information</p>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="col-md-6 account-left">
 						<input placeholder="Phone" type="text" name="orderphone" tabindex="3" required>
-						<input placeholder="Receive date" type="date" name="receivedate" min="" tabindex="4" required>
+						<input placeholder="Receive date" type="date" name="receivedate"  tabindex="4" required>
 
 					</div>
 					<div class="clearfix"></div>
@@ -62,13 +62,13 @@
 				</div>
 				<div class="register-main">
 					<div class="col-md-6 account-left">
-						<input placeholder="Card holder name" type="text" name="cardname" id="cardname" tabindex="3" required>
-						<input placeholder="Credit card number" type="text" name="cardnumber" id="cardnumber" tabindex="4" required>
-						<input placeholder="CVC" type="text" name="cardcvc" id="cardcvc" tabindex="5" required>
+						<input placeholder="Card holder name" type="text" name="cardname" id="cardname" tabindex="5" required>
+						<input placeholder="Credit card number" type="text" name="cardnumber" id="cardnumber" tabindex="6" required>
+						<input placeholder="CVC" type="text" name="cardcvc" id="cardcvc" tabindex="7" required>
 					</div>
 					<div class="col-md-6 account-left">
-						<input placeholder="Expiration month" type="text" name="cardmonth" id="cardmonth" tabindex="6" required>
-						<input placeholder="Expiration year" type="text" name="cardyear" id="cardyear" tabindex="7" required>
+						<input placeholder="Expiration month" type="text" name="cardmonth" id="cardmonth" tabindex="8" required>
+						<input placeholder="Expiration year" type="text" name="cardyear" id="cardyear" tabindex="9" required>
 					</div>
 					<div class="clearfix"></div>
 				</div>

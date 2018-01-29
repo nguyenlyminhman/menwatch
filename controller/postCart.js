@@ -14,4 +14,5 @@ module.exports = async (req, res, next) => {
             // console.log(cart)
             res.redirect('/shopping-cart');
         })
+// console.log(cart);
 }

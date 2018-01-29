@@ -57,8 +57,7 @@ router.get('/remove/:id', require('../controller/removeCart'));
 
 // router.get('/shopping-cart/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
 router.get('/shopping-cart/checkout', require('../controller/getCheckOutPage'));
-
-router.post('/checkout', require('../controller/postCheckOut'));
+router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
 
 router.post('/search/results', require('../controller/postSearch'));
 router.get('/logout', (req, res) => {

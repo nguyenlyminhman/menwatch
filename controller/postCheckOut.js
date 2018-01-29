@@ -1,3 +1,4 @@
+const Customer = require('../model/Customer')
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
 const Cart = require('../model/Cart');
@@ -7,7 +8,9 @@ module.exports = async (req, res) => {
     if (!req.session.cart || req.session.cart == null) {
         return res.redirect('/shopping-cart');
     }
+    //init Cart model
     var cart = new Cart(req.session.cart);
+    //using stripe key.
     var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
     //get value from checkout page
     const { receiver, orderaddress, orderphone, receivedate } = req.body;
@@ -15,40 +18,38 @@ module.exports = async (req, res) => {
     //using year, month, date, hour, minute and second to create order id.
     const OrderNo = d.getFullYear() + "" + d.getMonth() + 1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
     //get current date
-    const currentDate = d.getFullYear() + "" + d.getMonth() + 1 + "" + d.getDate() 
+    const currentDate = d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate()
     //using stripe get information from card payment
     stripe.charges.create({
-        amount: cart.totalPrice * 100,
-        currency: "usd",
+        amount: cart.totalPrice * 100, //get total price store in stripe account
+        currency: "usd", // currency unit is USD 
         source: req.body.stripeToken, // obtained with Stripe.js
         description: ""
     }, function (err, charge) {
-        if (err) {
-            console.log(err)
-            return res.redirect('/checkout');
+        if (err) { //if have error redirect to check out page
+            console.log(err) //print error
+            return res.redirect('/shopping-cart/checkout'); //redirect to check out page
         }
-        var order = new Order(OrderNo, 12, currentDate, receivedate , req.session.totalPrice, orderphone, orderaddress, charge.id, 'Pending', receiver);
-        // var orderDetails = new OrderDetails();
-        order.addNewOrder()
-            .then(
-            req.session.cart = null,
-            res.redirect('/')
-            );
-
-        // [user].forEach(a=>{
-        //     idcustomer = a.id;
-        // })
-        // var order = new Order({
-        //     user: req.user,
-        //     cart: cart,
-        //     address: req.body.address,
-        //     name: req.body.name,
-        //     paymentId: charge.id
-        // });
-        // order.save(function (err, result) {
-
-        //     req.session.cart = null;
-        //     res.redirect('/');
-        // });
+        //init Customer model to contact with database.
+        let _customer = new Customer(undefined, undefined, req.user.email, undefined, undefined, undefined);
+        // using getCustomerInfoByEmail()method to get customer id, then insert into Order
+        _customer.getCustomerInfoByEmail().then(customer => {
+            //init Customer model to contact with database.
+            var order = new Order(OrderNo, customer.rows[0].id, currentDate, receivedate, cart.totalPrice,
+                orderphone, orderaddress, charge.id, 'Pending', receiver);
+            //using addNewOrder() to insert order info into database
+            order.addNewOrder();
+            //loop throught cart product to get value of cart
+            cart.getItems().forEach(product => {
+                //init OrderDetails model to contact with database.
+                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity);
+                // Using addNewOrderDetails() method to insert into database.
+                orderDetails.addNewOrderDetails()
+            })
+        });
+        //After finished, set session cart to null.
+        req.session.cart = null;
+        //redirect to home page
+        res.redirect('/');
     });
 }

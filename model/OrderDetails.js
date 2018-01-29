@@ -10,8 +10,8 @@ class OrderDetails {
     }
 
     addNewOrderDetails() {
-        const sql = 'INSERT INTO public."OrderDetails" (id, idOrder, idProduct, quantity) VALUES ($1, $2, $3, $4)';
-        return queryDB(sql, ['default', this.idOrder, this.idProduct, this.quantity]);
+        const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity) VALUES ($1, $2, $3)';
+        return queryDB(sql, [ this.idOrder, this.idProduct, this.quantity]);
     }
 //Product"."image", "Product"."name", "Product"."price","Order"."status", "Order"."id", "Order"."orderdate", "Order"."receivedate", "Order"."total", "OrderDetails"."quantity"
     getOrderDetailsByOrderId() {
