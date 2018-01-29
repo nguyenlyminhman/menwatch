@@ -1,25 +1,25 @@
 const pg = require('pg');
 //using for local host
-var config = {
-    user: 'postgres', //env var: PGUSER
-    database: 'menwatch', //env var: PGDATABASE
-    password: 'sa', //env var: PGPASSWORD
-    host: 'localhost', // Server hosting the postgres database
-    port: 5432, //env var: PGPORT
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 1000, // how long a client is allowed to remain idle before being closed
-};
-
-//using for heroku
 // var config = {
-//     user: 'pegrhnpbmowjzv', //env var: PGUSER
-//     database: 'd19gkjak9k477b', //env var: PGDATABASE
-//     password: '59cfb7db0472ebb6771b35c7a06b6ffc7b87e7d6be1dbfca89bbea233af7c1d9', //env var: PGPASSWORD
-//     host: 'ec2-107-21-236-219.compute-1.amazonaws.com', // Server hosting the postgres database
+//     user: 'postgres', //env var: PGUSER
+//     database: 'menwatch', //env var: PGDATABASE
+//     password: 'sa', //env var: PGPASSWORD
+//     host: 'localhost', // Server hosting the postgres database
 //     port: 5432, //env var: PGPORT
 //     max: 10, // max number of clients in the pool
 //     idleTimeoutMillis: 1000, // how long a client is allowed to remain idle before being closed
 // };
+
+//using for heroku
+var config = {
+    user: 'pdweaelkzyxogd', //env var: PGUSER
+    database: 'd8omp9dbmo2hs3', //env var: PGDATABASE
+    password: 'f69f8f110fcfb61dbb1c5ebd9358c038ff1f11da93956b79412af875515bb1d3', //env var: PGPASSWORD
+    host: 'ec2-54-225-103-255.compute-1.amazonaws.com', // Server hosting the postgres database
+    port: 5432, //env var: PGPORT
+    max: 10, // max number of clients in the pool
+    idleTimeoutMillis: 1000, // how long a client is allowed to remain idle before being closed
+};
 
  const pool = new pg.Pool(config);
 

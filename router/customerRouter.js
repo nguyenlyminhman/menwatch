@@ -55,8 +55,7 @@ router.get('/shopping-cart', require('../controller/getShoppingCartPage'));
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
 router.get('/remove/:id', require('../controller/removeCart'));
 
-// router.get('/shopping-cart/checkout', checkLoggedIn, require('../controller/getCheckOutPage'));
-router.get('/shopping-cart/checkout', require('../controller/getCheckOutPage'));
+router.get('/shopping-cart/checkout', checkLoggedIn, csurfProtection, require('../controller/getCheckOutPage'));
 router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
 
 router.post('/search/results', require('../controller/postSearch'));

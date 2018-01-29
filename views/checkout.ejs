@@ -49,7 +49,7 @@
 					</div>
 					<div class="col-md-6 account-left">
 						<input placeholder="Phone" type="text" name="orderphone" tabindex="3" required>
-						<input placeholder="Receive date" type="date" name="receivedate"  tabindex="4" required>
+						<input placeholder="Receive date" type="date" name="receivedate" tabindex="4" required>
 
 					</div>
 					<div class="clearfix"></div>
@@ -73,8 +73,10 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="address submit">
+					<input type="hidden" name="_csrf" value="<%=csrfToken%>">
 					<input tabindex="8" type="submit" value="Check Out">
 				</div>
+			</form>
 		</div>
 	</div>
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
