@@ -21,14 +21,25 @@ require('../utils/Passport')(passport);
 router.get('/', require('../controller/getHomePage'));
 
 router.get('/login', csurfProtection, require('../controller/getLoginPage'));
-router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
+router.post('/login', passport.authenticate('local',
+    { failureRedirect: '/login', failureFlash: true }),
+    function (req, res, next) {
+        console.log(req.session.oldUrl);
+        if (req.session.oldUrl) {
+            var oldUrl = req.session.oldUrl;
+            req.session.oldUrl = null;
+            res.redirect(oldUrl);
+        } else {
+            res.redirect('/profile/information');
+        }
+    });
 
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
 
 router.post('/change-password', require('../controller/postChangePassword'));
-router.get('/reset-password', csurfProtection,require('../controller/getResetPassword'));
+router.get('/reset-password', csurfProtection, require('../controller/getResetPassword'));
 router.post('/reset-password', require('../controller/postResetPassword'))
 
 router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));

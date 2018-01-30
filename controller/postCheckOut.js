@@ -38,13 +38,14 @@ module.exports = async (req, res) => {
             var order = new Order(OrderNo, customer.rows[0].id, currentDate, receivedate, cart.totalPrice,
                 orderphone, orderaddress, charge.id, 'Pending', receiver);
             //using addNewOrder() to insert order info into database
-            order.addNewOrder();
-            //loop throught cart product to get value of cart
-            cart.getItems().forEach(product => {
-                //init OrderDetails model to contact with database.
-                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity);
-                // Using addNewOrderDetails() method to insert into database.
-                orderDetails.addNewOrderDetails()
+            order.addNewOrder().then(resultOrder => {
+                //loop throught cart product to get value of cart
+                cart.getItems().forEach(product => {
+                    //init OrderDetails model to contact with database.
+                    var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity);
+                    // Using addNewOrderDetails() method to insert into database.
+                    orderDetails.addNewOrderDetails();
+                })
             })
         });
         //After finished, set session cart to null.
