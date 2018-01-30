@@ -9,12 +9,17 @@ module.exports = async (req, res) => {
     try {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
-        let product = await products.getProductDetailsById()
+        let product = await products.getProductDetailsById();
+        let hotProduct = await Product.getBestSellProduct();
+        let latestProduct = await Product.getLatestProduct();
+
         res.render('product_details', {
             // csrfToken: req.csrfToken(),
             style,
             brand,
             product,
+            hotProduct: hotProduct.rows,
+            latestProduct: latestProduct.rows,
             user: req.user,
             title: 'Product details'
         })

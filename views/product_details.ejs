@@ -3,31 +3,33 @@
 	<!--end of header-->
 	<!--start-breadcrumbs-->
 	<%product.forEach((data)=>{%>
-	<div class="breadcrumbs">
-		<div class="container">
-			<div class="breadcrumbs-main">
-				<ol class="breadcrumb">
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li class="">Product Details</li>
-					<li class=""><%=data.name%></li>
-				</ol>
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="breadcrumbs-main">
+					<ol class="breadcrumb">
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li class="">Product Details</li>
+						<li class="">
+							<%=data.name%>
+						</li>
+					</ol>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!--end-breadcrumbs-->
-	<!--start-single-->
-	<div class="single contact">
-		<div class="container">
-			<div class="single-main">
-				<div class="col-md-9 single-main-left">
-					
+		<!--end-breadcrumbs-->
+		<!--start-single-->
+		<div class="single contact">
+			<div class="container">
+				<div class="single-main">
+					<div class="col-md-9 single-main-left">
+
 						<div class="sngl-top">
 							<div class="col-md-5 single-top-left">
 								<div class="flexslider">
 									<ul class="slides">
-										
+
 										<li data-thumb="images/<%= data.image[Object.keys(data.image)[0]]%>">
 											<div class="thumb-image">
 												<img src="images/<%= data.image[Object.keys(data.image)[0]]%>" data-imagezoom="true" class="img-responsive" alt="" />
@@ -108,6 +110,13 @@
 									</ul>
 									<br />
 									<a href="addtocart/<%=data.id%>/1" class="add-cart item_add">ADD TO CART</a>
+									<!-- Go to www.addthis.com/dashboard to customize your tools -->
+									<br/><br/>
+									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-576b61d0718907f4"></script>
+									<!-- Go to www.addthis.com/dashboard to customize your tools -->
+									<div class="addthis_inline_share_toolbox_2oii"></div>
+
+
 								</div>
 							</div>
 							<div class="clearfix"> </div>
@@ -128,98 +137,91 @@
 								<li class="item3">
 									<a href="#">
 										<img src="images/arrow.png" alt="">Comment</a>
-									<ul>
-										<li class="subitem2">
-											<a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat
-												nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-												augue duis dolore</a>
-										</li>
-										<li class="subitem3">
-											<a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis
-												per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes
-											</a>
-										</li>
-									</ul>
+									<div class="fb-comments" style="background-color: white" data-href="https://menwatch.herokuapp.com/" data-width="825" data-numposts="5"></div>
 								</li>
 							</ul>
 						</div>
 						<% })%>
-
-
+							<!-- hot product -->
 							<div class="latestproducts">
 								<div class="product-one">
-									<div class="col-md-4 product-left p-left">
-										<div class="product-main simpleCart_shelfItem">
-											<a href="single.html" class="mask">
-												<img class="img-responsive zoom-img" src="images/p-1.png" alt="" />
-											</a>
-											<div class="product-bottom">
-												<h3>Smart Watches</h3>
-												<p>Explore Now</p>
-												<h4>
-													<a class="item_add" href="#">
-														<i></i>
+									<%hotProduct.forEach((data)=>{%>
+										<div class="col-md-4 product-left p-left">
+											<div class="product-main simpleCart_shelfItem">
+												<a href="product-details/<%=data.id%>" class="mask">
+													<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>"
+													 alt="" />
+												</a>
+												<div class="product-bottom">
+													<h3>
+														<%=data.name%>
+													</h3>
+													<h4>
+														<a class="item_add" href="addtocart/<%=data.id%>/1">
+															<i></i>
+														</a>
+														<span class=" item_price">$
+															<%=data.price%>
+														</span>
+													</h4>
+												</div>
+												<div class="srch">
+													<a href="addtocart/<%=data.id%>/1" style="text-decoration: none">
+														<span>Add to Cart</span>
 													</a>
-													<span class=" item_price">$ 329</span>
-												</h4>
-											</div>
-											<div class="srch">
-												<span>-50%</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col-md-4 product-left p-left">
-										<div class="product-main simpleCart_shelfItem">
-											<a href="single.html" class="mask">
-												<img class="img-responsive zoom-img" src="images/p-2.png" alt="" />
-											</a>
-											<div class="product-bottom">
-												<h3>Smart Watches</h3>
-												<p>Explore Now</p>
-												<h4>
-													<a class="item_add" href="#">
-														<i></i>
-													</a>
-													<span class=" item_price">$ 329</span>
-												</h4>
-											</div>
-											<div class="srch">
-												<span>-50%</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4 product-left p-left">
-										<div class="product-main simpleCart_shelfItem">
-											<a href="single.html" class="mask">
-												<img class="img-responsive zoom-img" src="images/p-3.png" alt="" />
-											</a>
-											<div class="product-bottom">
-												<h3>Smart Watches</h3>
-												<p>Explore Now</p>
-												<h4>
-													<a class="item_add" href="#">
-														<i></i>
-													</a>
-													<span class=" item_price">$ 329</span>
-												</h4>
-											</div>
-											<div class="srch">
-												<span>-50%</span>
-											</div>
-										</div>
-									</div>
-									<div class="clearfix"></div>
+										<%})%>
+											<div class="clearfix"></div>
 								</div>
 							</div>
+							<!--end hot product -->
+							<!-- latest product -->
+							<div class="latestproducts">
+								<div class="product-one">
+									<%latestProduct.forEach((data)=>{%>
+										<div class="col-md-4 product-left p-left">
+											<div class="product-main simpleCart_shelfItem">
+												<a href="product-details/<%=data.id%>" class="mask">
+													<img class="img-responsive zoom-img" style="width: 225px; height: 250px" src="images/<%= data.image[Object.keys(data.image)[0]]%>"
+													 alt="" />
+												</a>
+												<div class="product-bottom">
+													<h3>
+														<%=data.name%>
+													</h3>
+													<h4>
+														<a class="item_add" href="addtocart/<%=data.id%>/1">
+															<i></i>
+														</a>
+														<span class=" item_price">$
+															<%=data.price%>
+														</span>
+													</h4>
+												</div>
+												<div class="srch">
+													<a href="addtocart/<%=data.id%>/1" style="text-decoration: none">
+														<span>Add to Cart</span>
+													</a>
+												</div>
+											</div>
+										</div>
+										<%})%>
+											<div class="clearfix"></div>
+								</div>
+							</div>
+							<!--end latest product -->
+
+					</div>
+					<!-- right menu -->
+					<%include right_menu%>
+						<!-- end of right menu -->
+						<div class="clearfix"> </div>
 				</div>
-				<!-- right menu -->
-				<%include right_menu%>
-					<!-- end of right menu -->
-					<div class="clearfix"> </div>
 			</div>
 		</div>
-	</div>
-	<!--end-single-->
-	<!--footer-->
-	<% include footer%>
-		<!--end of footer-->
+		<!--end-single-->
+		<!--footer-->
+		<% include footer%>
+			<!--end of footer-->

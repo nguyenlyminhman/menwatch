@@ -27,6 +27,12 @@ class Product {
         // .then(result => result.rows);
     }
 
+   static getLatestProduct() {
+        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 3';
+        return queryDB(sql, [])
+        // .then(result => result.rows);
+    }
+
     getCountAllProduct() {
         let sql = 'select COUNT(*)  from public."Product"';
         return queryDB(sql, [])

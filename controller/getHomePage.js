@@ -11,7 +11,6 @@ module.exports = async (req, res, next) => {
 
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
-
         let product = await Product.getAllProduct();
         let hotProduct = await Product.getBestSellProduct();
 

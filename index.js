@@ -1,11 +1,12 @@
 const express = require('express');
+const favicon = require('serve-favicon')
 const passport = require('passport');
 const parser = require('body-parser').urlencoded({ extended: true });
 const session = require('express-session');
 const cookiePaser = require('cookie-parser');
 
 
-
+const path = require('path')
 const flash = require('express-flash');
 
 
@@ -17,6 +18,8 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
 app.use('admin', express.static('public/admin'));
+app.use(favicon(path.join(__dirname, 'public', 'images','menwatch.ico')));
+
 
 app.use(cookiePaser());
 app.use(parser);
