@@ -33,6 +33,10 @@ router.post('/login', passport.authenticate('local',
             res.redirect('/profile/information');
         }
     });
+router.get('/auth/fb', passport.authenticate('facebook', { scope: ['email'] }));
+router.get('/auth/fb/cb', passport.authenticate('facebook', {
+    failureRedirect: '/login', successRedirect: '/'
+}));
 
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));

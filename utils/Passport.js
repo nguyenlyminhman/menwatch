@@ -1,4 +1,5 @@
 const Strategy = require('passport-local').Strategy;
+const PassportFb = require('passport-facebook').Strategy;
 const Customer = require('../model/Customer');
 const { hash, compare } = require('bcrypt');
 
@@ -43,6 +44,18 @@ module.exports = function (passport) {
             })
         })
         .catch(err => { return done(err); });
+    }
+  ));
+
+  passport.use(new PassportFb(
+    {
+      clientID: "160773434573246",
+      clientSecret: "dc3a6430c7804e6f57d4dbcd274d3c67",
+      callbackURL:"https://menwatch.herokuapp.com/auth/fb/cb",
+      profileFields: ['email']
+    },
+    (accessToken, refreshToken, profile, done)=>{
+      console.log(profile)
     }
   ));
 };

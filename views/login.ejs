@@ -36,8 +36,9 @@
 							<input placeholder="Email" type="email" name="email" tabindex="3" required>
 							<input placeholder="Password" type="password" name="password" tabindex="4" required>
 							<div class="address">
-								<a class="forgot" href="/reset-password">Forgot your yassword?</a>
+								<a class="forgot" href="/reset-password">Forgot your password?</a>
 								<input type="hidden"  name="_csrf"  value="<%=csrfToken%>" />
+								<a class="" href="/auth/fb"> Login with fb</a>
 								<input type="submit" value="Login">
 							</div>
 						</form>
