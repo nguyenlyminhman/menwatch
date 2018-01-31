@@ -51,11 +51,24 @@ module.exports = function (passport) {
     {
       clientID: "160773434573246",
       clientSecret: "dc3a6430c7804e6f57d4dbcd274d3c67",
-      callbackURL:"https://menwatch.herokuapp.com/auth/fb/cb",
-      profileFields: ['email']
+      callbackURL: "https://menwatch.herokuapp.com/auth/fb/cb",
+      profileFields: ['email', 'first_name', 'last_name']
     },
-    (accessToken, refreshToken, profile, done)=>{
-      console.log(profile)
+    (accessToken, refreshToken, profile, done) => {
+
+      const customer = new Customer(undefined, undefined, profile._json.email, undefined, undefined, undefined);
+      customer.checkExistEmail()
+        .then(result => {
+          if (result.rowCount) {
+            return done(null, result.rows[0]);
+          }
+          const _customer = new Customer(profile._json.first_name, profile._json.last_name, profile._json.email, undefined, undefined, undefined);
+          _customer.insertNewCustomer().then(_result => {
+            customer.getCustomerInfoByEmail().then(customer_ => {
+              return done(null, customer_.rows[0]);
+            })
+          })
+        })
     }
   ));
 };

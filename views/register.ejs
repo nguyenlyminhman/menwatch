@@ -32,8 +32,8 @@
 				<div class="register-main">
 					<div class="col-md-6 account-left">
 						<input placeholder="Email address" type="email" name="email" tabindex="1" required>
-						<input placeholder="Password" type="password" name="password" id="password" tabindex="2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" 
-						title="Must contain at least one number, one uppercase and special letter, and at least 8 or more characters" required>
+						<input placeholder="Password" type="password" name="password" id="password" tabindex="2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+						 title="Must contain at least one number, one uppercase and special letter, and at least 8 or more characters" required>
 						<input placeholder="Retype password" type="password" name="confirm_password" id="confirm_password" tabindex="3" required>
 					</div>
 					<div class="col-md-6 account-left">
@@ -41,7 +41,7 @@
 						<input placeholder="Last name" type="text" name="lastname" tabindex="5" required>
 						<input placeholder="Address" type="text" name="address" tabindex="6" required>
 						<input placeholder="Phone" type="text" name="phone" tabindex="7" required>
-						<input type="hidden"  name="_csrf"  value="<%=csrfToken%>">
+						<input type="hidden" name="_csrf" value="<%=csrfToken%>">
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<!--register-end-->
-    
+
 	<!--footer-->
 	<% include footer%>
 		<!--end of footer-->

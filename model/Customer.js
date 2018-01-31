@@ -29,19 +29,6 @@ class Customer {
         })
     }
 
-    // sigin1() {
-    //     return new Promise((resolve, reject) => {
-    //         const sql = 'SELECT * FROM public."Customer" where email=$1';
-    //         queryDB(sql, [this.email])
-    //             .then((err, result) => {
-    //                 if (!result.row[0]) return reject(err);
-    //                 const hashPassword = result.rows[0].password;
-    //                 const isValid = compare(this.password, hashPassword);
-    //                 if (!isValid) return reject(err);
-    //                 resolve(id: result.rows[0].id);
-    //         })
-    //     })
-    // }
 
     async signin() {
         const sql = 'SELECT * FROM public."Customer" where email=$1'
@@ -51,6 +38,13 @@ class Customer {
         const isValid = await compare(this.password, hashPassword);
         if (!isValid) throw new Error('Password is wrong...');
         return { id: result.rows[0].id }
+    }
+
+    //using for facebook login
+    insertNewCustomer() {
+        const sql = 'INSERT INTO public."Customer"(fistname, lastname, email)' +
+            'VALUES ($1, $2, $3)';
+      return queryDB(sql, [this.fistname, this.lastname, this.email])
     }
 
     checkExistEmail() {
