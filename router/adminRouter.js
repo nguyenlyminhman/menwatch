@@ -17,9 +17,9 @@ require('../utils/Passport')(passport);
 
 // router.use(csurfProtection);
 //define the home page router
-router.get('/login', require('../controller/admin/getLoginPage'));
+router.get('/login', require('../controller/admin/getAdLoginPage'));
 
-// router.get('/login', csurfProtection, require('../controller/getLoginPage'));
+router.get('/home', require('../controller/admin/getAdHomePage'));
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),
 //     function (req, res, next) {
@@ -32,10 +32,6 @@ router.get('/login', require('../controller/admin/getLoginPage'));
 //             res.redirect('/profile/information');
 //         }
 //     });
-// router.get('/auth/fb', passport.authenticate('facebook', { scope: ['email'] }));
-// router.get('/auth/fb/cb', passport.authenticate('facebook', {
-//     failureRedirect: '/login', successRedirect: '/'
-// }));
 
 // router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 // router.post('/register', require('../controller/postRegister'));

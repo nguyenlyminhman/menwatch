@@ -17,7 +17,7 @@ require('../utils/Passport')(passport);
 
 // router.use(csurfProtection);
 //define the home page router
-router.get('/',returnOldUrl, require('../controller/getHomePage'));
+router.get('/', returnOldUrl, require('../controller/getHomePage'));
 
 router.get('/login', csurfProtection, require('../controller/getLoginPage'));
 router.post('/login', passport.authenticate('local',
@@ -33,15 +33,15 @@ router.post('/login', passport.authenticate('local',
     });
 router.get('/auth/fb', passport.authenticate('facebook', { scope: ['email'] }));
 router.get('/auth/fb/cb', passport.authenticate('facebook', { failureRedirect: '/login', failureFlash: true }),
-function (req, res, next) {
-    if (req.session.oldUrl) {
-        var oldUrl = req.session.oldUrl;
-        req.session.oldUrl = null;
-        res.redirect(oldUrl);
-    } else {
-        res.redirect('/');
-    }
-});
+    function (req, res, next) {
+        if (req.session.oldUrl) {
+            var oldUrl = req.session.oldUrl;
+            req.session.oldUrl = null;
+            res.redirect(oldUrl);
+        } else {
+            res.redirect('/');
+        }
+    });
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
 router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
@@ -60,13 +60,13 @@ router.get('/tracking-order/:id', checkLoggedIn, require('../controller/getTrack
 
 router.get('/contact', returnOldUrl, csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));
-router.get('/about',returnOldUrl, require('../controller/getAboutPage'));
+router.get('/about', returnOldUrl, require('../controller/getAboutPage'));
 
 router.get('/style', require('../controller/getHomePage'));
 router.get('/brand', require('../controller/getHomePage'));
 
 router.get('/style/:idStyle/:page', returnOldUrl, require('../controller/getProductsByStylePage'));
-router.get('/brand/:idBrand/:page', returnOldUrl,require('../controller/getProductsByBrandPage'));
+router.get('/brand/:idBrand/:page', returnOldUrl, require('../controller/getProductsByBrandPage'));
 
 router.get('/product-details/:id', returnOldUrl, require('../controller/getProductDetails'));
 

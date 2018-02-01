@@ -7,13 +7,12 @@
         <%=title%>
     </title>
     <base href="/">
-
+    <!-- using for stripe payment -->
     <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script>
-    <!-- <base href="/"> -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
@@ -28,13 +27,14 @@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--start-menu-->
     </script>
+    <!-- <link href="css/startmin.css" rel="stylesheet" type="text/css" media="all" /> -->
     <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/menwatches.css" rel="stylesheet" type="text/css" media="all" />
+
     <script type="text/javascript" src="js/memenu.js"></script>
     <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
     <!--end-menu-->
-    <!--using for all menwatch-->
-
-    <!--using for checkout-->
+    <!-- Custom CSS -->
 
     <!--dropdown-->
     <script src="js/jquery.easydropdown.js"></script>
@@ -56,20 +56,6 @@
             });
         });
     </script>
-    <style>
-        /* Note: Try to remove the following lines to see the effect of CSS positioning */
-
-        .affix {
-            top: 0;
-            width: 100%;
-            
-            z-index: 1 !important;
-        }
-
-        .affix+.container-fluid {
-            padding-top: 70px;
-        }
-    </style>
 </head>
 
 <body>
@@ -88,6 +74,9 @@
     <!-- <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script> -->
     <!--top-header-->
+    <div onclick="topFunction()" id="myBtn" title="Go to top">
+        <img src="images/back-to-top.png" alt="" />
+    </div>
     <div class="fixed_cart" style="position: fixed; top:11%; right: 0px; width: 100px; z-index: 10000">
         <a id="cartqty" name="cartqty" href="shopping-cart" style="text-decoration: none; font-size: 2.1em; color: #4CB1CA; float: right">
             <%if(!session.cart){%>
@@ -101,34 +90,38 @@
     <!-- top-header -->
     <!--Xóa tất cả phần dưới rồi past phần bên text-->
     <nav class="navbar navbar-inverse" style="background-color: black;">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <%if(!user){%>
-                        <li>
-                            <a href="/register">
-                                <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="/login">
-                                <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                        </li>
-                        <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> -->
-                        <%}else{%>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <%if(!user){%>
                             <li>
-                                <a href="/profile">
-                                    <span class="glyphicon glyphicon-user"></span> Account</a>
+                                <a href="/register">
+                                    <!-- <span class="glyphicon glyphicon-user"></span>  -->
+                                <img src="admin/img/accept_page.png"> Sign Up</a>
                             </li>
                             <li>
-                                <a href="/logout">
-                                    <span class="glyphicon glyphicon-log-out"></span> LogOut</a>
+                                <a href="/login">
+                                    <!-- <span class="glyphicon glyphicon-log-in"></span>  -->
+                                    <img src="admin/img/unlock.png"> Login</a>
                             </li>
-                            <%}%>
-                </ul>
+                            <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> -->
+                            <%}else{%>
+                                <li>
+                                    <a href="/profile">
+                                        <!-- <span class="glyphicon glyphicon-user"></span>  -->
+                                        <img src="admin/img/user.png"> Account</a>
+                                </li>
+                                <li>
+                                    <a href="/logout">
+                                        <!-- <span class="glyphicon glyphicon-log-out"></span>  -->
+                                        <img src="admin/img/lock.png">
+                                        LogOut</a>
+                                </li>
+                                <%}%>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
+        </nav>
     <!--top-header-->
     <!--start-logo-->
     <div class="logo">

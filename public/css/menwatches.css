@@ -1,0 +1,30 @@
+ /* Note: Try to remove the following lines to see the effect of CSS positioning */
+
+ .affix {
+    top: 0;
+    width: 100%;
+
+    z-index: 1 !important;
+}
+
+.affix+.container-fluid {
+    padding-top: 70px;
+}
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+#myBtn:hover {
+    background-color: #555;
+}
