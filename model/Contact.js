@@ -17,9 +17,9 @@ class Contact {
         return queryDB(sql, [this.email, this.fullname, this.phone, this.message, this.status, this.contact_date]);
     }
 
-    getContact() {
-        // const sql = 'SELECT * FROM public."Customer" where email=$1;'
-        // return queryDB(sql, [this.email])
+    static getAllContact() {
+        const sql = 'SELECT * FROM public."Contact"'
+        return queryDB(sql, [])
     }
 
     updateContact() {

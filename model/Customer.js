@@ -46,7 +46,10 @@ class Customer {
             'VALUES ($1, $2, $3)';
       return queryDB(sql, [this.fistname, this.lastname, this.email])
     }
-
+    static getAllCustomer() {
+        const sql = 'SELECT * FROM public."Customer" ORDER BY id DESC';
+        return queryDB(sql, [])
+    }
     checkExistEmail() {
         const sql = 'SELECT * FROM public."Customer" where email=$1';
         return queryDB(sql, [this.email])

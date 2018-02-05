@@ -20,6 +20,21 @@ require('../utils/Passport')(passport);
 router.get('/login', require('../controller/admin/getAdLoginPage'));
 
 router.get('/home', require('../controller/admin/getAdHomePage'));
+router.get('/brand/add-new', require('../controller/admin/getAd_BrandAddNew'));
+router.get('/brand/view-all', require('../controller/admin/getAd_BrandViewAll'));
+
+
+router.get('/style/add-new', require('../controller/admin/getAd_StyleAddNew'));
+router.get('/style/view-all', require('../controller/admin/getAd_StyleViewAll'));
+router.get('/product/view-all', require('../controller/admin/getAd_ProductViewAll'));
+
+router.get('/customer/view-all', require('../controller/admin/getAd_CustomerViewAll'));
+
+router.get('/order/view-all', require('../controller/admin/getAd_OrderViewAll'));
+
+router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
+
+
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),
 //     function (req, res, next) {

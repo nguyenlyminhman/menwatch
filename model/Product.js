@@ -12,13 +12,22 @@ class Product {
         this.image = image;
         this.details = details;
     }
-
+    //using for admin
+    static getBrandStyleProduct() {
+        let sql = `SELECT d."id" as id, "idStyle", "idBrand", name, price, quantity,
+         description, image, details, b."brandname" as brandname, e."stylename" as stylename
+            FROM public."Product" d, public."Brand" b, public."Style" e 
+            WHERE b."id" = d."idBrand" AND e."id" = d."idStyle"
+            ORDER BY d."id" DESC`;
+        return queryDB(sql, [])
+    }
+    //using for index page
     static getAllProduct() {
         let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 20';
         return queryDB(sql, [])
         // .then(result => result.rows);
     }
-
+    //using for index page
     static getBestSellProduct() {
         let sql = 'Select * from public."Product" where "id" in (' +
             'select "idProduct" as total_order from public."OrderDetails"' +
@@ -26,8 +35,8 @@ class Product {
         return queryDB(sql, [])
         // .then(result => result.rows);
     }
-
-   static getLatestProduct() {
+    //using for index and details page
+    static getLatestProduct() {
         let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 3';
         return queryDB(sql, [])
         // .then(result => result.rows);
@@ -95,11 +104,11 @@ class Product {
 }
 module.exports = Product;
 
-let product = new Product();
+// let product = new Product();
 // product.getProductByKeyword("neutra", 1,1)
 //     .then(a => console.log(a))
 //     .catch(err => console.log(err));
 
-// product.getProductByBrand()
+// Product.getBrandStyleProduct()
 // .then(s => console.log(s))
-// .catch(w => console.log('' + w));
+// .catch(w => console.log(w));

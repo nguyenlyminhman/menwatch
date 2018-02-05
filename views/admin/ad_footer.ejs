@@ -21,7 +21,24 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="../admin/js/startmin.js"></script>
-
+<!-- DataTables JavaScript -->
+<script src="../admin/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../admin/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../admin/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                "responsive":true,
+            });
+            $('#dataTablesPost').DataTable({
+                "responsive":true,
+                // "aaSorting": [[ 0, "asc" ]],
+            });
+            $('#example1').datepicker({
+                    format: "yyyy-mm-dd"
+            });
+        });
+    </script>
 </body>
 
 </html>
