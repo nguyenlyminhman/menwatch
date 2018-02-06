@@ -36,13 +36,15 @@ router.post('/style/edit/:id', require('../controller/admin/postAd_StyleEdit'));
 router.get('/style/delete/:id', require('../controller/admin/deleteAd_Style'));
 
 router.get('/product/view-all', require('../controller/admin/getAd_ProductViewAll'));
+router.get('/product/add-new', csurfProtection,require('../controller/admin/getAd_ProductAddNew'));
+router.post('/product/add-new', require('../controller/admin/postAd_ProductAddNew'));
+
 
 router.get('/customer/view-all', require('../controller/admin/getAd_CustomerViewAll'));
 
 router.get('/order/view-all', require('../controller/admin/getAd_OrderViewAll'));
 
 router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
-
 
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),

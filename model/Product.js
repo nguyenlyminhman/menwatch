@@ -91,22 +91,28 @@ class Product {
         return queryDB(sql, ["%" + keywords + "%"])
         // .then(result => result.rows);
     }
+    //add new product
     insertNewProduct() {
-        let sql = 'INSERT INTO public."product"(cateid, proname, proprice, prodetails)VALUES ($1, $2, $3, $4);'
-        return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails]);
+        let sql = `INSERT INTO public."Product"(
+           id, "idStyle", "idBrand", name, price, quantity, description, image, details)
+            VALUES (default, $1, $2, $3, $4, $5, $6, $7, $8)`;
+        return queryDB(sql, [ this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.image, this.details]);
     }
 
-    updateProduct() {
-        let sql = 'UPDATE public.product SET  cateid=$1, proname=$2, proprice=$3, prodetails=$4 WHERE proid=$5'
-        return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails, this.proid])
-    }
+    // updateProduct() {
+    //     let sql = 'UPDATE public.product SET  cateid=$1, proname=$2, proprice=$3, prodetails=$4 WHERE proid=$5'
+    //     return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails, this.proid])
+    // }
 
 }
 module.exports = Product;
 
-// let product = new Product();
-// product.getProductByKeyword("neutra", 1,1)
-//     .then(a => console.log(a))
+// let product = new Product( undefined, 1, 1, 'demo_product', 123, 100, 'description', '{"img3":"FS5380_3.jpg","img2":"FS5380_2.jpg","img1":"FS5380_1.jpg"}', '{"cs":"42mm","mt":"Quartz Chronograph","wr":"5 ATM","sm":"Leather"}');
+// product.insertNewProduct()
+//     .then(a => {
+//         console.log(a.rowCount),
+//             console.log('OK')
+//     })
 //     .catch(err => console.log(err));
 
 // Product.getBrandStyleProduct()

@@ -1,0 +1,139 @@
+<% include ad_header %>
+    <div class="row">
+        <div class="col-lg-12">
+            <!--add new menu item-->
+            <div class="col-lg-6">
+                <%if (message.length > 0 ){%>
+                    <div class="alert alert-danger">
+                        <h4>
+                            <%= message%>
+                        </h4>
+                    </div>
+                    <%}%>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form action="/admin/product/add-new" method="POST" enctype="multipart/form-data">
+                <!--add new menu item-->
+                <div id="addMenu" class="col-lg-6">
+                    <!-- begin_style_brand -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Brand & Style
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Brand</label>
+                            <select class="form-control" id="idBrand" name="idBrand" required>
+                                <option value="">Select a brand</option>
+                                <%brand.forEach(data=>{%>
+                                    <option disabled>──────────</option>
+                                    <option value="<%=data.id%>">
+                                        <%=data.brandname%>
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Style</label>
+                            <select class="form-control" id="idStyle" name="idStyle" required>
+                                <option value="">Select a style</option>
+                                <%style.forEach(data=>{%>
+                                    <option disabled>──────────</option>
+                                    <option value="<%=data.id%>">
+                                        <%=data.stylename%>
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- end_style_brand -->
+                    <!-- name_price_quantity -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Product
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Name</label>
+                            <input type="text" name="name" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Price</label>
+                            <input type="text" name="price" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quantity</label>
+                            <input type="number" name="quantity" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Description</label>
+                            <textarea name="description" class="form-control" rows="5" required> </textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--end_name_price_quantity -->
+                </div>
+                <!--end add new menu item-->
+                <div id="addMenu" class="col-lg-6">
+                    <!-- product-details -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Product details
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Case Size</label>
+                            <input type="text" name="cs" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Movement Type</label>
+                            <input type="text" name="mt" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Water Resistant</label>
+                            <input type="number" name="wr" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Strap Materialt</label>
+                            <input type="number" name="sm" class="form-control" required/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- end-product-details -->
+                    <!-- image -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Image
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Image 1</label>
+                            <input type="file" name="image1" id="image1" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Image 2</label>
+                            <input type="file" name="image2" id="image2" class="form-control" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Image 3</label>
+                            <input type="file" name="image3" id="image3" class="form-control" required/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- end-image -->
+                    <div>
+                        <div class="form-group">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                            <input type="submit" class="btn btn-default" value="Add" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <% include ad_footer%>
