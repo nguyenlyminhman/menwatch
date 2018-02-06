@@ -20,11 +20,17 @@ require('../utils/Passport')(passport);
 router.get('/login', require('../controller/admin/getAdLoginPage'));
 
 router.get('/home', require('../controller/admin/getAdHomePage'));
-router.get('/brand/add-new', require('../controller/admin/getAd_BrandAddNew'));
+
 router.get('/brand/view-all', require('../controller/admin/getAd_BrandViewAll'));
+router.get('/brand/add-new', csurfProtection, require('../controller/admin/getAd_BrandAddNew'));
+router.post('/brand/add-new', require('../controller/admin/postAd_BrandAddNew'));
+router.get('/brand/edit/:id', csurfProtection, require('../controller/admin/getAd_BrandEdit'));
+router.post('/brand/edit/:id', require('../controller/admin/postAd_BrandEdit'));
+router.get('/brand/delete/:id', require('../controller/admin/deleteAd_Brand'));
 
+router.get('/style/add-new',csurfProtection, require('../controller/admin/getAd_StyleAddNew'));
+router.post('/style/add-new', require('../controller/admin/postAd_StyleAddNew'));
 
-router.get('/style/add-new', require('../controller/admin/getAd_StyleAddNew'));
 router.get('/style/view-all', require('../controller/admin/getAd_StyleViewAll'));
 router.get('/product/view-all', require('../controller/admin/getAd_ProductViewAll'));
 

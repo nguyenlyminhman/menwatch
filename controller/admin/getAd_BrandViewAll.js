@@ -1,5 +1,4 @@
 const Brand = require('../../model/Brand');
-// const Style = require('../model/Style');
 
 module.exports = async (req, res, next) => {
     try {
@@ -8,6 +7,7 @@ module.exports = async (req, res, next) => {
         res.render('ad_brandViewAll', {
             brand,
             // user: req.user,
+            message: req.flash('info'),
             title: 'View all brand',
             breadcrumb: 'All brand',
         })

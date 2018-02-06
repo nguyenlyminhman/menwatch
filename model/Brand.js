@@ -11,10 +11,26 @@ class Brand {
         return queryDB(sql, [])
             .then(result => result.rows);
     }
+    checkExistBrand() {
+        const sql = 'select * from public."Brand" WHERE brandname = $1';
+        return queryDB(sql, [this.brandname])
+    }
+    addNewBrand() {
+        const sql = 'INSERT INTO public."Brand" (brandname) VALUES ($1)';
+        return queryDB(sql, [this.brandname])
+    }
+    deleteBrand() {
+        const sql = 'DELETE FROM public."Brand" WHERE id=$1';
+        return queryDB(sql, [this.id])
+    }
+    updateBrand() {
+        const sql = 'UPDATE public."Brand" SET brandname = $1 WHERE id = $2';
+        return queryDB(sql, [this.brandname, this.id])
+    }
     getBrandById() {
         const sql = 'select * from public."Brand" WHERE id = $1 ORDER BY id ASC';
         return queryDB(sql, [this.id])
-            .then(result => result.rows[0].brandname);
+        // .then(result => result.rows[0].brandname);
     }
 }
 module.exports = Brand;

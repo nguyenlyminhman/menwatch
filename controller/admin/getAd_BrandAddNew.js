@@ -1,29 +1,14 @@
-// const Brand = require('../model/Brand');
-// const Style = require('../model/Style');
-
 module.exports = async (req, res, next) => {
     try {
-        // let _product = new Product();
-        // let page = req.params.page || 1;
-        // let perPage = 16;
-
-        // let brand = await Brand.getAllBrand();
-        // let style = await Style.getAllStyle();
-        // let product = await Product.getAllProduct();
-        // let hotProduct = await Product.getBestSellProduct();
-
         res.render('ad_brandAddNew', {
             // csrfToken: req.csrfToken(),
-            // brand,
-            // style,
-            // product: product.rows,
-            // hotProduct: hotProduct.rows,
             // user: req.user,
+            message: req.flash('info'),
             title: 'Add new brand ',
             breadcrumb: 'Add new brand',
             // pages
         })
     } catch (err) {
-        res.send('getAdHomePage error : ' + err);
+        res.send('getAd_BrandAddNew error : ' + err);
     }
 }

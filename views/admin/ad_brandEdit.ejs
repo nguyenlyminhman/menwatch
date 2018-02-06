@@ -21,16 +21,18 @@
                 <br />
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
-                        Add New Brand
+                        Edit Brand:
+                        <%=brandname%>
                     </div>
-                    <form action="/admin/style/add-new" method="POST">
+                    <form action="/admin/brand/edit/<%=id %>" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}" />
                         <div class="form-group">
-                            <label for="email">Style name:</label>
-                            <input type="text" class="form-control" name="stylename" placeHolder="Style name" required />
+                            <label for="email">Brand name:</label>
+                            <input type="text" class="form-control" name="brandname" value="<%=brandname %>" placeHolder="Brand name" required />
                         </div>
-                        <button type="submit" class="btn btn-default">Add</button>
+                        <button type="submit" class="btn btn-default">Submit</button>
                         <button type="reset" class="btn btn-default">Reset</button>
+                        <a href="/admin/brand/view-all" class="btn btn-default"> Back </a>
                     </form>
                     <br>
                     <div class="clearfix"></div>
@@ -39,6 +41,4 @@
             <!--end add new menu item-->
         </div>
     </div>
-
-
     <% include ad_footer%>
