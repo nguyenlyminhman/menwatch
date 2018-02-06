@@ -28,10 +28,13 @@ router.get('/brand/edit/:id', csurfProtection, require('../controller/admin/getA
 router.post('/brand/edit/:id', require('../controller/admin/postAd_BrandEdit'));
 router.get('/brand/delete/:id', require('../controller/admin/deleteAd_Brand'));
 
+router.get('/style/view-all', require('../controller/admin/getAd_StyleViewAll'));
 router.get('/style/add-new',csurfProtection, require('../controller/admin/getAd_StyleAddNew'));
 router.post('/style/add-new', require('../controller/admin/postAd_StyleAddNew'));
+router.get('/style/edit/:id', csurfProtection, require('../controller/admin/getAd_StyleEdit'));
+router.post('/style/edit/:id', require('../controller/admin/postAd_StyleEdit'));
+router.get('/style/delete/:id', require('../controller/admin/deleteAd_Style'));
 
-router.get('/style/view-all', require('../controller/admin/getAd_StyleViewAll'));
 router.get('/product/view-all', require('../controller/admin/getAd_ProductViewAll'));
 
 router.get('/customer/view-all', require('../controller/admin/getAd_CustomerViewAll'));

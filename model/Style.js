@@ -17,12 +17,20 @@ class Style {
     getStyleById() {
         const sql = 'select * from public."Style" WHERE id = $1 ORDER BY id ASC';
         return queryDB(sql, [this.id])
-            .then(result => result.rows[0].stylename);
+    }
+    updateStyle() {
+        const sql = 'UPDATE public."Style" SET  stylename = $1  WHERE id =$2';
+        return queryDB(sql, [this.stylename, this.id])
     }
 
-    addNewStyle(){
+    deleteStyle() {
+        const sql = 'DELETE FROM public."Style" WHERE id =$1';
+        return queryDB(sql, [this.id])
+    }
+
+    addNewStyle() {
         let sql = 'INSERT INTO public."Style" (stylename) VALUES ($1)';
-        return queryDB(sql,[this.stylename])
+        return queryDB(sql, [this.stylename])
     }
 }
 module.exports = Style;
