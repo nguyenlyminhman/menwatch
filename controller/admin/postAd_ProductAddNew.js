@@ -14,17 +14,17 @@ module.exports = (req, res, next) => {
         let details = '{"cs":"' + cs + '","mt":"' + mt + '","wr":"' + wr + '","sm":"' + sm + '"}';
         //{"cs":"42mm","mt":"Quartz Chronograph","wr":"5 ATM","sm":"Leather"}
         let product = new Product(undefined, idStyle, idBrand, name, price, quantity, description, image, details);
-        product.insertNewProduct().
-            then(result => {
-                res.redirect('/admin/product/add-new');
-            })
+        product.checkExistProduct().then(result => {
+            if (result.rowCount > 0) {
+                req.flash('info', 'This product name was existed.'),
+                    res.redirect('/admin/product/add-new');
+            } else {
+                product.insertNewProduct().
+                    then(result => {
+                        req.flash('info', 'This product was added.'),
+                            res.redirect('/admin/product/add-new');
+                    })
+            }
+        })
     });
-
-
-    // let product = new Product(undefined, );
-    // product.insertNewProduct()
-    //     .then(result => {
-
-    //     })
-    //     .catch(() => res.redirect('/admin/brand/edit/' + id));
 }

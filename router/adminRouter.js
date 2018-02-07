@@ -40,6 +40,9 @@ router.get('/product/add-new', csurfProtection,require('../controller/admin/getA
 router.post('/product/add-new', require('../controller/admin/postAd_ProductAddNew'));
 
 
+router.get('/product/delete/:id', require('../controller/admin/deleteAd_Product'));
+
+
 router.get('/customer/view-all', require('../controller/admin/getAd_CustomerViewAll'));
 
 router.get('/order/view-all', require('../controller/admin/getAd_OrderViewAll'));

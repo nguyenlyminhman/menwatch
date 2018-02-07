@@ -41,6 +41,11 @@ class Product {
         return queryDB(sql, [])
         // .then(result => result.rows);
     }
+    //using for check product name exist
+    checkExistProduct(){
+        let sql = 'select *  from public."Product" WHERE name = $1';
+        return queryDB(sql, [this.name])
+    }
 
     getCountAllProduct() {
         let sql = 'select COUNT(*)  from public."Product"';
@@ -74,7 +79,7 @@ class Product {
         return queryDB(sql, [this.id])
             .then(result => result.rows);
     }
-    //using for add to cart.
+    //using for add to cart
     getProductById() {
         let sql = 'SELECT * FROM public."Product" where id = $1'
         return queryDB(sql, [this.id]);
@@ -98,7 +103,10 @@ class Product {
             VALUES (default, $1, $2, $3, $4, $5, $6, $7, $8)`;
         return queryDB(sql, [ this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.image, this.details]);
     }
-
+    deleteProduct(){
+        let sql = 'DELETE FROM public."Product" WHERE id=$1';
+        return queryDB(sql,[this.id])
+    }
     // updateProduct() {
     //     let sql = 'UPDATE public.product SET  cateid=$1, proname=$2, proprice=$3, prodetails=$4 WHERE proid=$5'
     //     return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails, this.proid])

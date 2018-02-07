@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
         let product = await Product.getBrandStyleProduct();
 
         res.render('ad_productViewAll', {
+            message: req.flash('info'),
             product: product.rows,
             // user: req.user,
             title: 'View all product ',
