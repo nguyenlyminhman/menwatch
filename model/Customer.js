@@ -44,10 +44,20 @@ class Customer {
     insertNewCustomer() {
         const sql = 'INSERT INTO public."Customer"(fistname, lastname, email)' +
             'VALUES ($1, $2, $3)';
-      return queryDB(sql, [this.fistname, this.lastname, this.email])
+        return queryDB(sql, [this.fistname, this.lastname, this.email])
     }
     static getAllCustomer() {
         const sql = 'SELECT * FROM public."Customer" ORDER BY id DESC';
+        return queryDB(sql, [])
+    }
+    static getPopularCustomer() {
+        const sql = `SELECT ct."id", ct."fistname", ct."lastname", ct."email",
+        COUNT("Order"."id") AS "total_order"
+        FROM public."Customer" ct
+        INNER JOIN public."Order" 
+        ON ct."id" = "Order"."idCustomer"
+        GROUP BY  ct."id",ct."fistname", ct."lastname", ct."email"
+        Order by "total_order" DESC`;
         return queryDB(sql, [])
     }
     checkExistEmail() {

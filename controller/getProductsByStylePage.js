@@ -26,8 +26,8 @@ module.exports = async (req, res) => {
             product: product.rows,
             user: req.user,
             breadcrumb: 'Style',
-            breadcrumb_name : stylename,
-            title: stylename,
+            breadcrumb_name : stylename.rows[0].stylename,
+            title: stylename.rows[0].stylename,
             //using for pagination
             current: page,
             pages,

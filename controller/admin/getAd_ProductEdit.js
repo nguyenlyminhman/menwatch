@@ -1,14 +1,14 @@
-let Brand = require('../../model/Brand');
+let Product = require('../../model/Product');
 module.exports = async (req, res, next) => {
     try {
         const { id } = req.params;
-        let brand = new Brand(id);
-        brand.getBrandById().then(result => {
-            res.render('ad_brandEdit', {
+        let product = new Product(id);
+        product.getProductById().then(result => {
+            res.render('ad_productEdit', {
                 csrfToken: req.csrfToken(),
                 // user: req.user,
                 id:id,
-                brandname: result,
+                brandname: result.rows[0].brandname,
                 message: req.flash('info'),
                 title: 'Brand ',
                 breadcrumb: 'Edit brand',

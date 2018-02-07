@@ -24,7 +24,7 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTablesOrder">
                             <thead>
                                 <tr>
                                     <th>Order No.</th>
@@ -67,10 +67,6 @@
                                         </td>
                                         <td>
                                             <a href="admin/customer/view/<%=data.id%>" type="button" class="btn btn-info">View Info</a>
-
-                                            <a href="admin/customer/delete/<%=data.id%>" type="button" class="btn btn-danger" onclick='return confirm("Lưu Ý: Sau khi xóa dữ liệu liên quan cũng sẽ mất.\n           Có chắc muốn xóa dòng này?");'>
-                                                Delete
-                                            </a>
                                         </td>
                                     </tr>
                                     <%})%>

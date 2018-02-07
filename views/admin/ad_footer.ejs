@@ -26,20 +26,34 @@
 <script src="../admin/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../admin/datatables-responsive/dataTables.responsive.js"></script>
 <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                "responsive":true,
-                "aaSorting": [[ 0, "desc" ]]
-            });
-            $('#dataTablesPost').DataTable({
-                "responsive":true,
-                // "aaSorting": [[ 0, "asc" ]],
-            });
-            $('#example1').datepicker({
-                    format: "yyyy-mm-dd"
-            });
+    $(document).ready(function () {
+        //using responsive data table
+        $('#dataTables-example').DataTable({
+            "responsive": true,
+            "aaSorting": [[0, "desc"]]
         });
-    </script>
+        //using responsive data table for Order.
+        $('#dataTablesOrder').DataTable({
+            "responsive": true,
+            "aaSorting": [[0, "desc"]]
+        });
+        //using responsive data table for popular customer.
+        $('#dataTablesPopular').DataTable({
+            "responsive": true,
+        });
+        //using responsive data table for popular customer.
+
+
+
+        $('#dataTablesPost').DataTable({
+            "responsive": true,
+            // "aaSorting": [[ 0, "asc" ]],
+        });
+        $('#example1').datepicker({
+            format: "yyyy-mm-dd"
+        });
+    });
+</script>
 </body>
 
 </html>
