@@ -65,10 +65,10 @@ class Customer {
         return queryDB(sql, [this.email])
     }
 
-    getCustomerInfoById() {
+    getCustomerInfoById(id) {
         const sql = 'SELECT * FROM public."Customer" where id=$1;'
-        return queryDB(sql, [this.id])
-            .then(results => results.rows);
+        return queryDB(sql, [id])
+            // .then(results => results.rows);
     }
 
     getCustomerInfoByEmail() {

@@ -8,8 +8,6 @@ module.exports = async (req, res) => {
         let brand = await Brand.getAllBrand();
         let style = await Style.getAllStyle();
         let _customer = new Customer(undefined, undefined, req.user.email, undefined, undefined, undefined);
-
-
         _customer.checkExistEmail().then(result => {
             let _order = new Order(undefined, result.rows[0].id, undefined, undefined, undefined, undefined, undefined, undefined, );
             _order.getOrderInfoByCustomerId().then(orderResult => {

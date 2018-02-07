@@ -31,6 +31,7 @@ router.post('/login', passport.authenticate('local',
             res.redirect('/');
         }
     });
+
 router.get('/auth/fb', passport.authenticate('facebook', { scope: ['email'] }));
 router.get('/auth/fb/cb', passport.authenticate('facebook', { failureRedirect: '/login', failureFlash: true }),
     function (req, res, next) {

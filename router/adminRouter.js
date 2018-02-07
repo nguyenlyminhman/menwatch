@@ -45,7 +45,10 @@ router.get('/product/delete/:id', require('../controller/admin/deleteAd_Product'
 
 router.get('/customer/view-all', require('../controller/admin/getAd_CustomerViewAll'));
 router.get('/customer/popular', require('../controller/admin/getAd_CustomerPopular'));
+router.get('/customer/view-details/:id', require('../controller/admin/getAd_CustomerDetails'));
+
 router.get('/order/view-all', require('../controller/admin/getAd_OrderViewAll'));
+router.get('/order/view-details/:id', require('../controller/admin/getAd_OrderDetails'));
 
 router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
 
