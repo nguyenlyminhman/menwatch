@@ -51,6 +51,7 @@ router.get('/order/view-all', require('../controller/admin/getAd_OrderViewAll'))
 router.get('/order/view-details/:id', require('../controller/admin/getAd_OrderDetails'));
 
 router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
+router.get('/contact/view-details/:id', require('../controller/admin/getAd_ContactDetails'));
 
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),
