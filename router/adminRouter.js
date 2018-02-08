@@ -52,6 +52,8 @@ router.get('/order/view-details/:id', require('../controller/admin/getAd_OrderDe
 
 router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
 router.get('/contact/view-details/:id', require('../controller/admin/getAd_ContactDetails'));
+router.get('/staff/add-new',csurfProtection, require('../controller/admin/getAd_StaffAddNew'))
+router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'))
 
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),

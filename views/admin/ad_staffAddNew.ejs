@@ -1,0 +1,82 @@
+<% include ad_header %>
+    <div class="row">
+        <div class="col-lg-12">
+            <!--add new menu item-->
+            <div class="col-lg-12">
+                <%if (message.length > 0 ){%>
+                    <div class="alert alert-danger">
+                        <h4>
+                            <%= message%>
+                        </h4>
+                    </div>
+                    <%}%>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form action="/admin/staff/add-new" method="POST">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <!-- <h3>List All Brand </h3> -->
+                    </div>
+                    <!-- /.panel-heading -->
+
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Firstname</label>
+                            <input class="form-control" type="text" name="firstname" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Lastname</label>
+                            <input class="form-control" type="text" name="lastname" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Role</label>
+                            <br/>
+                            <label class="radio-inline">
+                                <input type="radio" name="role" value="admin">Admin</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="role" value="staff" checked>Staff</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <!-- <h3>List All Brand </h3> -->
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="email">Phone</label>
+                            <input class="form-control" type="text" name="phone" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Address</label>
+                            <textarea class="form-control" name="address" rows="8" required> </textarea>
+                        </div>
+                        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <div class="">
+                    <input class="btn btn-default" type="submit" value="Add">
+                    <input class="btn btn-default" type="reset" value="Reset">
+                </div>
+
+                <!-- /.panel -->
+            </div>
+        </form>
+    </div>
+    <% include ad_footer%>
