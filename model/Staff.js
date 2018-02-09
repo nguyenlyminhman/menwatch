@@ -19,7 +19,7 @@ class Staff {
                 if (err) return reject(err);
                 const sql = 'INSERT INTO public."Staff"(firstname, lastname, email, password,role, address, phone)' +
                     'VALUES ($1, $2, $3, $4, $5, $6, $7)';
-                queryDB(sql, [this.fistname, this.lastname, this.email, encryptedPassword, this.role, this.address, this.phone])
+                queryDB(sql, [this.firstname, this.lastname, this.email, encryptedPassword, this.role, this.address, this.phone])
                 resolve();
             })
         })
@@ -45,6 +45,10 @@ class Staff {
     checkExistStaff() {
         const sql = 'select * from public."Staff" where email=$1';
         return queryDB(sql, [this.email])
+    }
+    static getAllStaff() {
+        const sql = 'select * from public."Staff"';
+        return queryDB(sql, [])
     }
 }
 
