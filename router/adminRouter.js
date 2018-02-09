@@ -53,9 +53,12 @@ router.get('/order/view-details/:id', require('../controller/admin/getAd_OrderDe
 router.get('/contact/view-all', require('../controller/admin/getAd_ContactViewAll'));
 router.get('/contact/view-details/:id', require('../controller/admin/getAd_ContactDetails'));
 
-router.get('/staff/view-all', require('../controller/admin/getAd_StaffViewAll'))
-router.get('/staff/add-new',csurfProtection, require('../controller/admin/getAd_StaffAddNew'))
-router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'))
+router.get('/staff/view-all', require('../controller/admin/getAd_StaffViewAll'));
+router.get('/staff/add-new',csurfProtection, require('../controller/admin/getAd_StaffAddNew'));
+router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'));
+
+router.get('/staff/handling-order/view-all', require('../controller/admin/getStaff_OrderViewAll'));
+router.get('/staff/handling-order/view-details/:id', require('../controller/admin/getStaff_OrderDetails'));
 
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),
@@ -70,40 +73,12 @@ router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'))
 //         }
 //     });
 
-// router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
-// router.post('/register', require('../controller/postRegister'));
 // router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
 
 // router.post('/change-password', require('../controller/postChangePassword'));
-// router.get('/reset-password', csurfProtection, require('../controller/getResetPassword'));
-// router.post('/reset-password', require('../controller/postResetPassword'))
 
 // router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
 // router.post('/profile/information', require('../controller/postCustomerInfoPage'));
-
-// router.get('/profile/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
-// router.post('/profile/shipping-address', require('../controller/postCustomerShippingAddress'));
-
-// router.get('/tracking-order/:id', checkLoggedIn, require('../controller/getTrackingOrder'));
-
-// router.get('/contact', csurfProtection, require('../controller/getContactPage'));
-// router.post('/contact', csurfProtection, require('../controller/postContact'));
-// router.get('/about', require('../controller/getAboutPage'));
-
-// router.get('/style', require('../controller/getHomePage'));
-// router.get('/brand', require('../controller/getHomePage'));
-
-// router.get('/style/:idStyle/:page', require('../controller/getProductsByStylePage'));
-// router.get('/brand/:idBrand/:page', require('../controller/getProductsByBrandPage'));
-
-// router.get('/product-details/:id', require('../controller/getProductDetails'));
-
-// router.get('/shopping-cart', require('../controller/getShoppingCartPage'));
-// router.get('/addtocart/:id/:qty', require('../controller/postCart'));
-// router.get('/remove/:id', require('../controller/removeCart'));
-
-// router.get('/shopping-cart/checkout', checkLoggedIn, csurfProtection, require('../controller/getCheckOutPage'));
-// router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
 
 // router.post('/search/results', require('../controller/postSearch'));
 // router.get('/logout', (req, res) => {
@@ -114,3 +89,8 @@ router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'))
 router.use(require('../controller/getErrorPage'));
 
 module.exports = router;
+
+function returnOldUrl(req, res, next) {
+    req.session.role = req.user.role;
+    return next();
+}

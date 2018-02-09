@@ -1,0 +1,98 @@
+<% include ad_header%>
+    <%
+
+  // Add commas as thousand separators
+  function formatDate(date) {
+    if (date == null)
+    {
+      return "";
+    } else {
+      var date = new Date(date);
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+      return m + '/' + d + '/' + y;
+    }
+
+  }
+%>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="account-main">
+                    <div class="col-md-4">
+                        <h3>Order date :
+                            <%=formatDate(orderDate)%>
+                        </h3>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Status :
+                            <%=status%>
+                        </h3>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Total : $
+                            <%=total%>
+                        </h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="account-main">
+                    <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+                    <%product.forEach(data=>{%>
+                        <div class="col-md-12 account-left">
+                            <div class="col-md-3 account-right account-left">
+                                <img src="images/<%= data.image[Object.keys(data.image)[0]]%>" class="img-responsive" width="30%" height="30%" alt="" />
+                            </div>
+                            <div class="col-md-3 account-left">
+                                <%=data.name%>
+                            </div>
+                            <div class="col-md-3 account-left">
+                                $
+                                <%=data.price%>
+                            </div>
+                            <div class="col-md-3 account-right account-left">
+                                X &nbsp;&nbsp;&nbsp;
+                                <%=data.quantity%>
+                            </div>
+                        </div>
+                        <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+                        <%})%>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h3>Receiver information</h3>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="form-group col-lg-4">
+                                <label for="email">Receiver name:</label>
+                                <p class="form-control">
+                                    <%=receiver%>
+                                </p>
+                                <!-- <input type="text" name="name" min="4" class="form-control" disabled /> -->
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="email">Address:</label>
+                                <p class="form-control">
+                                    <%=orderaddress%>
+                                </p>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="email">Address:</label>
+                                <p class="form-control">
+                                    <%=orderphone%>
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /.panel-body -->
+
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <% include ad_footer%>

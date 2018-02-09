@@ -19,13 +19,23 @@ class Order {
             'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);'
         return queryDB(sql, [this.id, this.idCustomer, this.orderdate, this.receivedate, this.total, this.orderphone, this.orderaddress, this.payment, this.status, this.receiver]);
     }
-
+    //using for admin
     static getAllOrder() {
         const sql = `SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
         WHERE b."id" = a."idCustomer"
         Order by a."id" DESC`;
         return queryDB(sql, [])
     }
+    //using for admin
+    static getPendingOrder() {
+        const sql = `SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
+    WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" NOT IN (select "idOrder" from public."StaffOrder")
+    Order by a.orderdate ASC LIMIT 1`;
+        return queryDB(sql, [])
+    }
+    //SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
+    // WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" not in (select "idOrder" from public."StaffOrder")
+    // Order by a.orderdate ASC  
 
     getOrderById() {
         const sql = 'SELECT *	FROM public."Order" where id=$1'
@@ -36,7 +46,7 @@ class Order {
     getOrderInfoByCustomerId() {
         const sql = 'SELECT *	FROM public."Order" where "idCustomer"=$1'
         return queryDB(sql, [this.idCustomer])
-            // .then(results => results.rows);
+        // .then(results => results.rows);
     }
 }
 
