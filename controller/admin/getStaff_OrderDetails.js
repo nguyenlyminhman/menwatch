@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     var d = new Date();
     const currentDate = d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate()
     try {
-        let staffOrder = new StaffOrder(undefined, 1, id, "Proccessing", currentDate);
+        let staffOrder = new StaffOrder(undefined, 5, id, "Proccessing", currentDate);
         let orderDetails = new OrderDetails(undefined, id, undefined, undefined);
 
         staffOrder.addHandlingOrder().then(result => {
@@ -34,6 +34,6 @@ module.exports = async (req, res) => {
             }
         })
     } catch (err) {
-        res.send('getTrackingOrder error : ' + err);
+        res.send('getStaff_OrderDetails error : ' + err);
     }
 }

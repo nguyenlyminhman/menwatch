@@ -20,7 +20,7 @@ require('../utils/Passport')(passport);
 router.get('/', returnOldUrl, require('../controller/getHomePage'));
 
 router.get('/login', csurfProtection, require('../controller/getLoginPage'));
-router.post('/login', passport.authenticate('local',
+router.post('/login', passport.authenticate('local_customer',
     { failureRedirect: '/login', failureFlash: true }),
     function (req, res, next) {
         if (req.session.oldUrl) {

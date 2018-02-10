@@ -11,10 +11,11 @@
     <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-     <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
-   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!--Custom-Theme-files-->
@@ -90,38 +91,38 @@
     <!-- top-header -->
     <!--Xóa tất cả phần dưới rồi past phần bên text-->
     <nav class="navbar navbar-inverse" style="background-color: black;">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <%if(!user){%>
-                            <li>
-                                <a href="/register">
-                                    <!-- <span class="glyphicon glyphicon-user"></span>  -->
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <%if(!user){%>
+                        <li>
+                            <a href="/register">
+                                <!-- <span class="glyphicon glyphicon-user"></span>  -->
                                 <img src="admin/img/accept_page.png"> Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="/login">
+                                <!-- <span class="glyphicon glyphicon-log-in"></span>  -->
+                                <img src="admin/img/unlock.png"> Login</a>
+                        </li>
+                        <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> -->
+                        <%}else{%>
+                            <li>
+                                <a href="/profile">
+                                    <!-- <span class="glyphicon glyphicon-user"></span>  -->
+                                    <img src="admin/img/user.png"> Account</a>
                             </li>
                             <li>
-                                <a href="/login">
-                                    <!-- <span class="glyphicon glyphicon-log-in"></span>  -->
-                                    <img src="admin/img/unlock.png"> Login</a>
+                                <a href="/logout">
+                                    <!-- <span class="glyphicon glyphicon-log-out"></span>  -->
+                                    <img src="admin/img/lock.png"> LogOut
+                                </a>
                             </li>
-                            <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> -->
-                            <%}else{%>
-                                <li>
-                                    <a href="/profile">
-                                        <!-- <span class="glyphicon glyphicon-user"></span>  -->
-                                        <img src="admin/img/user.png"> Account</a>
-                                </li>
-                                <li>
-                                    <a href="/logout">
-                                        <!-- <span class="glyphicon glyphicon-log-out"></span>  -->
-                                        <img src="admin/img/lock.png">
-                                        LogOut</a>
-                                </li>
-                                <%}%>
-                    </ul>
-                </div>
+                            <%}%>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
     <!--top-header-->
     <!--start-logo-->
     <div class="logo">

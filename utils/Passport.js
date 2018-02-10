@@ -1,6 +1,7 @@
 const Strategy = require('passport-local').Strategy;
 const PassportFb = require('passport-facebook').Strategy;
 const Customer = require('../model/Customer');
+const Staff = require('../model/Staff');
 const { hash, compare } = require('bcrypt');
 
 module.exports = function (passport) {
@@ -16,20 +17,21 @@ module.exports = function (passport) {
 
   passport.deserializeUser(function (email, done) {
     const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined);
-    customer.getCustomerInfoByEmail()
-      .then(result => {
-        return done(null, result.rows[0]);
-      }),
-      err => { done(err, null); }
+    customer.checkExistEmail()
+    .then(result => {
+      return done(null, result.rows[0]);
+    }),
+    err => { done(err, null); }
+
   });
 
-  passport.use(new Strategy({
+  passport.use('local_customer', new Strategy({
     usernameField: 'email',
     passwordField: 'password'
   },
     (email, password, done) => {
       const customer = new Customer(undefined, undefined, email, password, undefined, undefined);
-      customer.getCustomerInfoByEmail()
+      customer.checkExistEmail()
         .then(result => {
           if (!result.rowCount) {
             return done(null, false, { message: email + ' is not in use.' });

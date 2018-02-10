@@ -68,13 +68,12 @@ class Customer {
     getCustomerInfoById(id) {
         const sql = 'SELECT * FROM public."Customer" where id=$1;'
         return queryDB(sql, [id])
-            // .then(results => results.rows);
     }
 
-    getCustomerInfoByEmail() {
-        const sql = 'SELECT * FROM public."Customer" where email=$1'
-        return queryDB(sql, [this.email]);
-    }
+    // getCustomerInfoByEmail() {
+    //     const sql = 'SELECT * FROM public."Customer" where email=$1'
+    //     return queryDB(sql, [this.email]);
+    // }
 
     updateCustomerInfo() {
         const sql = 'UPDATE public."Customer" SET  fistname=$1, lastname=$2'

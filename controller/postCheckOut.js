@@ -32,8 +32,8 @@ module.exports = async (req, res) => {
         }
         //init Customer model to contact with database.
         let _customer = new Customer(undefined, undefined, req.user.email, undefined, undefined, undefined);
-        // using getCustomerInfoByEmail()method to get customer id, then insert into Order
-        _customer.getCustomerInfoByEmail().then(customer => {
+        // using checkExistEmail()method to get customer id, then insert into Order
+        _customer.checkExistEmail().then(customer => {
             //init Customer model to contact with database.
             var order = new Order(OrderNo, customer.rows[0].id, currentDate, receivedate, cart.totalPrice,
                 orderphone, orderaddress, charge.id, 'Pending', receiver);

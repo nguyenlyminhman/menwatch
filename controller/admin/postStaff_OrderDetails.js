@@ -18,6 +18,7 @@ module.exports = async (req, res, next) => {
                         _product.updateProductQuantity();
                 });
                 if (resultOd.rowCount > 0 && resultSt.rowCount > 0) {
+                    req.session.product = null;
                     res.redirect('/admin/staff/handling-order/view-all')
                 }else{
                     res.redirect('/admin/staff/handling-order/view-details/' + idOrder)

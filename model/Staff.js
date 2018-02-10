@@ -36,13 +36,11 @@ class Staff {
         return { id: result.rows[0].id }
     }
 
-    loginStaff() { //eslint-disable-line
-        const sql = 'select * from public."Staff" where email=$1 and password=$2';
-        return queryDB(sql, [this.email, this.password])
-            .then(result => result.rows);
-    }
-
     checkExistStaff() {
+        const sql = 'select * from public."Staff" where email=$1';
+        return queryDB(sql, [this.email])
+    }
+    getStaffInfoByEmail() {
         const sql = 'select * from public."Staff" where email=$1';
         return queryDB(sql, [this.email])
     }

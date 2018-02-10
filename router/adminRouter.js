@@ -3,8 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 const checkLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 
-const Customer = require('../model/Customer');
-const Car = require('../model/Cart');
 const csurf = require('csurf');
 const csurfProtection = csurf();
 
@@ -18,6 +16,7 @@ require('../utils/Passport')(passport);
 // router.use(csurfProtection);
 //define the home page router
 router.get('/login', require('../controller/admin/getAdLoginPage'));
+router.post('/login', passport.authenticate('local_staff', { successRedirect: '/admin/home', failureRedirect: '/admin/login' }));
 
 router.get('/home', require('../controller/admin/getAdHomePage'));
 
