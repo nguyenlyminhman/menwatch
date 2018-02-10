@@ -114,10 +114,10 @@ class Product {
 }
 module.exports = Product;
 
-let product = new Product( 18, undefined, undefined, undefined, undefined, 1000, undefined, undefined, undefined);
-product.updateProductQuantity().then(sss=>{
-    console.log(sss.rowCount)
-})
+// let product = new Product( 18, undefined, undefined, undefined, undefined, 1000, undefined, undefined, undefined);
+// product.updateProductQuantity().then(sss=>{
+//     console.log(sss.rowCount)
+// })
 
 // product.insertNewProduct()
 //     .then(a => {

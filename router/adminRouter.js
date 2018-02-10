@@ -59,6 +59,7 @@ router.post('/staff/add-new', require('../controller/admin/postAd_StaffAddNew'))
 
 router.get('/staff/handling-order/view-all', require('../controller/admin/getStaff_OrderViewAll'));
 router.get('/staff/handling-order/view-details/:id', require('../controller/admin/getStaff_OrderDetails'));
+router.post('/staff/handling-order/view-details/:id', require('../controller/admin/postStaff_OrderDetails'));
 
 // router.post('/login', passport.authenticate('local',
 //     { failureRedirect: '/login', failureFlash: true }),

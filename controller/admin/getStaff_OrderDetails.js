@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
         staffOrder.addHandlingOrder().then(result => {
             if (result.rowCount > 0) {
                 orderDetails.getOrderDetailsByOrderId().then(odetails => {
+                    req.session.product = odetails.rows,
                     res.render('staff_OrderDetails', {
                         product: odetails.rows,
                         idOrder: id,
@@ -22,6 +23,10 @@ module.exports = async (req, res) => {
                         receiver: odetails.rows[0].receiver,
                         orderaddress: odetails.rows[0].orderaddress,
                         orderphone: odetails.rows[0].orderphone,
+                        fistname: odetails.rows[0].fistname,
+                        lastname: odetails.rows[0].lastname,
+                        address: odetails.rows[0].address,
+                        phone: odetails.rows[0].phone,
                         title: 'Order details',
                         breadcrumb: 'Order No. ' + id
                     });
