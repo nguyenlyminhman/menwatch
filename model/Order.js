@@ -42,11 +42,15 @@ class Order {
         return queryDB(sql, [this.id])
             .then(results => results.rows);
     }
-
     getOrderInfoByCustomerId() {
         const sql = 'SELECT *	FROM public."Order" where "idCustomer"=$1'
         return queryDB(sql, [this.idCustomer])
         // .then(results => results.rows);
+    }
+    //update order status. staff using it.
+    updateOrderStatus() {
+        const sql = `UPDATE public."Order" SET status = 'Finish' where id=$1`;
+        return queryDB(sql, [this.id])
     }
 }
 

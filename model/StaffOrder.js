@@ -18,10 +18,9 @@ class StaffOrder {
         const sql = 'SELECT * FROM public."StaffOrder" where "idOrder"=$1;'
         return queryDB(sql, [this.idOrder]);
     }
-    updateContact() {
-        const sql = 'SELECT * FROM public."Customer" where id=$1;'
-        // return queryDB(sql, [this.id])
-        //     .then(results => results.rows);
+    updateStaffOrderStatus() {
+        const sql = `UPDATE public."StaffOrder" SET status = 'Finish' where "idOrder"=$1`;
+        return queryDB(sql, [this.idOrder]);
     }
 }
 module.exports = StaffOrder;

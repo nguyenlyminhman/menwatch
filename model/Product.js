@@ -84,17 +84,15 @@ class Product {
         let sql = 'SELECT * FROM public."Product" where id = $1'
         return queryDB(sql, [this.id]);
     }
-
+    //using for search function
     getProductByKeyword(keywords, limit, offset) {
         let sql = 'SELECT * FROM public."Product" WHERE "name" ILIKE $1  ORDER BY Id DESC LIMIT $2 OFFSET $3';
         return queryDB(sql, ["%" + keywords + "%", limit, offset])
-        //  .then(result => result.rows);
     }
-
+    //using for pagination when search
     getCountProductByKeyword(keywords) {
         let sql = 'SELECT COUNT(*) FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)';
         return queryDB(sql, ["%" + keywords + "%"])
-        // .then(result => result.rows);
     }
     //add new product
     insertNewProduct() {
@@ -103,19 +101,24 @@ class Product {
             VALUES (default, $1, $2, $3, $4, $5, $6, $7, $8)`;
         return queryDB(sql, [ this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.image, this.details]);
     }
+    //using for admin delete a product
     deleteProduct(){
         let sql = 'DELETE FROM public."Product" WHERE id=$1';
         return queryDB(sql,[this.id])
     }
-    // updateProduct() {
-    //     let sql = 'UPDATE public.product SET  cateid=$1, proname=$2, proprice=$3, prodetails=$4 WHERE proid=$5'
-    //     return queryDB(sql, [this.cateid, this.proname, this.proprice, this.prodetails, this.proid])
-    // }
+    updateProductQuantity() {
+        let sql = 'UPDATE public."Product" SET "quantity"="quantity" - $1 WHERE id = $2 RETURNING "quantity"';
+        return queryDB(sql, [this.quantity, this.id])
+    }
 
 }
 module.exports = Product;
 
-// let product = new Product( undefined, 1, 1, 'demo_product', 123, 100, 'description', '{"img3":"FS5380_3.jpg","img2":"FS5380_2.jpg","img1":"FS5380_1.jpg"}', '{"cs":"42mm","mt":"Quartz Chronograph","wr":"5 ATM","sm":"Leather"}');
+let product = new Product( 18, undefined, undefined, undefined, undefined, 1000, undefined, undefined, undefined);
+product.updateProductQuantity().then(sss=>{
+    console.log(sss.rowCount)
+})
+
 // product.insertNewProduct()
 //     .then(a => {
 //         console.log(a.rowCount),

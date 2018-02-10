@@ -8,21 +8,23 @@ class OrderDetails {
         this.idProduct = idProduct;
         this.quantity = quantity;
     }
-
     addNewOrderDetails() {
         const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity) VALUES ($1, $2, $3)';
-        return queryDB(sql, [ this.idOrder, this.idProduct, this.quantity]);
+        return queryDB(sql, [this.idOrder, this.idProduct, this.quantity]);
     }
-//Product"."image", "Product"."name", "Product"."price","Order"."status", "Order"."id", "Order"."orderdate", "Order"."receivedate", "Order"."total", "OrderDetails"."quantity"
+    //Product"."image", "Product"."name", "Product"."price","Order"."status", "Order"."id", "Order"."orderdate", "Order"."receivedate", "Order"."total", "OrderDetails"."quantity"
     getOrderDetailsByOrderId() {
-        const sql = 'SELECT "Product"."image", "Product"."name", "Product"."price","Order"."status", "Order"."id",'+
-        '"Order"."orderdate", "Order"."receivedate", "Order"."total", "Order"."receiver", "Order"."orderaddress", "Order"."orderphone","OrderDetails"."quantity"'+
-        'FROM public."OrderDetails", public."Order", public."Product"' +
-            'WHERE "OrderDetails"."idOrder" = "Order"."id"' +
-            'AND "OrderDetails"."idProduct" = "Product"."id"' +
-            'AND "Order"."id"= $1';
+        const sql = `Select "Product"."id" as idproduct, "Product"."image", "Product"."name", "Product"."price",
+		"Order"."status", "Order"."id","Order"."orderdate", 
+        "Order"."receivedate", "Order"."total", "Order"."receiver", 
+        "Order"."orderaddress", "Order"."orderphone", "OrderDetails"."quantity",
+        "Customer"."fistname","Customer"."lastname","Customer"."phone", "Customer"."address"
+        FROM public."OrderDetails", public."Order", public."Product", public."Customer"
+        WHERE "OrderDetails"."idOrder" = "Order"."id" 
+        AND "Customer"."id" = "Order"."idCustomer"
+        AND "OrderDetails"."idProduct" = "Product"."id"
+        AND "Order"."id"= $1`;
         return queryDB(sql, [this.idOrder])
-            // .then(results => results.rows)
     }
 }
 module.exports = OrderDetails;
