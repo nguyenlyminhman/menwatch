@@ -60,31 +60,17 @@ router.get('/staff/handling-order/view-all', require('../controller/admin/getSta
 router.get('/staff/handling-order/view-details/:id', require('../controller/admin/getStaff_OrderDetails'));
 router.post('/staff/handling-order/view-details/:id', require('../controller/admin/postStaff_OrderDetails'));
 
-// router.post('/login', passport.authenticate('local',
-//     { failureRedirect: '/login', failureFlash: true }),
-//     function (req, res, next) {
-//         console.log(req.session.oldUrl);
-//         if (req.session.oldUrl) {
-//             var oldUrl = req.session.oldUrl;
-//             req.session.oldUrl = null;
-//             res.redirect(oldUrl);
-//         } else {
-//             res.redirect('/profile/information');
-//         }
-//     });
-
 // router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
-
 // router.post('/change-password', require('../controller/postChangePassword'));
 
 // router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
 // router.post('/profile/information', require('../controller/postCustomerInfoPage'));
 
 // router.post('/search/results', require('../controller/postSearch'));
-// router.get('/logout', (req, res) => {
-//     req.logout();
-//     res.redirect('/');
-// });
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/admin/login');
+});
 
 router.use(require('../controller/getErrorPage'));
 

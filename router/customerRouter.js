@@ -13,7 +13,6 @@ const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
 
 require('../utils/Passport')(passport);
-// express()
 
 // router.use(csurfProtection);
 //define the home page router

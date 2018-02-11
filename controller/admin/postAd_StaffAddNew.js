@@ -5,14 +5,14 @@ let { sendEmail } = require('../../utils/Mailer');
 module.exports = async (req, res, next) => {
     let { email, firstname, lastname, address, phone, role } = req.body;
     let staff = new Staff(undefined, undefined, email, undefined, undefined, undefined, undefined);
-    let password = "";
+    let password = '';
     staff.checkExistStaff()
         .then(result => {
             if (result.rowCount > 0) {
                 req.flash('info', email + ' is already in use.')
                 res.redirect('/admin/staff/add-new')
             } else {
-                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
                 for (var i = 0; i < 9; i++) {
                     password += possible.charAt(Math.floor(Math.random() * possible.length));
                 }

@@ -10,13 +10,6 @@ class Customer {
         this.address = address;
         this.phone = phone;
     }
-    // async signup() {
-    //     const sql = 'INSERT INTO public."Customer"(fistname, lastname, email, password, address, phone)' +
-    //         'VALUES ($1, $2, $3, $4, $5, $6)';
-    //     const encryptedPassword = await hash(this.password, 8);
-    //     return queryDB(sql, [this.fistname, this.lastname, this.email, encryptedPassword, this.address, this.phone]);
-    // }
-
     signup() {
         return new Promise((resolve, reject) => {
             hash(this.password, 8, (err, encryptedPassword) => {
@@ -31,7 +24,7 @@ class Customer {
 
 
     async signin() {
-        const sql = 'SELECT * FROM public."Customer" where email=$1'
+        const sql = 'SELECT * FROM public."Staff" where email=$1'
         const result = await queryDB(sql, [this.email]);
         if (!result.rows[0]) throw new Error('Email is not exist...')
         const hashPassword = result.rows[0].password;
@@ -96,15 +89,18 @@ class Customer {
             })
         })
     }
+
+    
+
 }
 module.exports = Customer;
 
-// let cus = new Customer(undefined,undefined, 'man@gmail.com', undefined,undefined,undefined);
-// cus.checkExistEmail()
-// .then(resu=>console.log(resu.rows[0]))
+// let cus = new Customer(undefined,undefined, 'nlmman@cusc.ctu.edu.vn', 'nam',undefined,undefined);
+// cus.signin()
+// .then(resu=>console.log(resu))
 // .catch(er=>console.log(er))
 
-// let cus = new Customer(undefined, undefined, 'man@gmail.com', undefined , undefined, undefined);
+// let cus = new Customer(undefined, undefined, 'nlmman@cusc.ctu.edu.vn', undefined , undefined, undefined);
 // cus.getCustomerInfoByEmail()
 // .then(result=>{
 //     compare('man',result.rows[0].password )

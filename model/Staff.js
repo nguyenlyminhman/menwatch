@@ -37,7 +37,7 @@ class Staff {
     }
 
     checkExistStaff() {
-        const sql = 'select * from public."Staff" where email=$1';
+        const sql = 'SELECT * from public."Staff" where email=$1';
         return queryDB(sql, [this.email])
     }
     getStaffInfoByEmail() {
@@ -52,7 +52,7 @@ class Staff {
 
 module.exports = Staff
 
-// let staff = new Staff(undefined, undefined, 'email', undefined, undefined, undefined, undefined);
-// staff.checkExistStaff().then(aa=>{
+// let staff = new Staff(undefined, undefined, 'nlmman@cusc.ctu.edu.vn', 'Vub0ZXjUs', undefined, undefined, undefined);
+// staff.signinStaff().then(aa=>{
 //     console.log(aa.rowCount)
 // })

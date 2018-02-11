@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
             // hotProduct: hotProduct.rows,
             // user: req.user,
             title: 'Home ',
-            breadcrumb: 'Dashboard',
+            breadcrumb: 'Dashboard' + req.session.role,
             // pages
         })
     } catch (err) {
