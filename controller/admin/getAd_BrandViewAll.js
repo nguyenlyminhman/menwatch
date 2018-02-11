@@ -1,12 +1,17 @@
 const Brand = require('../../model/Brand');
 
 module.exports = async (req, res, next) => {
-    try {
-        let brand = await Brand.getAllBrand();
 
+    let brand = await Brand.getAllBrand();
+    //Check user role. If user is not admin role, redirect to access denied page.
+    if (req.user.role !== 'Admin') {
+        res.redirect('/admin/access-denied');
+        return;
+    }
+    try {
         res.render('ad_brandViewAll', {
             brand,
-            // user: req.user,
+            user: req.user,
             message: req.flash('info'),
             title: 'View all brand',
             breadcrumb: 'All brand',

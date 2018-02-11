@@ -59,14 +59,15 @@
             <ul class="nav navbar-nav navbar-left navbar-top-links">
                 <li>
                     <a href="#">
-                        <i class="fa fa-home fa-fw"></i> </a>
+                        <i class="fa fa-home fa-fw"></i>
+                    </a>
                 </li>
             </ul>
 
             <ul class="nav navbar-right navbar-top-links">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> 
+                        <i class="fa fa-user fa-fw"></i>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
@@ -107,116 +108,133 @@
                                 <img src="../admin/img/dashboard.png" alt="" /> Dashboard</a>
                         </li>
                         <!-- begin-brand -->
-                        <li>
-                            <a href="#">
-                                <img src="../admin/img/clock.png" alt=""> Brand
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/brand/add-new">Add new brand</a>
-                                </li>
-                                <li>
-                                    <a href="admin/brand/view-all">View all brand</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- end-brand -->
-                        <!-- begin-style -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/clock.png"> Style
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/style/add-new">Add new style</a>
-                                </li>
-                                <li>
-                                    <a href="admin/style/view-all">View all style</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- end-style -->
-                        <!-- begin-product -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/clock.png"> Product
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/product/add-new">Add new product</a>
-                                </li>
-                                <li>
-                                    <a href="admin/product/view-all">View all product</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <!-- end-product -->
-                        <!-- begin-customer -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/users.png"> Customer
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/customer/view-all">View all customer</a>
-                                </li>
-                                <li>
-                                    <a href="admin/customer/popular">View popular customer</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <!-- end-customer -->
-                        <!-- begin-order -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/attachment.png" /> Order
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/order/view-all">View all order</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <!-- end-order -->
-                        <!-- begin-contact -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/contact.png"> Contact
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/contact/view-all">View all contact</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <!-- end-contact -->
-                        <!-- begin-staff -->
-                        <li>
-                            <a href="#">
-                                <img src="admin/img/user.png"> Staff
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/staff/add-new">Add new staff</a>
-                                </li>
-                                <li>
-                                    <a href="admin/staff/view-all">View all staff</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <!-- end-staff -->
+                        <%if(user.role === 'Admin'){%>
+                            <li>
+                                <a href="#">
+                                    <img src="../admin/img/clock.png" alt=""> Brand
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/brand/add-new">Add new brand</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin/brand/view-all">View all brand</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end-brand -->
+                            <!-- begin-style -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/clock.png"> Style
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/style/add-new">Add new style</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin/style/view-all">View all style</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end-style -->
+                            <!-- begin-product -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/clock.png"> Product
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/product/add-new">Add new product</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin/product/view-all">View all product</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-product -->
+                            <!-- begin-customer -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/users.png"> Customer
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/customer/view-all">View all customer</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin/customer/popular">View popular customer</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-customer -->
+                            <!-- begin-order -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/attachment.png" /> Order
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/order/view-all">View all order</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-order -->
+                            <!-- begin-contact -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/contact.png"> Contact
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/contact/view-all">View all contact</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-contact -->
+                            <!-- begin-staff -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/user.png"> Staff
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/staff/add-new">Add new staff</a>
+                                    </li>
+                                    <li>
+                                        <a href="admin/staff/view-all">View all staff</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-staff -->
+<%}else{%>
+                            <!-- begin-staff -->
+                            <li>
+                                <a href="#">
+                                    <img src="admin/img/user.png"> Order
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="admin/staff/handling-order/view-all">View all order</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <!-- end-staff -->
+<%}%>
                     </ul>
                 </div>
             </div>

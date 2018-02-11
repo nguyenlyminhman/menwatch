@@ -1,15 +1,18 @@
 const Order = require('../../model/Order');
 
 module.exports = async (req, res, next) => {
+    let order = await Order.getAllOrder();
+    //Check user role. If user is not admin role, redirect to access denied page.
+    if (req.user.role !== 'Admin') {
+        res.redirect('/admin/access-denied');
+        return;
+    }
     try {
-        let order = await Order.getAllOrder();
-
         res.render('ad_orderViewAll', {
             order: order.rows,
-            // user: req.user,
+            user: req.user,
             title: 'Order',
             breadcrumb: 'View all order ',
-            // pages
         })
     } catch (err) {
         res.send('getAd_OrderViewAll error : ' + err);

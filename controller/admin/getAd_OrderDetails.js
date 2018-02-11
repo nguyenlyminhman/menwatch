@@ -3,11 +3,16 @@ const Product = require('../../model/Product');
 
 module.exports = async (req, res) => {
     let { id } = req.params;
+    //Check user role. If user is not admin role, redirect to access denied page.
+    if (req.user.role !== 'Admin') {
+        res.redirect('/admin/access-denied');
+        return;
+    }
     try {
         let orderDetails = new OrderDetails(undefined, id, undefined, undefined);
-
         orderDetails.getOrderDetailsByOrderId().then(odetails => {
             res.render('ad_orderDetails', {
+                user: req.user,
                 product: odetails.rows,
                 idOrder: id,
                 status: odetails.rows[0].status,

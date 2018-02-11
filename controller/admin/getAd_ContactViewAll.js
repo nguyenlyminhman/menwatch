@@ -1,12 +1,17 @@
 const Contact = require('../../model/Contact');
 
 module.exports = async (req, res, next) => {
-    try {
-        let contact = await Contact.getAllContact();
 
+    let contact = await Contact.getAllContact();
+    //Check user role. If user is not admin role, redirect to access denied page.
+    if (req.user.role !== 'Admin') {
+        res.redirect('/admin/access-denied');
+        return;
+    }
+    try {
         res.render('ad_ContactViewAll', {
             contact: contact.rows,
-            // user: req.user,
+            user: req.user,
             title: 'Contact ',
             breadcrumb: 'View all contact',
             // pages

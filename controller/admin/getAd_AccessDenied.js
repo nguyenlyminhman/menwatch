@@ -1,9 +1,9 @@
 module.exports = async (req, res, next) => {
     try {
-        res.render('ad_index', {
+        res.render('ad_AccessDenied', {
             user: req.user,
             title: 'Home ',
-            breadcrumb: 'Dashboard',
+            breadcrumb: 'Access denied'
         })
     } catch (err) {
         res.send('getAdHomePage error : ' + err);

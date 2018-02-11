@@ -11,79 +11,73 @@ module.exports = function (passport) {
   // typical implementation of this is as simple as supplying the user ID when
   // serializing, and querying the user record by ID from the database when
   // deserializing.
-  let rs = "";
   passport.serializeUser((user, done) => {
     done(null, user.email);
   });
 
+
   passport.deserializeUser(function (email, done) {
-    if (rs === "local_staff") {
-      const staff = new Staff(undefined, undefined, email, undefined, undefined, undefined, undefined);
-      staff.checkExistStaff()
-        .then(result => {
+    const staff = new Staff(undefined, undefined, email, undefined, undefined, undefined, undefined);
+    const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined, undefined);
+    staff.checkExistStaff()
+      .then(result => {
+        if (result.rowCount > 0) {
           return done(null, result.rows[0]);
-        }),
-        err => { done(err, null); }
-    } else {
-
-      const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined, undefined);
-      customer.checkExistEmail()
-        .then(result => {
-          return done(null, result.rows[0]);
-        }),
-        err => { done(err, null); }
-    }
-  });
-
-  // chninh sua trong day fDCSog83n
+        } else {
+          customer.checkExistEmail()
+            .then(result => {
+              return done(null, result.rows[0]);
+            }), err => { done(err, null); }
+        }
+      }), err => { done(err, null); }
+  })
+//authenticate for staff and admin
   passport.use('local_staff', new Strategy({
-    usernameField: 'email',
+    usernameField: 'email', //
     passwordField: 'password'
   },
-    (email, password, done) => {
+    (email, password, s_done) => {
       const sta = new Staff(undefined, undefined, email, password, undefined, undefined, undefined);
-      sta.checkExistStaff()
-        .then(result => {
-          if (!result.rowCount) {
-            return done(null, false, { message: email + ' is not in use.' });
-          }
-          compare(password, result.rows[0].password)
-            .then(isValid => {
-              if (!isValid) {
-                return done(null, false, { message: 'Wrong password.' });
-              } else {
-                rs = "local_staff";
-                return done(null, result.rows[0]);
+      sta.checkExistStaff() //checking exist staff in database
+        .then(result => {   //if staff is not exist
+          if (!result.rowCount) { //show the message bellow.
+            return s_done(null, false, { message: email + ' is not in use.' });
+          } 
+          //if the staff is exist. Get the hashed password to compare with entered password.
+          compare(password, result.rows[0].password) 
+            .then(isValid => { //isValid return true or false value
+              if (!isValid) { //if isValid is false, show the message bellow.
+                return s_done(null, false, { message: 'Wrong password.' });
+              } else { //if isValid is true, get the staff information.
+                return s_done(null, result.rows[0]);
               }
             })
         })
-        .catch(err => { return done(err); });
+        .catch(err => { return s_done(err); }); // show error
     }
   ));
-  //local stagg
-
 
   passport.use('local_customer', new Strategy({
-    usernameField: 'email',
+    usernameField: 'email', //get information
     passwordField: 'password'
   },
-    (email, password, done) => {
+    (email, password, c_done) => {
       const customer = new Customer(undefined, undefined, email, password, undefined, undefined);
       customer.checkExistEmail()
         .then(result => {
           if (!result.rowCount) {
-            return done(null, false, { message: email + ' is not in use.' });
+            return c_done(null, false, { message: email + ' is not in use.' });
           }
           compare(password, result.rows[0].password)
             .then(isValid => {
               if (!isValid) {
-                return done(null, false, { message: 'Wrong password.' });
+                return c_done(null, false, { message: 'Wrong password.' });
               } else {
-                return done(null, result.rows[0]);
+                return c_done(null, result.rows[0]);
               }
             })
         })
-        .catch(err => { return done(err); });
+        .catch(err => { return c_done(err); });
     }
   ));
 
@@ -94,18 +88,18 @@ module.exports = function (passport) {
       callbackURL: "http://localhost:3000/auth/fb/cb",
       profileFields: ['email', 'first_name', 'last_name']
     },
-    (accessToken, refreshToken, profile, done) => {
+    (accessToken, refreshToken, profile, c_done) => {
 
       const customer = new Customer(undefined, undefined, profile._json.email, undefined, undefined, undefined);
       customer.checkExistEmail()
         .then(result => {
           if (result.rowCount) {
-            return done(null, result.rows[0]);
+            return c_done(null, result.rows[0]);
           }
           const _customer = new Customer(profile._json.first_name, profile._json.last_name, profile._json.email, undefined, undefined, undefined);
           _customer.insertNewCustomer().then(_result => {
             customer.getCustomerInfoByEmail().then(customer_ => {
-              return done(null, customer_.rows[0]);
+              return c_done(null, customer_.rows[0]);
             })
           })
         })
