@@ -18,7 +18,7 @@ module.exports = function (passport) {
 
   passport.deserializeUser(function (email, done) {
     const staff = new Staff(undefined, undefined, email, undefined, undefined, undefined, undefined);
-    const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined, undefined);
+    const customer = new Customer(undefined, undefined, email, undefined, undefined, undefined);
     staff.checkExistStaff()
       .then(result => {
         if (result.rowCount > 0) {

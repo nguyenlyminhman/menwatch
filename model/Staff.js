@@ -12,7 +12,11 @@ class Staff {
         this.address = address;
         this.phone = phone;
     }
-
+    //get staff list in database
+    static getAllStaff() {
+        const sql = 'select * from public."Staff"';
+        return queryDB(sql, [])
+    }
     signupStaff() {
         return new Promise((resolve, reject) => {
             hash(this.password, 8, (err, encryptedPassword) => {
@@ -25,28 +29,40 @@ class Staff {
         })
     }
 
-
-    async signinStaff() {
-        const sql = 'SELECT * FROM public."Staff" where email=$1'
-        const result = await queryDB(sql, [this.email]);
-        if (!result.rows[0]) throw new Error('Email is not exist...')
-        const hashPassword = result.rows[0].password;
-        const isValid = await compare(this.password, hashPassword);
-        if (!isValid) throw new Error('Password is wrong...');
-        return { id: result.rows[0].id }
-    }
-
+    // async signinStaff() {
+    //     const sql = 'SELECT * FROM public."Staff" where email=$1'
+    //     const result = await queryDB(sql, [this.email]);
+    //     if (!result.rows[0]) throw new Error('Email is not exist...')
+    //     const hashPassword = result.rows[0].password;
+    //     const isValid = await compare(this.password, hashPassword);
+    //     if (!isValid) throw new Error('Password is wrong...');
+    //     return { id: result.rows[0].id }
+    // }
+    //using method to check exist staff in database.
     checkExistStaff() {
         const sql = 'SELECT * from public."Staff" where email=$1';
         return queryDB(sql, [this.email])
     }
-    getStaffInfoByEmail() {
-        const sql = 'select * from public."Staff" where email=$1';
-        return queryDB(sql, [this.email])
+    //get staff information by Id. Using for update information function.
+    getStaffInfoById(idStaff) {
+        const sql = 'select * from public."Staff" where id=$1';
+        return queryDB(sql, [idStaff])
     }
-    static getAllStaff() {
-        const sql = 'select * from public."Staff"';
-        return queryDB(sql, [])
+    //update password for staff.
+    updatePassword(idStaff) {
+        return new Promise((resolve, reject) => {
+            hash(this.password, 8, (err, encryptedPassword) => {
+                if (err) return reject(err);
+                const sql = 'UPDATE public."Staff" SET password=$1 WHERE id=$2';
+                queryDB(sql, [encryptedPassword, idStaff])
+                resolve();
+            })
+        })
+    }
+    //update staff information.
+    updateInformation(idStaff) {
+        const sql = 'UPDATE public."Staff" SET firstname=$1, lastname=$2, address=$3, phone=$4 where id=$5';
+        return queryDB(sql, [this.firstname, this.lastname, this.phone, this.address, idStaff])
     }
 }
 

@@ -6,10 +6,9 @@ module.exports = async (req, res, next) => {
 
         res.render('staff_orderViewAll', {
             order: order.rows,
-            // user: req.user,
+            user: req.user,
             title: 'Order',
             breadcrumb: 'View all order ',
-            // pages
         })
     } catch (err) {
         res.send('getAd_OrderViewAll error : ' + err);

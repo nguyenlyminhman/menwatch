@@ -58,14 +58,20 @@ router.post('/staff/add-new', requireLogin, require('../controller/admin/postAd_
 router.get('/staff/handling-order/view-all', requireLogin, require('../controller/admin/getStaff_OrderViewAll'));
 router.get('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_OrderDetails'));
 router.post('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/postStaff_OrderDetails'));
+router.post('/staff/handling-order/update/:id', requireLogin, require('../controller/admin/postStaff_UpdateOrder'));
 
-// router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
-// router.post('/change-password', require('../controller/postChangePassword'));
+router.get('/change-password-staff/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffPassword'));
+router.post('/change-password-staff/:id', require('../controller/admin/postAd_StaffPassword'));
 
-// router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
-// router.post('/profile/information', require('../controller/postCustomerInfoPage'));
+router.get('/profile-staff/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffProfile'));
+router.post('/profile-staff/:id', require('../controller/admin/postAd_StaffProfile'));
 
-// router.post('/search/results', require('../controller/postSearch'));
+router.get('/change-password-admin/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_AdminPassword'));
+router.post('/change-password-admin/:id', require('../controller/admin/postAd_AdminPassword'));
+
+router.get('/profile-admin/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_AdminProfile'));
+router.post('/profile-admin/:id', require('../controller/admin/postAd_AdminProfile'));
+
 router.get('/access-denied', require('../controller/admin/getAd_AccessDenied'))
 router.get('/logout', (req, res) => {
     req.logout();
