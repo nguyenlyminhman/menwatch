@@ -30,8 +30,31 @@ class Order {
     static getPendingOrder() {
         const sql = `SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
     WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" NOT IN (select "idOrder" from public."StaffOrder")
-    Order by a.orderdate ASC LIMIT 1`;
-        return queryDB(sql, [])
+    Order by a.orderdate ASC LIMIT 3`;
+        return queryDB(sql, []);
+    }
+
+    static getProccessingOrder(idStaff) {
+        const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
+        FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
+        WHERE a."id" = b."idCustomer"
+        AND b."id" = c."idOrder"
+        and d."id" = c."idStaff"
+        AND b.status = 'Proccessing'
+        AND d."id" = $1
+        Order by b."id" ASC`;
+        return queryDB(sql, [idStaff]);
+    }
+    static getFinishOrder(idStaff) {
+        const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
+        FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
+        WHERE a."id" = b."idCustomer"
+        AND b."id" = c."idOrder"
+        and d."id" = c."idStaff"
+        AND b.status = 'Finish'
+        AND d."id" = $1
+        Order by b."id" ASC`;
+        return queryDB(sql, [idStaff]);
     }
     //SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
     // WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" not in (select "idOrder" from public."StaffOrder")
@@ -47,13 +70,18 @@ class Order {
         return queryDB(sql, [this.idCustomer])
         // .then(results => results.rows);
     }
-    //update order status. staff using it.
-    updateOrderStatus() {
+    //update order status. staff using.
+    updateFinishStatus() {
         const sql = `UPDATE public."Order" SET status = 'Finish' where id=$1`;
         return queryDB(sql, [this.id])
     }
-     //update order status. staff using it.
-     updateReceiverInfo() {
+    //update order status. staff using.
+    updateProccessingStatus() {
+        const sql = `UPDATE public."Order" SET status = 'Proccessing' where id=$1`;
+        return queryDB(sql, [this.id])
+    }
+    //update order status. staff using.
+    updateReceiverInfo() {
         const sql = `UPDATE public."Order" SET orderphone=$1, orderaddress=$2, receiver=$3 where id=$4`;
         return queryDB(sql, [this.orderphone, this.orderaddress, this.receiver, this.id]);
     }

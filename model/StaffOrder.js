@@ -1,27 +1,26 @@
 const queryDB = require('../utils/DatabaseConnection');
 
 class StaffOrder {
-    constructor(id, idStaff, idOrder, status, handlingdate) {
+    constructor(id, idStaff, idOrder, handlingdate) {
         this.id = id;
         this.idStaff = idStaff;
         this.idOrder = idOrder;
-        this.status = status;
         this.handlingdate = handlingdate;
     }
     addHandlingOrder() {
-        const sql = 'INSERT INTO public."StaffOrder"("idStaff", "idOrder", status, handlingdate)' +
-            'VALUES ($1, $2, $3, $4)';
-        return queryDB(sql, [this.idStaff, this.idOrder, this.status, this.handlingdate]);
+        const sql = 'INSERT INTO public."StaffOrder"("idStaff", "idOrder", handlingdate)' +
+            'VALUES ($1, $2, $3)';
+        return queryDB(sql, [this.idStaff, this.idOrder, this.handlingdate]);
     }
 
     checkOrderId() {
         const sql = 'SELECT * FROM public."StaffOrder" where "idOrder"=$1;'
         return queryDB(sql, [this.idOrder]);
     }
-    updateStaffOrderStatus() {
-        const sql = `UPDATE public."StaffOrder" SET status = 'Finish' where "idOrder"=$1`;
-        return queryDB(sql, [this.idOrder]);
-    }
+    // updateStaffOrderStatus() {
+    //     const sql = `UPDATE public."StaffOrder" SET status = 'Finish' where "idOrder"=$1`;
+    //     return queryDB(sql, [this.idOrder]);
+    // }
 }
 module.exports = StaffOrder;
 

@@ -8,27 +8,21 @@ module.exports = async (req, res, next) => {
     let staffOrder = new StaffOrder(undefined, undefined, idOrder, undefined, undefined);
     let product = req.session.product;
 
-    order.updateOrderStatus() //update order status
+    order.updateFinishStatus() //update order status
         .then(resultOd => {
             if (resultOd.rowCount > 0) {
-                staffOrder.updateStaffOrderStatus().then(resultSt => {
-                    product.forEach(element => { //update product quantity.
-                        let _product = new Product(element.idproduct, undefined, undefined, undefined, undefined, element.quantity, undefined, undefined, undefined);
-                        _product.updateProductQuantity();
-                    });
-                    //checking Order status was updated yet? 
-                    if (resultSt.rowCount > 0) {
-                        req.session.product = null; //set product session to null;
-                        //redirect to order list. Getting the next order.
-                        res.redirect('/admin/staff/handling-order/view-all')
-                    } else {
-                        res.redirect('/admin/staff/handling-order/view-details/' + idOrder)
-                    }
+                product.forEach(element => { //update product quantity.
+                    let _product = new Product(element.idproduct, undefined, undefined, undefined, undefined, element.quantity, undefined, undefined, undefined);
+                    _product.updateProductQuantity();
                 });
+                //checking Order status was updated yet? 
+                req.session.product = null; //set product session to null;
+                //redirect to order list. Getting the next order.
+                res.redirect('/admin/staff/handling-order/view-all')
             } else {
                 res.redirect('/admin/staff/handling-order/view-details/' + idOrder)
-
             }
+
         })
-        .catch(() => res.redirect('/admin/brand/edit/' + id));
+        .catch(() => res.redirect('/admin/staff/handling-order/view-details/' + idOrder));
 }

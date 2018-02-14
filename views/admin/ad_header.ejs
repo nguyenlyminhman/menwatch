@@ -58,9 +58,9 @@
 
             <ul class="nav navbar-nav navbar-left navbar-top-links">
                 <li>
-                    <a href="#">
-                        <i class="fa fa-home fa-fw"></i>
-                    </a>
+                    <!-- <a  target="_blank" href="localhost:3000">
+                        <i class="fa fa-home fa-fw"></i> Go to menwatch
+                    </a> -->
                 </li>
             </ul>
 
@@ -236,15 +236,21 @@
                             <%}else{%>
                                 <!-- begin-staff -->
                                 <li>
-                                    <a href="#">
-                                        <img src="admin/img/user.png"> Order
-                                        <span class="fa arrow"></span>
+                                    <a href="admin/staff/handling-order/view-all">
+                                        <img src="admin/img/attachment.png">Pending Order
                                     </a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="admin/staff/handling-order/view-all">View all order</a>
-                                        </li>
-                                    </ul>
+                                    <!-- /.nav-second-level -->
+                                </li>
+                                <li>
+                                    <a href="admin/staff/process-order/view-all">
+                                        <img src="admin/img/add_page.png">Processing Order
+                                    </a>
+                                    <!-- /.nav-second-level -->
+                                </li>
+                                <li>
+                                    <a href="admin/staff/finish-order/view-all">
+                                        <img src="admin/img/accept_page.png">Finished Order
+                                    </a>
                                     <!-- /.nav-second-level -->
                                 </li>
                                 <!-- end-staff -->
