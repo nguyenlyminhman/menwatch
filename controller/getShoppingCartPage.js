@@ -4,50 +4,36 @@ const Product = require('../model/Product');
 const Cart = require('../model/Cart');
 
 module.exports = async (req, res, next) => {
-    try {
-        let brand = await Brand.getAllBrand();
-        let style = await Style.getAllStyle();
-        let product = await Product.getAllProduct();
-
-        // data.image[Object.keys(data.image)[2]]
-        // console.log(JSON.stringify(cartt.items));
-        // console.log(JSON.parse(JSON.stringify(cartt.items)));
-        // console.log(cartt.item[Object.keys(cartt.item)[0]]);
-
-        if (!req.session.cart) {
-            return res.render('shopping_cart', { 
-                // csrfToken: req.csrfToken(),
-                brand,
-                style,
-                product,
-                cartItem: null,
-                title: 'My shopping bag...',
-                user: req.user })
-        }
-        var cart = new Cart(req.session.cart);
-        // // console.log(cart);
-        // console.log('....................................................');
-        // console.log(cart.getItems())
-        // Object.keys(cart.items).forEach(function (key) {
-        //     console.log(key + ' = ' + cart.items[key].name);
-        // });
-        // cart.getItems().forEach(a=>{
-        //     console.log(a.item.rows[0].id)
-
-        //     console.log(a.quantity)
-        // })
-
-        res.render('shopping_cart', {
-            // csrfToken: req.csrfToken(),
+    //get all brand and style. Using for navigation bar
+    let brand = await Brand.getAllBrand();
+    let style = await Style.getAllStyle();
+    //get all product
+    let product = await Product.getAllProduct();
+    // checking cart session. 
+    // If it is null, render shopping_cart ejs page with empty cartItem
+    if (!req.session.cart) {
+        return res.render('shopping_cart', {
             brand,
             style,
             product,
-            cartItem: cart.getItems(),
-            
-            title: 'My shopping bag',
+            cartItem: null,
+            title: 'My shopping bag...',
             user: req.user
         })
-    } catch (err) {
-        res.send('getShoppingCartPage error : ' + err);
+    } else { //If it is not null, render shopping_cart ejs page with cartItem.
+        //init Cart model.
+        var cart = new Cart(req.session.cart);
+        try { //Using try...catche, if the error occur.
+            res.render('shopping_cart', { //render shopping_cart ejs page
+                brand,
+                style,
+                product,
+                cartItem: cart.getItems(),
+                title: 'My shopping bag',
+                user: req.user
+            })
+        } catch (err) { //catching and sending the error when it is occuring.
+            res.send('getShoppingCartPage error : ' + err);
+        }
     }
 }

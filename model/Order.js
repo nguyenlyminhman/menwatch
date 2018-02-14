@@ -1,6 +1,7 @@
 const queryDB = require('../utils/DatabaseConnection');
 
 class Order {
+    //contructor of Order class
     constructor(id, idCustomer, orderdate, receivedate, total, orderphone, orderaddress, payment, status, receiver) {
         this.id = id;
         this.idCustomer = idCustomer;
@@ -13,27 +14,27 @@ class Order {
         this.status = status;
         this.receiver = receiver;
     }
-
+    //add new Order to db.
     addNewOrder() {
         const sql = 'INSERT INTO public."Order"(id, "idCustomer", orderdate, receivedate, total, orderphone, orderaddress, payment, status, receiver)' +
             'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);'
         return queryDB(sql, [this.id, this.idCustomer, this.orderdate, this.receivedate, this.total, this.orderphone, this.orderaddress, this.payment, this.status, this.receiver]);
     }
-    //using for admin
+    //get all order. Admin using this method.
     static getAllOrder() {
         const sql = `SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
         WHERE b."id" = a."idCustomer"
         Order by a."id" DESC`;
         return queryDB(sql, [])
     }
-    //using for admin
+    //get all order with Pending status. Staff using this method
     static getPendingOrder() {
         const sql = `SELECT a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status FROM public."Order" a, public."Customer" b 
     WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" NOT IN (select "idOrder" from public."StaffOrder")
     Order by a.orderdate ASC LIMIT 3`;
         return queryDB(sql, []);
     }
-
+    //get all order with Proccessing status. Staff using this method
     static getProccessingOrder(idStaff) {
         const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
         FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
@@ -45,6 +46,7 @@ class Order {
         Order by b."id" ASC`;
         return queryDB(sql, [idStaff]);
     }
+    //get all order with Finish status. Staff using this method
     static getFinishOrder(idStaff) {
         const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
         FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
@@ -60,15 +62,16 @@ class Order {
     // WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" not in (select "idOrder" from public."StaffOrder")
     // Order by a.orderdate ASC  
 
+    //get order information by order id.
     getOrderById() {
         const sql = 'SELECT *	FROM public."Order" where id=$1'
         return queryDB(sql, [this.id])
             .then(results => results.rows);
     }
+    //this method use to get order information by customer id
     getOrderInfoByCustomerId() {
         const sql = 'SELECT *	FROM public."Order" where "idCustomer"=$1'
         return queryDB(sql, [this.idCustomer])
-        // .then(results => results.rows);
     }
     //update order status. staff using.
     updateFinishStatus() {

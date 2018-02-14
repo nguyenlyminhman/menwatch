@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
             } else {
                 customer.signup()
                     .then(
-                    res.redirect('/login')
+                    res.redirect('/thank-register')
                     )
             }
         })

@@ -2,17 +2,19 @@ const queryDB = require('../utils/DatabaseConnection');
 const Product = require('../model/Product')
 
 class OrderDetails {
+    //constructor of OrderDetails class.
     constructor(id, idOrder, idProduct, quantity) {
         this.id = id;
         this.idOrder = idOrder;
         this.idProduct = idProduct;
         this.quantity = quantity;
     }
+    //add new order details to db.
     addNewOrderDetails() {
         const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity) VALUES ($1, $2, $3)';
         return queryDB(sql, [this.idOrder, this.idProduct, this.quantity]);
     }
-    //Product"."image", "Product"."name", "Product"."price","Order"."status", "Order"."id", "Order"."orderdate", "Order"."receivedate", "Order"."total", "OrderDetails"."quantity"
+    //get order details by order id.
     getOrderDetailsByOrderId() {
         const sql = `Select "Product"."id" as idproduct, "Product"."image", "Product"."name", "Product"."price",
 		"Order"."status", "Order"."id","Order"."orderdate", 

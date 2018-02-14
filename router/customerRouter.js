@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const checkLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const requireLogin = require('connect-ensure-login').ensureLoggedIn();
 
 const Customer = require('../model/Customer');
 const Car = require('../model/Cart');
@@ -44,19 +44,20 @@ router.get('/auth/fb/cb', passport.authenticate('facebook', { failureRedirect: '
     });
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
-router.get('/profile', checkLoggedIn, require('../controller/getProfilePage'));
+router.get('/thank-register', require('../controller/getThankRegister'));
+router.get('/profile', requireLogin, require('../controller/getProfilePage'));
 
 router.post('/change-password', require('../controller/postChangePassword'));
 router.get('/reset-password', csurfProtection, require('../controller/getResetPassword'));
 router.post('/reset-password', require('../controller/postResetPassword'))
 
-router.get('/profile/information', checkLoggedIn, require('../controller/getCustomerInfoPage'));
+router.get('/profile/information', requireLogin, require('../controller/getCustomerInfoPage'));
 router.post('/profile/information', require('../controller/postCustomerInfoPage'));
 
-router.get('/profile/shipping-address', checkLoggedIn, require('../controller/getCustomerShippingAddress'));
+router.get('/profile/shipping-address', requireLogin, require('../controller/getCustomerShippingAddress'));
 router.post('/profile/shipping-address', require('../controller/postCustomerShippingAddress'));
 
-router.get('/tracking-order/:id', checkLoggedIn, require('../controller/getTrackingOrder'));
+router.get('/tracking-order/:id', requireLogin, require('../controller/getTrackingOrder'));
 
 router.get('/contact', returnOldUrl, csurfProtection, require('../controller/getContactPage'));
 router.post('/contact', csurfProtection, require('../controller/postContact'));
@@ -74,7 +75,7 @@ router.get('/shopping-cart', returnOldUrl, require('../controller/getShoppingCar
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
 router.get('/remove/:id', require('../controller/removeCart'));
 
-router.get('/shopping-cart/checkout', checkLoggedIn, csurfProtection, require('../controller/getCheckOutPage'));
+router.get('/shopping-cart/checkout', requireLogin, csurfProtection, require('../controller/getCheckOutPage'));
 router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
 
 router.post('/search/results', require('../controller/postSearch'));

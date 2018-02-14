@@ -98,7 +98,7 @@
                         <li>
                             <a href="/register">
                                 <!-- <span class="glyphicon glyphicon-user"></span>  -->
-                                <img src="admin/img/accept_page.png"> Sign Up</a>
+                                <img src="admin/img/add_page.png"> Sign Up</a>
                         </li>
                         <li>
                             <a href="/login">
@@ -108,9 +108,13 @@
                         <!-- <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li> -->
                         <%}else{%>
                             <li>
+                                <a>
+                                Hello, <%=user.fistname%> <%=user.lastname%></a>
+                            </li>
+                            <li>
                                 <a href="/profile">
                                     <!-- <span class="glyphicon glyphicon-user"></span>  -->
-                                    <img src="admin/img/user.png"> Account</a>
+                                    <img src="admin/img/info.png"> My Profile</a>
                             </li>
                             <li>
                                 <a href="/logout">
