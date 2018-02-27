@@ -9,6 +9,12 @@ class OrderDetails {
         this.idProduct = idProduct;
         this.quantity = quantity;
     }
+
+    checkExistProduct() {
+        const sql = 'Select * FROM public."OrderDetails" WHERE "idProduct"=$1';
+        return queryDB(sql, [this.idProduct]);
+    }
+
     //add new order details to db.
     addNewOrderDetails() {
         const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity) VALUES ($1, $2, $3)';
@@ -31,8 +37,11 @@ class OrderDetails {
 }
 module.exports = OrderDetails;
 
-// let ot = new OrderDetails(undefined, 2, undefined, undefined);
-// ot.getOrderDetailsByOrderId().then(rs => {
+// let ot = new OrderDetails(undefined, undefined, 100, undefined);
+// ot.checkExistProduct().then(rs => {
+//     console.log(rs.rowCount)
+// })
+
 //     rs.forEach(element => {
 
 //         let pro = new Product(element.idProduct, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);

@@ -49,6 +49,16 @@ class Product {
         let sql = 'select COUNT(*)  from public."Product"';
         return queryDB(sql, [])
     }
+    //get product by its brand id. using for api
+    getProductByBrandApi() {
+        let sql = `SELECT * FROM public."Product" where "idBrand" = $1`;
+        return queryDB(sql, [this.idBrand]).then(result=>result.rows)
+    }
+    //get product by its brand id. using for api
+    getProductByStyleApi() {
+        let sql = `SELECT * FROM public."Product" where "idStyle" = $1`;
+        return queryDB(sql, [this.idStyle]).then(result=>result.rows)
+    }
     //get product by its brand id.
     getProductByBrand(idBrand, limit, offset) {
         let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';

@@ -83,7 +83,7 @@ class Order {
         const sql = `UPDATE public."Order" SET status = 'Proccessing' where id=$1`;
         return queryDB(sql, [this.id])
     }
-    //update order status. staff using.
+    //update order receiver information. staff using.
     updateReceiverInfo() {
         const sql = `UPDATE public."Order" SET orderphone=$1, orderaddress=$2, receiver=$3 where id=$4`;
         return queryDB(sql, [this.orderphone, this.orderaddress, this.receiver, this.id]);

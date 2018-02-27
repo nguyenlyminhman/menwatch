@@ -11,7 +11,9 @@ const flash = require('express-flash');
 
 
 const customer = require('./router/customerRouter');
-const admin = require('./router/adminRouter')
+const admin = require('./router/adminRouter');
+const api = require('./router/apiRouter');
+
 const app = express();
 
 
@@ -34,7 +36,9 @@ app.use((req, res, next) => {
 });
 app.use(flash());
 
+
 app.use('/', customer);
+app.use('/api/', api);
 app.use('/admin/', admin);
 
 app.listen(process.env.PORT || 3000, () => console.log('Server is running at port 3000.'));
