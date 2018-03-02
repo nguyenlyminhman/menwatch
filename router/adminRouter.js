@@ -36,7 +36,7 @@ router.get('/style/delete/:id', requireLogin, require('../controller/admin/delet
 router.get('/product/view-all', requireLogin, require('../controller/admin/getAd_ProductViewAll'));
 router.get('/product/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductAddNew'));
 router.post('/product/add-new', requireLogin, require('../controller/admin/postAd_ProductAddNew'));
-// router.get('/product/edit/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
+router.get('/product/edit/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 // router.post('/product/edit/:id', require('../controller/admin/postAd_StyleEdit'));
 router.get('/product/delete/:id', requireLogin, require('../controller/admin/deleteAd_Product'));
 

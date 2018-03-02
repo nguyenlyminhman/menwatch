@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form action="/admin/product/add-new" method="POST" enctype="multipart/form-data">
+            <form action="/admin/product/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
                 <!--add new menu item-->
                 <div id="addMenu" class="col-lg-6">
                     <!-- begin_style_brand -->
@@ -30,8 +30,11 @@
                                 <option value="">Select a brand</option>
                                 <%brand.forEach(data=>{%>
                                     <option disabled>──────────</option>
-                                    <option value="<%=data.id%>">
-                                        <%=data.brandname%>
+                                    <option value="<%=data.id %>" <%if(data.id==product.idBrand ){%>
+                                        <%='selected'%>
+                                            <%}%>
+                                                >
+                                                <%=data.brandname%>
                                     </option>
                                     <%})%>
                             </select>
@@ -42,8 +45,11 @@
                                 <option value="">Select a style</option>
                                 <%style.forEach(data=>{%>
                                     <option disabled>──────────</option>
-                                    <option value="<%=data.id%>">
-                                        <%=data.stylename%>
+                                    <option value="<%=data.id%>" <%if(data.id==product.idStyle ){%>
+                                        <%='selected'%>
+                                            <%}%>
+                                                >
+                                                <%=data.stylename%>
                                     </option>
                                     <%})%>
                             </select>
@@ -58,23 +64,24 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Name</label>
-                            <input type="text" name="name" class="form-control" required/>
+                            <input type="text" name="name" class="form-control" value="<%=product.name%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Price</label>
-                            <input type="text" name="price" class="form-control" required/>
+                            <input type="text" name="price" class="form-control" value="<%=product.price%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Quantity</label>
-                            <input type="number" name="quantity" class="form-control" required/>
+                            <input type="text" name="quantity" class="form-control" value="<%=product.quantity%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Description</label>
-                            <textarea name="description" class="form-control" rows="5" required> </textarea>
+                            <textarea name="description" class="form-control" rows="5" required> <%=product.description%>" </textarea>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <!--end_name_price_quantity -->
+
                 </div>
                 <!--end add new menu item-->
                 <div id="addMenu" class="col-lg-6">
@@ -85,19 +92,19 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Case Size</label>
-                            <input type="text" name="cs" class="form-control" required/>
+                            <input type="text" name="cs" class="form-control" value="<%=product.details[Object.keys(product.details)[0]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Movement Type</label>
-                            <input type="text" name="mt" class="form-control" required/>
+                            <input type="text" name="mt" class="form-control" value="<%=product.details[Object.keys(product.details)[1]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Water Resistant</label>
-                            <input type="number" name="wr" class="form-control" required/>
+                            <input type="text" name="wr" class="form-control" value="<%=product.details[Object.keys(product.details)[3]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Strap Materialt</label>
-                            <input type="number" name="sm" class="form-control" required/>
+                            <input type="text" name="sm" class="form-control" value="<%=product.details[Object.keys(product.details)[2]]%>" required/>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -107,21 +114,41 @@
                         <div class="panel-heading text-center">
                             Image
                         </div>
-                        <div class="form-group">
-                            <label for="email">Image 1</label>
-                            <input type="file" name="image1" id="image1" class="form-control" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Image 2</label>
-                            <input type="file" name="image2" id="image2" class="form-control" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Image 3</label>
-                            <input type="file" name="image3" id="image3" class="form-control" required/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">Image 1</label>
+                                        <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[0]]%>"
+                                            alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">Image 2</label>
+                                        <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[1]]%>"
+                                            alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email">Image 3</label>
+                                        <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[2]]%>"
+                                            alt="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <a href="admin/product/edit/image/<%=product.id%>" type="button" class="btn btn-warning">Change Image</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <!-- end-image -->
+                    <!--action-button-->
                     <div>
                         <div class="form-group">
                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
@@ -131,9 +158,11 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                    <!--end-action-button-->
                 </div>
+
             </form>
         </div>
     </div>
-
+    <br/><br/><br/>
     <% include ad_footer%>
