@@ -67,11 +67,12 @@ class Customer {
         const sql = 'SELECT * FROM public."Customer" where id=$1;'
         return queryDB(sql, [id])
     }
+//this method using to get customer information by email.
+    getCustomerInfoByEmail() {
+        const sql = 'SELECT * FROM public."Customer" where email=$1'
+        return queryDB(sql, [this.email]);
+    }
 
-    // getCustomerInfoByEmail() {
-    //     const sql = 'SELECT * FROM public."Customer" where email=$1'
-    //     return queryDB(sql, [this.email]);
-    // }
     //this method using for update customer firstname, lastname.
     updateCustomerInfo() {
         const sql = 'UPDATE public."Customer" SET  fistname=$1, lastname=$2'

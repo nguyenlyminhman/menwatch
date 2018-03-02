@@ -8,7 +8,7 @@ router.get('/brand', (req, res) => {
     Brand.getAllBrand().then(result => {
         res.status(200).json({
             status: 'success',
-            data:  result,
+            data: result,
             messages: 'get all style'
         })
     }).catch()
@@ -25,14 +25,16 @@ router.get('/style', (req, res) => {
     }).catch()
 });
 
-router.get('/product/brand/:brandid', (req, res) => {
-    let idBrand = req.params.brandid;
-
-    let product = new Product(undefined, undefined, idBrand);
-    product.getProductByBrandApi().then(result => {
+router.get('/product/brand/:page', (req, res) => {
+    let idBrand = req.body;
+    let p = req.params.page || 1; //get page number.
+    let perPage = 5;
+    // console.log("idbrand " + idBrand + " page " + page)
+    let product = new Product();
+    product.getProductByBrand(idBrand, perPage, (p - 1) * p).then(result => {
         res.status(200).json({
             status: 'success',
-            data: result,
+            data: result.rows,
             messages: 'get product by brand'
         })
     }).catch()

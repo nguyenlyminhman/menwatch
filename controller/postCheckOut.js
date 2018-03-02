@@ -16,9 +16,9 @@ module.exports = async (req, res) => {
     const { receiver, orderaddress, orderphone, receivedate } = req.body;
     var d = new Date();
     //using year, month, date, hour, minute and second to create order id.
-    const OrderNo = d.getFullYear() + "" + d.getMonth() + 1 + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
+    const OrderNo = d.getFullYear() + "" + parseInt(d.getMonth()+ 1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
     //get current date
-    const currentDate = d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate()
+    const currentDate = d.getFullYear() + "-" + parseInt(d.getMonth()+ 1) + "-" + d.getDate()
     //using stripe get information from card payment
     stripe.charges.create({
         amount: cart.totalPrice * 100, //get total price store in stripe account

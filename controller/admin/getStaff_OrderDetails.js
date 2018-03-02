@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     let { id } = req.params;
     let idStaff = req.user.id;
     var d = new Date();
-    const currentDate = d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate()
+    const currentDate = d.getFullYear() + "-" + parseInt(d.getMonth()+ 1)   + "-" + d.getDate()
     try {
         let order = new Order(id);
         let staffOrder = new StaffOrder(undefined, idStaff, id, currentDate);
