@@ -37,7 +37,9 @@ router.get('/product/view-all', requireLogin, require('../controller/admin/getAd
 router.get('/product/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductAddNew'));
 router.post('/product/add-new', requireLogin, require('../controller/admin/postAd_ProductAddNew'));
 router.get('/product/edit/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
-// router.post('/product/edit/:id', require('../controller/admin/postAd_StyleEdit'));
+
+router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
+
 router.get('/product/delete/:id', requireLogin, require('../controller/admin/deleteAd_Product'));
 
 
@@ -58,7 +60,7 @@ router.post('/staff/add-new', requireLogin, require('../controller/admin/postAd_
 router.get('/staff/process-order/view-all', requireLogin, require('../controller/admin/getStaff_ProcessingOrderViewAll'));
 router.get('/staff/handling-order/view-all', requireLogin, require('../controller/admin/getStaff_OrderViewAll'));
 router.get('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_OrderDetails'));
-router.post('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/postStaff_OrderDetails'));
+router.post('/staff/handling-order/view-details/:id', require('../controller/admin/postStaff_OrderDetails'));
 router.post('/staff/handling-order/update/:id', requireLogin, require('../controller/admin/postStaff_UpdateOrder'));
 
 router.get('/staff/finish-order/view-all', requireLogin, require('../controller/admin/getStaff_FinishOrderViewAll'));

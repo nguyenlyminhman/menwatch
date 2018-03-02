@@ -117,6 +117,11 @@ class Product {
         let sql = 'UPDATE public."Product" SET "quantity"="quantity" - $1 WHERE id = $2 RETURNING "quantity"';
         return queryDB(sql, [this.quantity, this.id])
     }
+    //Using for Staff proccess customer order.
+    updateProductInfo() {
+        let sql = 'UPDATE public."Product" SET  "idStyle"=$1, "idBrand"=$2, "name"=$3, "price"=$4, "quantity"=$5, "description"=$6, "details"=$7 WHERE "id"=$8;';
+        return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.details, this.id])
+    }
 
 }
 module.exports = Product;
