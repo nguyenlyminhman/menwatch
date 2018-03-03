@@ -11,10 +11,6 @@ module.exports = async (req, res, next) => {
     order.updateFinishStatus() //update order status
         .then(resultOd => {
             if (resultOd.rowCount > 0) {
-                product.forEach(element => { //update product quantity.
-                    let _product = new Product(element.idproduct, undefined, undefined, undefined, undefined, element.quantity, undefined, undefined, undefined);
-                    _product.updateProductQuantity();
-                });
                 //checking Order status was updated yet? 
                 req.session.product = null; //set product session to null;
                 //redirect to order list. Getting the next order.

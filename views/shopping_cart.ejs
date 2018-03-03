@@ -9,7 +9,9 @@
 					<li>
 						<a href="/">Home</a>
 					</li>
-					<li class=""><a href="/shopping-cart">Shopping cart</a></li>
+					<li class="">
+						<a href="/shopping-cart">Shopping cart</a>
+					</li>
 				</ol>
 			</div>
 		</div>
@@ -43,7 +45,9 @@
 						<%if(!session.cart || session.cart.totalPrice == 0){%>
 
 							<div class="ckeck-top heading">
-								<h2>Your Shopping Bag is Empty</h2><br><br>
+								<h2>Your Shopping Bag is Empty</h2>
+								<br>
+								<br>
 								<div class="account-right">
 									<a href="/">Continue to Shopping </a>
 								</div>
@@ -71,7 +75,7 @@
 										</li>
 										<li>
 											<span>
-												<input type="text" size="3" pattern="[1-9]" class="btn btn-default" name="qty<%=product.item.rows[0].id%>" id="qty<%=product.item.rows[0].id%>"
+												<input type="number" size="3" min=1 class="btn btn-default" name="qty<%=product.item.rows[0].id%>" id="qty<%=product.item.rows[0].id%>"
 												 value="<%=product.quantity%>" width="5px">
 											</span>
 										</li>
@@ -91,11 +95,11 @@
 						</h2>
 						<br>
 						<div class="account-right">
-								<%if(!session.cart || session.cart.totalPrice == 0){%>
-									<a>CheckOut</a>
-									<%}else{%>
-										<a href="/shopping-cart/checkout">CheckOut</a>
-										<%}%>
+							<%if(!session.cart || session.cart.totalPrice == 0){%>
+								<a>CheckOut</a>
+								<%}else{%>
+									<a href="/shopping-cart/checkout">CheckOut</a>
+									<%}%>
 						</div>
 					</div>
 				</div>
@@ -110,13 +114,15 @@
 				(function ($) {
 					$(document).ready(function () {
 						$('#qty<%=product.item.rows[0].id%>').change(function () {
-							var qty = document.getElementById('qty<%=product.item.rows[0].id%>').value;
-							if (qty > 20 || isNaN(qty)) {
-								alert('Quantity can not greater than 30 ');
+							var qty = $('#qty<%=product.item.rows[0].id%>').val();
+							if (qty > parseInt('<%=product.item.rows[0].quantity%>') || isNaN(qty)) {
+								alert('This product only have <%=product.item.rows[0].quantity%> items in stock. ');
+								setInterval(function () { location.reload(); }, 250);
+							} else if(qty==0){
+								alert('This product quantity is not a zero. ');
+								setInterval(function () { location.reload(); }, 250);
 							} else {
 								$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
-								//alert('<%=(session.cart)[1]%>');
-								// alert('<%=Object.values(session.cart)[1]%>');
 								setInterval(function () { location.reload(); }, 250);
 							}
 						});

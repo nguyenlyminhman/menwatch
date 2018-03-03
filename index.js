@@ -36,7 +36,6 @@ app.use((req, res, next) => {
 });
 app.use(flash());
 
-
 app.use('/', customer);
 app.use('/api/', api);
 app.use('/admin/', admin);

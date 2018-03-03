@@ -1,6 +1,7 @@
 const Customer = require('../model/Customer')
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
+const Product = require('../model/Product');
 const Cart = require('../model/Cart');
 
 
@@ -16,7 +17,7 @@ module.exports = async (req, res) => {
     const { receiver, orderaddress, orderphone, receivedate } = req.body;
     var d = new Date();
     //using year, month, date, hour, minute and second to create order id.
-    const OrderNo = d.getFullYear() + "" + parseInt(d.getMonth()+ 1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()
+    const OrderNo = d.getFullYear() + "" + parseInt(d.getMonth()+ 1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds()+d.getMilliseconds()
     //get current date
     const currentDate = d.getFullYear() + "-" + parseInt(d.getMonth()+ 1) + "-" + d.getDate()
     //using stripe get information from card payment
@@ -45,6 +46,9 @@ module.exports = async (req, res) => {
                     var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity);
                     // Using addNewOrderDetails() method to insert into database.
                     orderDetails.addNewOrderDetails();
+                    //update product quantity.
+                    let _product = new Product(product.item.rows[0].id, undefined, undefined, undefined, undefined, product.quantity, undefined, undefined, undefined);
+                    _product.updateProductQuantity();
                 })
             })
         });
