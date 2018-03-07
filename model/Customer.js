@@ -23,17 +23,31 @@ class Customer {
             })
         })
     }
+    //this method using for api.
+    async signIn() {
+        const sql = 'SELECT * FROM public."Customer" WHERE email = $1';
+        const result = await queryDB(sql, [this.email]);
+        if (!result.rows[0]) {
+            return 'err_email' ; 
+        }
+        const hashPasswor = result.rows[0].password;
+        const isValid = await compare(this.password, hashPasswor);
+        if (!isValid) {
+            return  'err_pass' ; 
+        }
+        return result.rows[0] ;
+    }
 
+    async signin() {
+        const sql = 'SELECT * FROM public."Staff" where email=$1'
+        const result = await queryDB(sql, [this.email]);
+        if (!result.rows[0]) throw new Error('Email is not exist...')
+        const hashPassword = result.rows[0].password;
+        const isValid = await compare(this.password, hashPassword);
+        if (!isValid) throw new Error('Password is wrong...');
+        return { id: result.rows[0].id }
+    }
 
-    // async signin() {
-    //     const sql = 'SELECT * FROM public."Staff" where email=$1'
-    //     const result = await queryDB(sql, [this.email]);
-    //     if (!result.rows[0]) throw new Error('Email is not exist...')
-    //     const hashPassword = result.rows[0].password;
-    //     const isValid = await compare(this.password, hashPassword);
-    //     if (!isValid) throw new Error('Password is wrong...');
-    //     return { id: result.rows[0].id }
-    // }
 
     //this method using for facebook login
     insertNewCustomer() {

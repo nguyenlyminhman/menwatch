@@ -82,7 +82,7 @@
 										<div class="clearfix"> </div>
 									</ul>
 									<%})%>
-										<%}%>
+								<%}%>
 					</div>
 
 					<div class="ckeck-top heading" style="float: right">
@@ -117,10 +117,10 @@
 							var qty = $('#qty<%=product.item.rows[0].id%>').val();
 							if (qty > parseInt('<%=product.item.rows[0].quantity%>') || isNaN(qty)) {
 								alert('This product only have <%=product.item.rows[0].quantity%> items in stock. ');
-								setInterval(function () { location.reload(); }, 250);
+								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
 							} else if(qty==0){
 								alert('This product quantity is not a zero. ');
-								setInterval(function () { location.reload(); }, 250);
+								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
 							} else {
 								$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
 								setInterval(function () { location.reload(); }, 250);

@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { hash, compare } = require('bcrypt');
 const Brand = require('../model/Brand');
 const Style = require('../model/Style');
 const Product = require('../model/Product');
+const Customer = require('../model/Customer');
 
 router.get('/brand', (req, res) => {
     Brand.getAllBrand().then(result => {
@@ -14,7 +16,6 @@ router.get('/brand', (req, res) => {
     }).catch()
 });
 
-
 router.get('/style', (req, res) => {
     Style.getAllStyle().then(result => {
         res.status(200).json({
@@ -25,16 +26,14 @@ router.get('/style', (req, res) => {
     }).catch()
 });
 
-router.get('/product/brand/:page', (req, res) => {
-    let idBrand = req.body;
-    let p = req.params.page || 1; //get page number.
-    let perPage = 5;
+router.get('/product/brand/:brandid', (req, res) => {
+    let idBrand = req.params.brandid;
     // console.log("idbrand " + idBrand + " page " + page)
-    let product = new Product();
-    product.getProductByBrand(idBrand, perPage, (p - 1) * p).then(result => {
+    let product = new Product(undefined, undefined, idBrand);
+    product.getProductByBrandApi().then(result => {
         res.status(200).json({
             status: 'success',
-            data: result.rows,
+            data: result,
             messages: 'get product by brand'
         })
     }).catch()
@@ -42,22 +41,11 @@ router.get('/product/brand/:page', (req, res) => {
 
 router.get('/product/style/:styleid', (req, res) => {
     let idStyle = req.params.styleid;
-
     let product = new Product(undefined, idStyle);
     product.getProductByStyleApi().then(result => {
         res.status(200).json({
             status: 'success',
             data: result,
-            messages: 'get product by style'
-        })
-    }).catch()
-})
-
-router.get('/product/best-seller', (req, res) => {
-    Product.getBestSellProduct().then(result => {
-        res.status(200).json({
-            status: 'success',
-            data: result.rows,
             messages: 'get product by style'
         })
     }).catch()
@@ -73,15 +61,19 @@ router.get('/product/all', (req, res) => {
     }).catch()
 })
 
-router.get('/product/details/:id', (req, res) => {
-    let id = req.params.id;
-    let product = new Product(id);
-    product.getProductDetailsById().then(result => {
+router.get('/customer/login', (req,res)=>{
+    // let {email, password} = req.params;
+    var email = 'man@gmail.com';
+    var pass = 'nam'
+    var cus = new Customer(undefined, undefined, email, pass);
+    cus.signIn().then(result=>{
         res.status(200).json({
-            status: 'success',
-            data: result,
-            messages: 'get product by id'
+            sta:'okman',
+            data:result,
+            sms: 'get login'
+
         })
-    }).catch()
+    })
+
 })
 module.exports = router;
