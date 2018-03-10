@@ -114,8 +114,8 @@ class Customer {
 }
 module.exports = Customer;
 
-// let cus = new Customer(undefined,undefined, 'nlmman@cusc.ctu.edu.vn', 'nam',undefined,undefined);
-// cus.signin()
+// let cus = new Customer(undefined,undefined, 'man@gmail.com', 'nam',undefined,undefined);
+// cus.signIn()
 // .then(resu=>console.log(resu))
 // .catch(er=>console.log(er))
 

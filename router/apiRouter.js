@@ -61,11 +61,15 @@ router.get('/product/all', (req, res) => {
     }).catch()
 })
 
-router.get('/customer/login', (req,res)=>{
-    // let {email, password} = req.params;
-    var email = 'man@gmail.com';
-    var pass = 'nam'
-    var cus = new Customer(undefined, undefined, email, pass);
+router.post('/customer/login/', (req,res)=>{
+    //let {email, password} = req.body;
+    var email = req.body.email;
+    var password = req.body.password;
+    // var email = 'man@gmail.com'; 
+    // var pass = 'nam'
+    // console.log(email);
+    // console.log(password);
+    var cus = new Customer(undefined, undefined, email, password);
     cus.signIn().then(result=>{
         res.status(200).json({
             sta:'okman',
