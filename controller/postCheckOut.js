@@ -25,10 +25,9 @@ module.exports = async (req, res) => {
         amount: cart.totalPrice * 100, //get total price store in stripe account
         currency: "usd", // currency unit is USD 
         source: req.body.stripeToken, // obtained with Stripe.js
-        description: ""
+        description: OrderNo+"_"
     }, function (err, charge) {
         if (err) { //if have error redirect to check out page
-            console.log(err) //print error
             return res.redirect('/shopping-cart/checkout'); //redirect to check out page
         }
         //init Customer model to contact with database.
