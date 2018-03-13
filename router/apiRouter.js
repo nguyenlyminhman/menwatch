@@ -7,6 +7,8 @@ const Product = require('../model/Product');
 const Customer = require('../model/Customer');
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
+let { sendEmail } = require('../utils/Mailer');
+
 
 router.get('/brand', (req, res) => {
     Brand.getAllBrand().then(result => {
@@ -83,20 +85,16 @@ router.post('/customer/login/', (req, res) => {
 
 router.post('/customer/checkout', (req, res) => {
 
-    var { ReceiverName, ReceiverAddress, ReceiverEmail } = req.body;
-    var { CustomerId, OrderDetail, totalPrice, StripeId } = req.body;
+    var { ReceiverName, ReceiverAddress, ReceiverPhone } = req.body;
+    var { CustomerId, CustomerEmail, CustomerFullname, OrderDetail, totalPrice, StripeId } = req.body;
 
     // console.log("ReceiverName " + ReceiverName);
     // console.log("ReceiverAddress " + ReceiverAddress);
-    // console.log("ReceiverEmail " + ReceiverEmail);
-    // console.log("CardNumber " + CardNumber);
-    // console.log("CardCVC " + CardCVC);
-    // console.log("CardName " + CardName);
-    // console.log("CardYear " + CardYear);
-    // console.log("Stripe id " + StripeId)
+    // console.log("ReceiverPhone " + ReceiverPhone);
 
     // console.log("CustomerId " + CustomerId);
-    // // console.log("OrderDetails " + OrderDetail);
+    // console.log("CustomerEmail " + CustomerEmail);
+    // console.log("CustomerFullname " + CustomerFullname);
     // console.log("totalPrice " + totalPrice);
 
     // JSON.parse(OrderDetail) .forEach(element => {
@@ -104,6 +102,9 @@ router.post('/customer/checkout', (req, res) => {
     //         console.log("product_qty " + element[Object.keys(element)[1]]);
     //     }); 
     //  using stripe key. data.details[Object.keys(data.details)[0]]
+
+
+
     var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
     var d = new Date();
     //using year, month, date, hour, minute and second to create order id.
@@ -117,9 +118,31 @@ router.post('/customer/checkout', (req, res) => {
         source: StripeId, // obtained with Stripe.js
         description: OrderNo + ""
     }, function (err, charge) {
+
+        //content email which will be sent to customer
+        let content = `
+        <h3>Men Watch, </h3>
+        <p>Hello, ${CustomerFullname} </p>
+        <h3>Thank for your visit and buy the Luxury Watch products. </ h3>
+        <h3>The order number: ${OrderNo}</h3>
+        <h3>Total: $ ${totalPrice}</h3>
+        <h3>The receiver information</h3>
+        <ul>
+            <li> Name: ${ReceiverName}</li>
+            <br/>
+            <li> Address: ${ReceiverAddress}</li>
+            <br/>
+            <li> Phone: ${ReceiverPhone}</li>
+        </ul>
+        <h4>This is an automated email. You do not need to respond to this email. </ h4>
+        <h4>Have nice day !</h4>
+        <h4><strong>Best regard - Men Watches</strong></h4>`;
+//send email to customer.
+        sendEmail(CustomerEmail, content);
+
+
         // init Customer model to contact with database.
-        var order = new Order(OrderNo, CustomerId, currentDate, '2019-12-31', totalPrice,
-            '123445566', ReceiverAddress, 'charge.id', 'Pending', ReceiverName);
+        var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice,  ReceiverPhone, ReceiverAddress, StripeId , 'Pending', ReceiverName);
         //using addNewOrder() to insert order info into database
         order.addNewOrder().then(resultOrder => {
             //loop throught cart product to get value of cart
@@ -139,5 +162,9 @@ router.post('/customer/checkout', (req, res) => {
             })
         })
     });
+
+
+
+
 })
 module.exports = router;

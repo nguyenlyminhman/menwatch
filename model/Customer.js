@@ -106,16 +106,16 @@ class Customer {
             hash(this.password, 8, (err, encryptedPassword) => {
                 if (err) return reject(err);
                 const sql = 'UPDATE public."Customer" SET password=$1 WHERE email=$2';
-                queryDB(sql, [encryptedPassword, this.email])
-                resolve();
+                
+                resolve(queryDB(sql, [encryptedPassword, this.email]));
             })
         })
     }
 }
 module.exports = Customer;
 
-// let cus = new Customer(undefined,undefined, 'man@gmail.com', 'nam',undefined,undefined);
-// cus.signIn()
+// let cus = new Customer(undefined,undefined, 'okman@gmail.com', 'okoko',undefined,undefined);
+// cus.updateCustomerPassword()
 // .then(resu=>console.log(resu))
 // .catch(er=>console.log(er))
 

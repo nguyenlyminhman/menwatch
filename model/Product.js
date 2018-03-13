@@ -126,7 +126,7 @@ class Product {
 }
 module.exports = Product;
 
-// let product = new Product( 18, undefined, undefined, undefined, undefined, 1000, undefined, undefined, undefined);
+let product = new Product( 21, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
 // product.updateProductQuantity().then(sss=>{
 //     console.log(sss.rowCount)
 // })
@@ -138,6 +138,6 @@ module.exports = Product;
 //     })
 //     .catch(err => console.log(err));
 
-// Product.getBrandStyleProduct()
-// .then(s => console.log(s))
+// product.getProductById()
+// .then(s => console.log(s.rows[0].name))
 // .catch(w => console.log(w));

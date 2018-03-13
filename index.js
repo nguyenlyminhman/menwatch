@@ -20,7 +20,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', ['./views', './views/admin']);
 app.use(express.static('public'));
-// app.use('admin', express.static('public/admin'));
 app.use(favicon(path.join(__dirname, 'public', 'images','menwatch.ico')));
 
 

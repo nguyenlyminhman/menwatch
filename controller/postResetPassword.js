@@ -20,14 +20,15 @@ module.exports = async (req, res, next) => {
             //declare alphabet parameter.
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*";
             //Using for loop to get random charater
+            
             for (var i = 0; i < 9; i++) {
                 //add to newPassword parameter.
                 newPassword += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
             }
             //content parameter to store the email content which will be send to customer.
             var content = `
-                            <h3>Luxury Watch, </h3>
-                            <p>Hello, ${email}</p>
+                            <h3>Men Watch, </h3>
+                            <p>Hello, ${result.rows[0].fistname} ${result.rows[0].lastname} </p>
                             <ul>
                                 <li> You have requested to reset the account password on the Luxury Watch. </ li>
                                 <li> Your new password is: ${newPassword} </ li>

@@ -19,7 +19,7 @@ module.exports = function Cart(cart) {
         this.totalItems = (this.totalItems + cartItem.quantity);
         this.totalPrice = (this.totalPrice + cartItem.price);
     };
-
+    
 
     this.update = function (item, id, qty) {
         var cartItem = this.items[id];
