@@ -7,6 +7,7 @@ const Product = require('../model/Product');
 const Customer = require('../model/Customer');
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
+const Contact = require('../model/Contact');
 let { sendEmail } = require('../utils/Mailer');
 
 
@@ -88,22 +89,11 @@ router.post('/customer/checkout', (req, res) => {
     var { ReceiverName, ReceiverAddress, ReceiverPhone } = req.body;
     var { CustomerId, CustomerEmail, CustomerFullname, OrderDetail, totalPrice, StripeId } = req.body;
 
-    // console.log("ReceiverName " + ReceiverName);
-    // console.log("ReceiverAddress " + ReceiverAddress);
-    // console.log("ReceiverPhone " + ReceiverPhone);
-
-    // console.log("CustomerId " + CustomerId);
-    // console.log("CustomerEmail " + CustomerEmail);
-    // console.log("CustomerFullname " + CustomerFullname);
-    // console.log("totalPrice " + totalPrice);
-
     // JSON.parse(OrderDetail) .forEach(element => {
     //         console.log("product_id " + element[Object.keys(element)[0]]);
     //         console.log("product_qty " + element[Object.keys(element)[1]]);
     //     }); 
     //  using stripe key. data.details[Object.keys(data.details)[0]]
-
-
 
     var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
     var d = new Date();
@@ -137,12 +127,10 @@ router.post('/customer/checkout', (req, res) => {
         <h4>This is an automated email. You do not need to respond to this email. </ h4>
         <h4>Have nice day !</h4>
         <h4><strong>Best regard - Men Watches</strong></h4>`;
-//send email to customer.
+        //send email to customer.
         sendEmail(CustomerEmail, content);
-
-
         // init Customer model to contact with database.
-        var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice,  ReceiverPhone, ReceiverAddress, StripeId , 'Pending', ReceiverName);
+        var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice, ReceiverPhone, ReceiverAddress, StripeId, 'Pending', ReceiverName);
         //using addNewOrder() to insert order info into database
         order.addNewOrder().then(resultOrder => {
             //loop throught cart product to get value of cart
@@ -166,5 +154,57 @@ router.post('/customer/checkout', (req, res) => {
 
 
 
+});
+
+router.post('/customer/register', (req, res) => {
+    let { email, password, firstname, lastname, address, phone } = req.body;
+    let customer = new Customer(firstname, lastname, email, password, address, phone);
+    customer.checkExistEmail()
+        .then(result => {
+            if (result.rowCount) {
+                res.status(200).json({
+                    status: 'fail',
+                    data: 'fail_email',
+                    sms: 'fail register customer'
+                })
+            } else {
+                customer.signup()
+                    .then(
+                    res.status(200).json({
+                        status: 'success',
+                        data: 'success',
+                        sms: 'register customer'
+                    })
+                    )
+            }
+        })
+});
+router.post('/customer/contact', (req, res) => {
+
+    //get current date.
+    var currentdate = new Date().getFullYear() + '-' + (new Date().getUTCMonth() + 1) + '-' + new Date().getDate();
+    //get all value from contact form.
+    let { email, fullname, phone, content } = req.body;
+    //init Contact model.
+    let contact = new Contact(undefined, email, fullname, phone, content, "Pending", currentdate);
+    //Using addNewContact() method to save.
+    contact.addNewContact().then(result => {
+        //result.rowCount > 0, that's mean, the contact content was sent.
+        if (result.rowCount > 0) {
+            res.status(200).json({
+                status: 'success',
+                data: 'success',
+                sms: 'post to contact'
+            })
+        } else {
+            res.status(200).json({
+                status: 'fail',
+                data: 'fail',
+                sms: 'post to contact'
+            })
+        }
+    })
+
 })
+
 module.exports = router;
