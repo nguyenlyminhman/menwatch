@@ -125,8 +125,11 @@ class Product {
 
 }
 module.exports = Product;
-
-let product = new Product( 21, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined);
+//undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined
+// let product = new Product( );
+// product.getProductByBrand(13).then(ss=>{
+//     console.log(ss.rowCount)
+// })
 // product.updateProductQuantity().then(sss=>{
 //     console.log(sss.rowCount)
 // })

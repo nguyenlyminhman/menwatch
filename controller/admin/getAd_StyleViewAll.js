@@ -12,6 +12,7 @@ module.exports = async (req, res, next) => {
         res.render('ad_styleViewAll', {
             style,
             user: req.user,
+            message: req.flash('info'),
             title: 'View all style',
             breadcrumb: 'All style',
         })

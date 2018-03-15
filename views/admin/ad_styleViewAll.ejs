@@ -1,10 +1,20 @@
 <% include ad_header %>
-
+<div class="row">
+    <div class="col-lg-12">
+        <%if (message.length > 0 ){%>
+            <div class="alert alert-danger">
+                <h4>
+                    <%= message%>
+                </h4>
+            </div>
+            <%}%>
+    </div>
+</div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <h3>List All Brand </h3>
+                    <h3>List All Style </h3>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
