@@ -17,11 +17,25 @@
 		</div>
 	</div>
 	<!--end-breadcrumbs-->
+
 	<!--start-ckeckout-->
 	<div class="ckeckout">
 		<div class="container">
 			<div class="ckeck-top heading">
 				<h2>My Shopping Bag</h2>
+			</div>
+			<div class="ckeck-top heading">
+
+				<!--add new menu item-->
+				<div class="col-lg-12">
+					<%if (message.length > 0 ){%>
+						<div class="alert alert-info">
+							<h4>
+								<%= message%>
+							</h4>
+						</div>
+						<%}%>
+				</div>
 			</div>
 			<div class="ckeckout-top">
 				<div class="cart-items">
@@ -82,7 +96,7 @@
 										<div class="clearfix"> </div>
 									</ul>
 									<%})%>
-								<%}%>
+										<%}%>
 					</div>
 
 					<div class="ckeck-top heading" style="float: right">
@@ -118,7 +132,7 @@
 							if (qty > parseInt('<%=product.item.rows[0].quantity%>') || isNaN(qty)) {
 								alert('This product only have <%=product.item.rows[0].quantity%> items in stock. ');
 								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
-							} else if(qty==0){
+							} else if (qty == 0) {
 								alert('This product quantity is not a zero. ');
 								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
 							} else {

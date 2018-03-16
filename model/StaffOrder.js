@@ -19,7 +19,10 @@ class StaffOrder {
         const sql = 'SELECT * FROM public."StaffOrder" where "idOrder"=$1;'
         return queryDB(sql, [this.idOrder]);
     }
-    
+    //this method use to check order id is existed or not.
+    getStaffNameOnOrder(){
+        
+    }
 }
 module.exports = StaffOrder;
 

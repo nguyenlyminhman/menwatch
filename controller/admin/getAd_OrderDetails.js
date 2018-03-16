@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     try {
         let orderDetails = new OrderDetails(undefined, id, undefined, undefined);
         orderDetails.getOrderDetailsByOrderId().then(odetails => {
-            console.log(odetails.rows)
+            // console.log(odetails.rows)
             res.render('ad_orderDetails', {
                 user: req.user,
                 product: odetails.rows,
