@@ -101,16 +101,29 @@ router.post('/customer/checkout', (req, res) => {
     const OrderNo = d.getFullYear() + "" + parseInt(d.getMonth() + 1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds() + d.getMilliseconds()
     //get current date
     const currentDate = d.getFullYear() + "-" + parseInt(d.getMonth() + 1) + "-" + d.getDate()
-    //using stripe get information from card payment
-    stripe.charges.create({
-        amount: parseInt(totalPrice) * 100, //get total price store in stripe account
-        currency: "usd", // currency unit is USD 
-        source: StripeId, // obtained with Stripe.js
-        description: OrderNo + ""
-    }, function (err, charge) {
 
-        //content email which will be sent to customer
-        let content = `
+
+    JSON.parse(OrderDetail).forEach(product => {
+        let _product = new Product(product[Object.keys(product)[0]]);
+        _product.getProductById().then(resId => {
+            if (parseInt(product[Object.keys(product)[1]]) > parseInt(resId.rows[0].quantity)) {
+                res.status(200).json({
+                    status: 'fail',
+                    data: 'The '+ resId.rows[0].name +' only has '+ resId.rows[0].quantity +' item(s).\n Please, update your cart items again.',
+                    sms: 'fail checkout'
+                })
+            } else {
+
+                //using stripe get information from card payment
+                stripe.charges.create({
+                    amount: parseInt(totalPrice) * 100, //get total price store in stripe account
+                    currency: "usd", // currency unit is USD 
+                    source: StripeId, // obtained with Stripe.js
+                    description: OrderNo + ""
+                }, function (err, charge) {
+
+                    //content email which will be sent to customer
+                    let content = `
         <h3>Men Watch, </h3>
         <p>Hello, ${CustomerFullname} </p>
         <h3>Thank for your visit and buy the Luxury Watch products. </ h3>
@@ -127,33 +140,32 @@ router.post('/customer/checkout', (req, res) => {
         <h4>This is an automated email. You do not need to respond to this email. </ h4>
         <h4>Have nice day !</h4>
         <h4><strong>Best regard - Men Watches</strong></h4>`;
-        //send email to customer.
-        sendEmail(CustomerEmail, content);
-        // init Customer model to contact with database.
-        var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice, ReceiverPhone, ReceiverAddress, StripeId, 'Pending', ReceiverName);
-        //using addNewOrder() to insert order info into database
-        order.addNewOrder().then(resultOrder => {
-            //loop throught cart product to get value of cart
-            JSON.parse(OrderDetail).forEach(product => {
-                //init OrderDetails model to contact with database.
-                var orderDetails = new OrderDetails(undefined, OrderNo, product[Object.keys(product)[0]], product[Object.keys(product)[1]]);
-                // Using addNewOrderDetails() method to insert into database.
-                orderDetails.addNewOrderDetails();
-                //update product quantity.
-                let _product = new Product(product[Object.keys(product)[0]], undefined, undefined, undefined, undefined, product[Object.keys(product)[1]], undefined, undefined, undefined);
-                _product.updateProductQuantity();
-            })
-            res.status(200).json({
-                sta: 'okman',
-                data: resultOrder.rowCount,
-                sms: 'get checkout'
-            })
+                    //send email to customer.
+                    sendEmail(CustomerEmail, content);
+                    // init Customer model to contact with database.
+                    var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice, ReceiverPhone, ReceiverAddress, StripeId, 'Pending', ReceiverName);
+                    //using addNewOrder() to insert order info into database
+                    order.addNewOrder().then(resultOrder => {
+                        //loop throught cart product to get value of cart
+                        JSON.parse(OrderDetail).forEach(product => {
+                            //init OrderDetails model to contact with database.
+                            var orderDetails = new OrderDetails(undefined, OrderNo, product[Object.keys(product)[0]], product[Object.keys(product)[1]]);
+                            // Using addNewOrderDetails() method to insert into database.
+                            orderDetails.addNewOrderDetails();
+                            //update product quantity.
+                            let _product = new Product(product[Object.keys(product)[0]], undefined, undefined, undefined, undefined, product[Object.keys(product)[1]], undefined, undefined, undefined);
+                            _product.updateProductQuantity();
+                        })
+                        res.status(200).json({
+                            status: 'ok',
+                            data: resultOrder.rowCount,
+                            sms: 'get checkout'
+                        })
+                    })
+                });
+            }
         })
-    });
-
-
-
-
+    })
 });
 
 router.post('/customer/register', (req, res) => {
