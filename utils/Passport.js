@@ -85,7 +85,7 @@ module.exports = function (passport) {
     {
       clientID: "160773434573246",
       clientSecret: "dc3a6430c7804e6f57d4dbcd274d3c67",
-      callbackURL: "http://localhost:3000/auth/fb/cb",
+      callbackURL: "https://menwatch.herokuapp.com/auth/fb/cb",
       profileFields: ['email', 'first_name', 'last_name']
     },
     (accessToken, refreshToken, profile, c_done) => {

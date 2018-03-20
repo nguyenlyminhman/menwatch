@@ -137,7 +137,7 @@
 								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
 							} else {
 								$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
-								setInterval(function () { location.reload(); }, 250);
+								setInterval(function () { location.reload(); }, 500);
 							}
 						});
 					});
