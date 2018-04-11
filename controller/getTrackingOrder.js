@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
     let brand = await Brand.getAllBrand();
     let style = await Style.getAllStyle();
     //init OrderDetails model with order id.
-    let orderDetails = new OrderDetails(undefined, id, undefined, undefined);
+    let orderDetails = new OrderDetails(undefined, id, undefined, undefined, undefined);
     try { //Using try...catche, if the error occur. 
         orderDetails.getOrderDetailsByOrderId().then(result => {
             //result.rowCount > 0, that's mean, the order details is existing.

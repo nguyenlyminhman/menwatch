@@ -32,6 +32,13 @@ module.exports = async (req, res) => {
                                 Please, update your cart again, then check out as soon as possible.`);
                 res.redirect('/shopping-cart');
                 res.end();
+            } else if (parseInt(product.price) !== parseInt(resId.rows[0].price)) {
+                res.setHeader("Content-Type", "text/html");
+                req.flash('info', `The ${resId.rows[0].name} has changed its price.
+                Would you like to buy this product?
+                Please, remove it from your cart, then add it to cart again.`);
+                res.redirect('/shopping-cart');
+                res.end();
             } else {
                 //using stripe get information from card payment
                 stripe.charges.create({
@@ -75,7 +82,7 @@ module.exports = async (req, res) => {
                             //loop throught cart product to get value of cart
                             cart.getItems().forEach(product => {
                                 //init OrderDetails model to contact with database.
-                                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity);
+                                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity, product.price);
                                 // Using addNewOrderDetails() method to insert into database.
                                 orderDetails.addNewOrderDetails();
                                 //update product quantity.

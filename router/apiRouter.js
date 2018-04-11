@@ -112,7 +112,13 @@ router.post('/customer/checkout', (req, res) => {
                     data: 'The '+ resId.rows[0].name +' only has '+ resId.rows[0].quantity +' item(s).\n Please, update your cart items again.',
                     sms: 'fail checkout'
                 })
-            } else {
+            } else if (parseInt(product[Object.keys(product)[2]]) !== parseInt(resId.rows[0].price)) {
+                res.status(200).json({
+                    status: 'fail',
+                    data: 'The '+ resId.rows[0].name +' has changed its price.\n Please, update your cart items again.',
+                    sms: 'fail checkout'
+                })
+            } else{
 
                 //using stripe get information from card payment
                 stripe.charges.create({

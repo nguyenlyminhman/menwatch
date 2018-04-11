@@ -3,11 +3,12 @@ const Product = require('../model/Product')
 
 class OrderDetails {
     //constructor of OrderDetails class.
-    constructor(id, idOrder, idProduct, quantity) {
+    constructor(id, idOrder, idProduct, quantity, price) {
         this.id = id;
         this.idOrder = idOrder;
         this.idProduct = idProduct;
         this.quantity = quantity;
+        this.price = price;
     }
 
     checkExistProduct() {
@@ -17,16 +18,18 @@ class OrderDetails {
 
     //add new order details to db.
     addNewOrderDetails() {
-        const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity) VALUES ($1, $2, $3)';
-        return queryDB(sql, [this.idOrder, this.idProduct, this.quantity]);
+        const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity, price) VALUES ($1, $2, $3, $4)';
+        return queryDB(sql, [this.idOrder, this.idProduct, this.quantity, this.price]);
     }
     //get order details by order id.
     getOrderDetailsByOrderId() {
-        const sql = `Select "Product"."id" as idproduct, "Product"."image", "Product"."name", "Product"."price",
+        const sql = `Select "Product"."id" as idproduct, "Product"."image", "Product"."name",
 		"Order"."status", "Order"."id","Order"."orderdate", 
         "Order"."receivedate", "Order"."total", "Order"."receiver", 
-        "Order"."orderaddress", "Order"."orderphone", "OrderDetails"."quantity",
+        "Order"."orderaddress", "Order"."orderphone",
+        "OrderDetails"."quantity", "OrderDetails"."price",
         "Customer"."fistname","Customer"."lastname","Customer"."phone", "Customer"."address"
+
         FROM public."OrderDetails", public."Order", public."Product", public."Customer"
         WHERE "OrderDetails"."idOrder" = "Order"."id" 
         AND "Customer"."id" = "Order"."idCustomer"
@@ -34,6 +37,7 @@ class OrderDetails {
         AND "Order"."id"= $1`;
         return queryDB(sql, [this.idOrder])
     }
+    
 }
 module.exports = OrderDetails;
 
