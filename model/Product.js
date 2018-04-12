@@ -24,80 +24,85 @@ class Product {
     }
     //get all latest product. using for index page
     static getAllProduct() {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 20';
+        let sql = 'select *  from public."Product" where status = true ORDER BY Id DESC LIMIT 20';
         return queryDB(sql, [])
     }
     //get Best Selling Product. This method using for index page
     static getBestSellProduct() {
-        let sql = 'Select * from public."Product" where "id" in (' +
+        let sql = 'Select * from public."Product" where status = true AND "id" in (' +
             'select "idProduct" as total_order from public."OrderDetails"' +
-            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 3)';
+            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 4)';
         return queryDB(sql, [])
     }
     //get latest product, but limit 3 product, this method using for index and details page
     static getLatestProduct() {
-        let sql = 'select *  from public."Product" ORDER BY Id DESC LIMIT 3';
+        let sql = 'select *  from public."Product" WHERE status = true ORDER BY Id DESC LIMIT 3';
         return queryDB(sql, [])
     }
-    //using for check product name exist
+    //using for check product name exist when adding new product
+    checkActiveProduct() {
+        let sql = 'select *  from public."Product" WHERE status = true AND "Product"."id" = $1';
+        return queryDB(sql, [this.id])
+    }
+    //using for check product name exist when adding new product
     checkExistProduct() {
         let sql = 'select *  from public."Product" WHERE name = $1';
         return queryDB(sql, [this.name])
     }
     //count all product. using for pagination.
     getCountAllProduct() {
-        let sql = 'select COUNT(*)  from public."Product"';
+        let sql = 'select COUNT(*)  from public."Product" WHERE status = true';
         return queryDB(sql, [])
     }
     //get product by its brand id. using for api
     getProductByBrandApi() {
-        let sql = `SELECT * FROM public."Product" where "idBrand" = $1`;
+        let sql = `SELECT * FROM public."Product" where status = true AND "idBrand" = $1`;
         return queryDB(sql, [this.idBrand]).then(result=>result.rows)
     }
     //get product by its brand id. using for api
     getProductByStyleApi() {
-        let sql = `SELECT * FROM public."Product" where "idStyle" = $1`;
+        let sql = `SELECT * FROM public."Product" where status = true AND "idStyle" = $1`;
         return queryDB(sql, [this.idStyle]).then(result=>result.rows)
     }
     //get product by its brand id.
     getProductByBrand(idBrand, limit, offset) {
-        let sql = 'SELECT * FROM public."Product" where "idBrand" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        let sql = 'SELECT * FROM public."Product" where status = true AND "idBrand" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
         return queryDB(sql, [idBrand, limit, offset])
     }
     //count product by its brand id.
     getCountProductByBrand(idBrand) {
-        let sql = 'SELECT COUNT(*) FROM public."Product" where "idBrand" = $1';
+        let sql = 'SELECT COUNT(*) FROM public."Product" where status = true AND "idBrand" = $1';
         return queryDB(sql, [idBrand])
     }
     //get product by its style id.
     getProductByStyle(idStyle, limit, offset) {
-        let sql = 'SELECT * FROM public."Product" where "idStyle" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        let sql = 'SELECT * FROM public."Product" where status = true AND "idStyle" = $1 ORDER BY Id DESC LIMIT $2 OFFSET $3';
         return queryDB(sql, [idStyle, limit, offset])
     }
     //count product by its style id.
     getCountProductByStyle(idStyle) {
-        let sql = 'SELECT COUNT(*) FROM public."Product" where "idStyle" = $1'
+        let sql = 'SELECT COUNT(*) FROM public."Product" where status = true AND "idStyle" = $1'
         return queryDB(sql, [idStyle])
     }
     //using for sigle page to show product details
     getProductDetailsById() {
-        let sql = 'SELECT * FROM public."Product" where id = $1'
+        let sql = 'SELECT * FROM public."Product" where status = true AND id = $1'
         return queryDB(sql, [this.id])
             .then(result => result.rows);
     }
     //get product by its id. Using for add to cart
     getProductById() {
-        let sql = 'SELECT * FROM public."Product" where id = $1'
+        let sql = 'SELECT * FROM public."Product" where status = true AND id = $1'
         return queryDB(sql, [this.id]);
     }
     //this method using for search function
     getProductByKeyword(keywords, limit, offset) {
-        let sql = 'SELECT * FROM public."Product" WHERE "name" ILIKE $1  ORDER BY Id DESC LIMIT $2 OFFSET $3';
+        let sql = 'SELECT * FROM public."Product" WHERE status = true AND "name" ILIKE $1  ORDER BY Id DESC LIMIT $2 OFFSET $3';
         return queryDB(sql, ["%" + keywords + "%", limit, offset])
     }
     //using for pagination when search
     getCountProductByKeyword(keywords) {
-        let sql = 'SELECT COUNT(*) FROM public."Product" WHERE LOWER(name) SIMILAR TO LOWER($1)';
+        let sql = 'SELECT COUNT(*) FROM public."Product" WHERE status = true AND LOWER(name) SIMILAR TO LOWER($1)';
         return queryDB(sql, ["%" + keywords + "%"])
     }
     //add new product to database.

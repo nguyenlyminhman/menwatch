@@ -32,11 +32,10 @@ class Brand {
         const sql = 'UPDATE public."Brand" SET brandname = $1 WHERE id = $2';
         return queryDB(sql, [this.brandname, this.id])
     }
-    //this method using for breadcrumb
+    //this method using for breadcrumb.
     getBrandById() {
         const sql = 'select * from public."Brand" WHERE id = $1 ORDER BY id ASC';
-        return queryDB(sql, [this.id])
-        .then(result => result.rows[0].brandname);
+        return queryDB(sql, [this.id]);
     }
 }
 //export Brand

@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
                 res.setHeader("Content-Type", "text/html");
                 req.flash('info', `The ${resId.rows[0].name} has changed its price.
                 Would you like to buy this product?
-                Please, remove it from your cart, then add it to cart again.`);
+                Please, remove it from your cart, then update your cart again.`);
                 res.redirect('/shopping-cart');
                 res.end();
             } else {

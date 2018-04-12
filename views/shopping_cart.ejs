@@ -129,15 +129,20 @@
 					$(document).ready(function () {
 						$('#qty<%=product.item.rows[0].id%>').change(function () {
 							var qty = $('#qty<%=product.item.rows[0].id%>').val();
-							if (qty > parseInt('<%=product.item.rows[0].quantity%>') || isNaN(qty)) {
-								alert('This product only have <%=product.item.rows[0].quantity%> items in stock. ');
+							if (qty > 5 || isNaN(qty)) {
+								alert('The maximum quantity is 5 products');
 								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
-							} else if (qty == 0) {
-								alert('This product quantity is not a zero. ');
+							} else if (qty == 0 || qty < 0) {
+								alert('This product quantity is greater than 0. ');
 								$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
 							} else {
-								$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
-								setInterval(function () { location.reload(); }, 500);
+								if (qty > parseInt('<%=product.item.rows[0].quantity%>')) {
+									alert('This product only have <%=product.item.rows[0].quantity%> item(s).');
+									$('#qty<%=product.item.rows[0].id%>').val('<%=product.quantity%>');
+								} else {
+									$.get('/addtocart/<%=product.item.rows[0].id%>/' + qty);
+									setInterval(function () { location.reload(); }, 500);
+								}
 							}
 						});
 					});

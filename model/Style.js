@@ -17,6 +17,11 @@ class Style {
         const sql = 'select * from public."Style" WHERE stylename = $1';
         return queryDB(sql, [this.stylename])
     }
+    //this method use to check the exist style.
+    checkExistStyleById() {
+        const sql = 'select * from public."Style" WHERE id = $1';
+        return queryDB(sql, [this.id]);
+    }
     //get style information by its id.
     getStyleById() {
         const sql = 'select * from public."Style" WHERE id = $1 ORDER BY id ASC';
