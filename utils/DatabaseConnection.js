@@ -21,6 +21,8 @@ var config = {
     idleTimeoutMillis: 1000, // how long a client is allowed to remain idle before being closed
 };
 
+
+
  const pool = new pg.Pool(config);
 
 //query function using to get data from PG
