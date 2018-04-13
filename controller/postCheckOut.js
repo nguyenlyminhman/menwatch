@@ -7,14 +7,13 @@ let { sendEmail } = require('../utils/Mailer');
 
 
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
     if (!req.session.cart || req.session.cart == null) {
         return res.redirect('/shopping-cart');
     }
     //init Cart model
     var cart = new Cart(req.session.cart);
-    //using stripe key.
-    var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
+
     //get value from checkout page
     const { receiver, orderaddress, orderphone } = req.body;
     var d = new Date();
@@ -31,22 +30,27 @@ module.exports = async (req, res) => {
                                 Maybe, there is someone else check-out quicker than you.
                                 Please, update your cart again, then check out as soon as possible.`);
                 res.redirect('/shopping-cart');
-                res.end();
-            } else if (parseInt(product.price) !== parseInt(resId.rows[0].price)) {
+                // res.end();
+                return;
+            } else if (parseInt(product.pprice) != parseInt(resId.rows[0].price)) {
                 res.setHeader("Content-Type", "text/html");
-                req.flash('info', `The ${resId.rows[0].name} has changed its price.
+                req.flash('info', `The ${resId.rows[0].name} has changed the price.
                 Would you like to buy this product?
                 Please, remove it from your cart, then update your cart again.`);
                 res.redirect('/shopping-cart');
                 res.end();
             } else {
+                // console.log('Phan ELSE');
+                //using stripe key.
+                var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
                 //using stripe get information from card payment
                 stripe.charges.create({
                     amount: cart.totalPrice * 100, //get total price store in stripe account
                     currency: "usd", // currency unit is USD 
                     source: req.body.stripeToken, // obtained with Stripe.js
-                    description: OrderNo + ""
+                    description: "mw"
                 }, function (err, charge) {
+                    // console.log('Lỗi: '+ err+'')
                     if (err) { //if have error redirect to check out page
                         return res.redirect('/shopping-cart/checkout'); //redirect to check out page
                     }
@@ -82,7 +86,7 @@ module.exports = async (req, res) => {
                             //loop throught cart product to get value of cart
                             cart.getItems().forEach(product => {
                                 //init OrderDetails model to contact with database.
-                                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity, product.price);
+                                var orderDetails = new OrderDetails(undefined, OrderNo, product.item.rows[0].id, product.quantity, product.pprice);
                                 // Using addNewOrderDetails() method to insert into database.
                                 orderDetails.addNewOrderDetails();
                                 //update product quantity.

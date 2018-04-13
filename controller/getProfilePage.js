@@ -20,19 +20,15 @@ module.exports = async (req, res) => {
                 let order = new Order(undefined, result.rows[0].id, undefined, undefined, undefined, undefined, undefined, undefined, );
                 //get Order Information base on customer id.
                 order.getOrderInfoByCustomerId().then(orderResult => {
-                    if (orderResult.rowCount > 0) { //orderResult.rowCount > 0, that's mean, the order is existing.
-                        res.render('profile', { //render profile ejs page.
-                            message: req.flash('info'),
-                            brand,
-                            style,
-                            user: req.user,
-                            customer: result.rows[0],
-                            order: orderResult.rows,
-                            title: 'My profile'
-                        });
-                    } else { //send notificate that, the order information is not found.
-                        res.send('getProfilePage error : Can not get the order information base on customer id');
-                    }
+                    res.render('profile', { //render profile ejs page.
+                        message: req.flash('info'),
+                        brand,
+                        style,
+                        user: req.user,
+                        customer: result.rows[0],
+                        order: orderResult.rows,
+                        title: 'My profile'
+                    });
                 });
             } else {//send notificate that, user email is not found.
                 res.send('getProfilePage error : The ' + email + ' is not found.');

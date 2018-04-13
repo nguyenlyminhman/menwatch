@@ -31,7 +31,7 @@ class Product {
     static getBestSellProduct() {
         let sql = 'Select * from public."Product" where status = true AND "id" in (' +
             'select "idProduct" as total_order from public."OrderDetails"' +
-            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 4)';
+            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 3)';
         return queryDB(sql, [])
     }
     //get latest product, but limit 3 product, this method using for index and details page
