@@ -32,7 +32,7 @@ module.exports = async (req, res, next) => {
                 res.redirect('/shopping-cart');
                 // res.end();
                 return;
-            } else if (parseInt(product.pprice) != parseInt(resId.rows[0].price)) {
+            } else if (parseInt(product.pprice) !== parseInt(resId.rows[0].price)) {
                 res.setHeader("Content-Type", "text/html");
                 req.flash('info', `The ${resId.rows[0].name} has changed the price.
                 Would you like to buy this product?

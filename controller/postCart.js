@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
         //result.rowCount > 0, that's mean, the product details is existing.
         if (result.rowCount > 0) {
             //add to cart throught add() method.
-            cart.add(result, result.rows[0].id, parseInt(qty),result.rows[0].price, result.rows[0].name );
+            cart.add(result, result.rows[0].id, parseInt(qty),parseInt(result.rows[0].price), result.rows[0].name );
             //add cart to cart session.
             req.session.cart = cart;
             //redirect to shopping-cart link.
