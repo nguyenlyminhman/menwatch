@@ -2,9 +2,9 @@ let Product = require('../../model/Product');
 
 module.exports = (req, res, next) => {
     let { id } = req.params;
-    let { idBrand, idStyle, name, price, quantity, description, cs, mt, wr, sm } = req.body;
+    let { idBrand, idStyle, name, price, quantity, description, cs, mt, wr, sm, status } = req.body;
     let details = '{"cs":"' + cs + '","mt":"' + mt + '","wr":"' + wr + '","sm":"' + sm + '"}';
-    let product = new Product(id, idStyle, idBrand, name, price, quantity, description, undefined, details);
+    let product = new Product(id, idStyle, idBrand, name, price, quantity, description, undefined, details, status);
     product.updateProductInfo().
         then(result => {
             if(result.rowCount>0){

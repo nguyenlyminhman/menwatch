@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         return;
     }
     //get product details by product id.
-    let product = await products.getProductDetailsById();
+    let product = await products.getActiveProductDetailsById();
     //get hot product which is best seller.
     let hotProduct = await Product.getBestSellProduct();
     //get latest product

@@ -27,6 +27,7 @@
                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTablesOrderStaffd">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Order No.</th>
                                     <th>Customer</th>
                                     <th>Email</th>
@@ -39,6 +40,9 @@
                             <tbody>
                                 <%order.forEach(data=>{%>
                                     <tr>
+                                        <td>
+                                            <%=data.no %>
+                                        </td>
                                         <td style="width: 50px">
                                             <%=data.id %>
                                         </td>

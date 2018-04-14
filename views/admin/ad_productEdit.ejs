@@ -148,6 +148,30 @@
                         <div class="clearfix"></div>
                     </div>
                     <!-- end-image -->
+                    <!-- image -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Status
+                        </div>
+                        <fieldset class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" id="optionsRadios1" value="true" <%if(product.status==true){%>
+                                    <%='checked'%>
+                                        <%}%> > Active
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" id="optionsRadios2" value="false" <%if(product.status==false){%>
+                                    <%='checked'%>
+                                        <%}%> > Disable
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- end-image -->
                     <!--action-button-->
                     <div>
                         <div class="form-group">
@@ -164,5 +188,7 @@
             </form>
         </div>
     </div>
-    <br/><br/><br/>
+    <br/>
+    <br/>
+    <br/>
     <% include ad_footer%>

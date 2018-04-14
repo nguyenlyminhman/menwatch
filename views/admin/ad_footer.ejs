@@ -41,17 +41,20 @@
         //using for staff
         $('#dataTablesOrderStaff').DataTable({
             "responsive": true,
-            "ordering": false
-            // "aaSorting": [[0, "asc"]]
+            // "ordering": false
+            "aaSorting": [[0, "asc"]]
         });
         //using responsive data table for popular customer.
         $('#dataTablesPopular').DataTable({
             "responsive": true,
         });
         //using responsive data table for popular customer.
-
-
-
+        $('#dataTablesActive').DataTable({
+            "responsive": true,
+            "ordering": false
+            // "aaSorting": [[0, "asc"]]
+        });
+        //using responsive data table for popular customer.
         $('#dataTablesPost').DataTable({
             "responsive": true,
             // "aaSorting": [[ 0, "asc" ]],

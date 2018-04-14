@@ -25,7 +25,6 @@
                                         <th>Stock</th>
                                         <th>Brand</th>
                                         <th>Style</th>
-                                        <th>Status</th>
                                         <th>Option</th>
                                     </tr>
                                 </thead>
@@ -46,8 +45,8 @@
                                                 <%=data.name %>
                                             </td>
                                             <td>
-                                                <%=data.price %>
-                                            </td>
+                                                    <%=data.price %>
+                                                </td>
                                             <td>
                                                 <%=data.quantity %>
                                             </td>
@@ -58,15 +57,11 @@
                                                 <%=data.stylename %>
                                             </td>
                                             <td>
-                                                <%if(data.status==true){%>
-                                                    <div class="bg-success text-success">Active</div>
-                                                    <%}else{%>
-                                                        <div class="bg-danger text-danger">Disabled</div>
-                                                        <%}%>
-                                            </td>
-                                            <td>
                                                 <a href="admin/product/edit/<%=data.id%>" type="button" class="btn btn-info">Update</a>
 
+                                                <!-- <a href="admin/product/delete/<%#=data.id%>" type="button" class="btn btn-danger" onclick='return confirm("Lưu Ý: Sau khi xóa dữ liệu liên quan cũng sẽ mất.\n           Có chắc muốn xóa dòng này?");'>
+                                                    Active
+                                                </a> -->
                                             </td>
                                         </tr>
                                         <%})%>

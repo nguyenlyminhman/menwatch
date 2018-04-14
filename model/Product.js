@@ -2,7 +2,7 @@ const queryDB = require('../utils/DatabaseConnection');
 
 class Product {
     //contructor of Product class.
-    constructor(id, idStyle, idBrand, name, price, quantity, description, image, details) {
+    constructor(id, idStyle, idBrand, name, price, quantity, description, image, details, status) {
         this.id = id;
         this.idStyle = idStyle;
         this.idBrand = idBrand;
@@ -12,16 +12,36 @@ class Product {
         this.description = description;
         this.image = image;
         this.details = details;
+        this.status = status;
     }
     //get product with it brand name, style name etc...Admin using this method.
     static getBrandStyleProduct() {
-        let sql = `SELECT d."id" as id, "idStyle", "idBrand", name, price, quantity,
+        let sql = `SELECT d."id" as id, "idStyle", "idBrand", name, price, quantity, status,
          description, image, details, b."brandname" as brandname, e."stylename" as stylename
             FROM public."Product" d, public."Brand" b, public."Style" e 
             WHERE b."id" = d."idBrand" AND e."id" = d."idStyle"
             ORDER BY d."id" DESC`;
         return queryDB(sql, [])
     }
+
+    static getBrandStyleActiveProduct() {
+        let sql = `SELECT d."id" as id, "idStyle", "idBrand", name, price, quantity,
+         description, image, details, b."brandname" as brandname, e."stylename" as stylename
+            FROM public."Product" d, public."Brand" b, public."Style" e 
+            WHERE b."id" = d."idBrand" AND e."id" = d."idStyle" AND d."status" = true
+            ORDER BY quantity ASC`;
+        return queryDB(sql, [])
+    }
+
+    static getBrandStyleDisableProduct() {
+        let sql = `SELECT d."id" as id, "idStyle", "idBrand", name, price, quantity,
+         description, image, details, b."brandname" as brandname, e."stylename" as stylename
+            FROM public."Product" d, public."Brand" b, public."Style" e 
+            WHERE b."id" = d."idBrand" AND e."id" = d."idStyle" AND d."status" = false
+            ORDER BY d."id" DESC`;
+        return queryDB(sql, [])
+    }
+
     //get all latest product. using for index page
     static getAllProduct() {
         let sql = 'select *  from public."Product" where status = true ORDER BY Id DESC LIMIT 20';
@@ -85,7 +105,7 @@ class Product {
         return queryDB(sql, [idStyle])
     }
     //using for sigle page to show product details
-    getProductDetailsById() {
+    getActiveProductDetailsById() {
         let sql = 'SELECT * FROM public."Product" where status = true AND id = $1'
         return queryDB(sql, [this.id])
             .then(result => result.rows);
@@ -93,6 +113,11 @@ class Product {
     //get product by its id. Using for add to cart
     getProductById() {
         let sql = 'SELECT * FROM public."Product" where status = true AND id = $1'
+        return queryDB(sql, [this.id]);
+    }
+    //get product by its id. Using for add to admin
+    getProductDetailsById() {
+        let sql = 'SELECT * FROM public."Product" where id = $1'
         return queryDB(sql, [this.id]);
     }
     //this method using for search function
@@ -108,8 +133,8 @@ class Product {
     //add new product to database.
     insertNewProduct() {
         let sql = `INSERT INTO public."Product"(
-           id, "idStyle", "idBrand", name, price, quantity, description, image, details)
-            VALUES (default, $1, $2, $3, $4, $5, $6, $7, $8)`;
+           id, "idStyle", "idBrand", name, price, quantity, description, image, details, status)
+            VALUES (default, $1, $2, $3, $4, $5, $6, $7, $8, true)`;
         return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.image, this.details]);
     }
     //using for admin delete a product
@@ -124,8 +149,8 @@ class Product {
     }
     //Using for Staff proccess customer order.
     updateProductInfo() {
-        let sql = 'UPDATE public."Product" SET  "idStyle"=$1, "idBrand"=$2, "name"=$3, "price"=$4, "quantity"=$5, "description"=$6, "details"=$7 WHERE "id"=$8;';
-        return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.details, this.id])
+        let sql = 'UPDATE public."Product" SET  "idStyle"=$1, "idBrand"=$2, "name"=$3, "price"=$4, "quantity"=$5, "description"=$6, "details"=$7, "status" =$8 WHERE "id"=$9;';
+        return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.details, this.status, this.id])
     }
      
 }

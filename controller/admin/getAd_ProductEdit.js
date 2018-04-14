@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
         let style = await Style.getAllStyle();
         let brand = await Brand.getAllBrand();
         let product = new Product(id);
-        product.getProductById().then(result => {
+        product.getProductDetailsById().then(result => {
             res.render('ad_productEdit', {
                 style,
                 brand,

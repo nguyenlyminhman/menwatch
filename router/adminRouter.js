@@ -34,11 +34,15 @@ router.post('/style/edit/:id', requireLogin, require('../controller/admin/postAd
 router.get('/style/delete/:id', requireLogin, require('../controller/admin/deleteAd_Style'));
 
 router.get('/product/view-all', requireLogin, require('../controller/admin/getAd_ProductViewAll'));
+router.get('/product/view-active', requireLogin, require('../controller/admin/getAd_ProductViewActive'));
+router.get('/product/view-disable', requireLogin, require('../controller/admin/getAd_ProductViewDisable'));
 router.get('/product/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductAddNew'));
 router.post('/product/add-new', requireLogin, require('../controller/admin/postAd_ProductAddNew'));
 router.get('/product/edit/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
-
 router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
+
+// router.get('/product/disable/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
+// router.post('/product/disable/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
 
 router.get('/product/delete/:id', requireLogin, require('../controller/admin/deleteAd_Product'));
 
