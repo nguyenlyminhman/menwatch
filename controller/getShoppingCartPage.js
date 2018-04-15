@@ -14,6 +14,7 @@ module.exports = async (req, res, next) => {
     // checking cart session. 
     // If it is null, render shopping_cart ejs page with empty cartItem
     if (!req.session.cart) {
+        res.setHeader("Content-Type", "text/html");
         return res.render('shopping_cart', {
             brand,
             style,
@@ -24,13 +25,14 @@ module.exports = async (req, res, next) => {
             message: req.flash('info'),
             messages: messages,
             hasErrors: messages.length > 0
-        })
+        });
+        res.end();
     } else { //If it is not null, render shopping_cart ejs page with cartItem.
         //init Cart model.
         var cart = new Cart(req.session.cart);
         try { //Using try...catche, if the error occur.
             res.setHeader("Content-Type", "text/html");
-            res.render('shopping_cart', { //render shopping_cart ejs page
+            return res.render('shopping_cart', { //render shopping_cart ejs page
                 message: req.flash('info'),
                 messages: messages,
                 hasErrors: messages.length > 0,
@@ -40,7 +42,7 @@ module.exports = async (req, res, next) => {
                 cartItem: cart.getItems(),
                 title: 'My shopping bag',
                 user: req.user
-            })
+            });
             res.end();
         } catch (err) { //catching and sending the error when it is occuring.
             res.send('getShoppingCartPage error : ' + err);

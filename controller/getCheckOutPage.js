@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
     //get all product
     let product = await Product.getAllProduct();
     try {//Using try...catche, if the error occur.
+        res.setHeader("Content-Type", "text/html");
         res.render('checkout', {
             csrfToken: req.csrfToken(),
             brand,
@@ -17,7 +18,8 @@ module.exports = async (req, res) => {
             product,
             user: req.user,
             title: 'Checkout'
-        })
+        });
+        res.end();
     } catch (err) {//catching and sending the error when it is occuring.
         res.send('getCheckOutPage err :' + err);
     }

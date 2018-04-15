@@ -63,7 +63,7 @@
 								<br>
 								<br>
 								<div class="account-right">
-									<a href="/">Continue to Shopping </a>
+									
 								</div>
 							</div>
 							<%}else{%>
@@ -108,12 +108,22 @@
 										<%}%>
 						</h2>
 						<br>
+
 						<div class="account-right">
+							<form action="/shopping-cart/confirm" method="POST">
 							<%if(!session.cart || session.cart.totalPrice == 0){%>
 								<a>CheckOut</a>
 								<%}else{%>
-									<a href="/shopping-cart/checkout">CheckOut</a>
+
+									<button type="submit">CheckOut</button>
+
 									<%}%>
+										</form>
+						</div>
+					</div>
+					<div class="ckeck-top heading">
+						<div class="account-right">
+							<a href="/">Continue to Shopping </a>
 						</div>
 					</div>
 				</div>

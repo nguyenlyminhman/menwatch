@@ -32,12 +32,18 @@
             "responsive": true,
             "aaSorting": [[0, "desc"]]
         });
+        //using responsive data table
+        $('#dataTablesProductViewAll').DataTable({
+            buttons: [
+                'pdf'
+            ]
+        })
         //using responsive data table for Order.
         $('#dataTablesOrder').DataTable({
             "responsive": true,
             "aaSorting": [[0, "desc"]]
         });
-        
+
         //using for staff
         $('#dataTablesOrderStaff').DataTable({
             "responsive": true,

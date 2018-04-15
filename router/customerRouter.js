@@ -75,6 +75,7 @@ router.get('/shopping-cart', returnOldUrl, require('../controller/getShoppingCar
 router.get('/addtocart/:id/:qty', require('../controller/postCart'));
 router.get('/remove/:id', require('../controller/removeCart'));
 
+router.post('/shopping-cart/confirm', requireLogin, require('../controller/postConfirm'));
 router.get('/shopping-cart/checkout', requireLogin, csurfProtection, require('../controller/getCheckOutPage'));
 router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
 

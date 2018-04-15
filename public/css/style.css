@@ -13,7 +13,12 @@ Add more two attribute
     margin:0px 68px;
 
 --*/
-
+#example2_wrapper {
+    display: none;  
+  }
+  #export-table_wrapper {
+    display: none;
+  }
 
 body{
 	background:#fff;
