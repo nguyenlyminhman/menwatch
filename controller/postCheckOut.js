@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
         //             res.redirect('/shopping-cart');
         //             res.end();
         //             return;
-        //         }else{
+        //         } else {
         //             res.setHeader("Content-Type", "text/html");
         //             res.redirect('/shopping-cart/checkout');
         //             res.end();
@@ -105,7 +105,7 @@ module.exports = async (req, res) => {
             //After finished, set session cart to null.
             req.session.cart = null;
             //redirect to home page
-            res.redirect('/');
+            res.redirect('/shopping-cart/checkout/thankpurchase');
         });
     }
 }

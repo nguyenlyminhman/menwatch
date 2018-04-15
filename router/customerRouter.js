@@ -78,7 +78,7 @@ router.get('/remove/:id', require('../controller/removeCart'));
 router.post('/shopping-cart/confirm', requireLogin, require('../controller/postConfirm'));
 router.get('/shopping-cart/checkout', requireLogin, csurfProtection, require('../controller/getCheckOutPage'));
 router.post('/shopping-cart/checkout', require('../controller/postCheckOut'));
-
+router.get('/shopping-cart/checkout/thankpurchase', csurfProtection, require('../controller/getThankPurchase'));
 router.post('/search/results', require('../controller/postSearch'));
 
 router.get('/logout', (req, res) => {

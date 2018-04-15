@@ -63,7 +63,7 @@
 								<br>
 								<br>
 								<div class="account-right">
-									
+
 								</div>
 							</div>
 							<%}else{%>
@@ -97,6 +97,11 @@
 									</ul>
 									<%})%>
 										<%}%>
+											<div class="ckeck-top heading">
+												<div class="account-right">
+													<a href="/">Continue to Shopping </a>
+												</div>
+											</div>
 					</div>
 
 					<div class="ckeck-top heading" style="float: right">
@@ -111,21 +116,17 @@
 
 						<div class="account-right">
 							<form action="/shopping-cart/confirm" method="POST">
-							<%if(!session.cart || session.cart.totalPrice == 0){%>
-								<a>CheckOut</a>
-								<%}else{%>
+								<%if(!session.cart || session.cart.totalPrice == 0){%>
+									<a>CheckOut</a>
+									<%}else{%>
 
-									<button type="submit">CheckOut</button>
+										<button type="submit">CheckOut</button>
 
-									<%}%>
-										</form>
+										<%}%>
+							</form>
 						</div>
 					</div>
-					<div class="ckeck-top heading">
-						<div class="account-right">
-							<a href="/">Continue to Shopping </a>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
