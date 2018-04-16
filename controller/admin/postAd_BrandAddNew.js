@@ -1,8 +1,9 @@
 const Brand = require('../../model/Brand');
+let { removeSpace } = require('../../utils/Tools');
 
 module.exports = async (req, res, next) => {
     let { brandname } = req.body;
-    let brand = new Brand(undefined, brandname);
+    let brand = new Brand(undefined, removeSpace(brandname));
     brand.checkExistBrand()
         .then(result => {
             if (result.rowCount) {

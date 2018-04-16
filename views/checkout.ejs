@@ -42,11 +42,11 @@
 				</div>
 				<div class="register-main">
 					<div class="col-md-6 account-left">
-						<input placeholder="Fullname" type="text" name="receiver" tabindex="1" required>
-						<input placeholder="Address" type="text" name="orderaddress" tabindex="2" required>
+						<input placeholder="Fullname" minlength="10" maxlength="100" type="text" name="receiver" tabindex="1" required>
+						<input placeholder="Address" minlength="10" maxlength="250"type="text" name="orderaddress" tabindex="2" required>
 					</div>
 					<div class="col-md-6 account-left">
-						<input placeholder="Phone" type="text" name="orderphone" tabindex="3" required>
+						<input placeholder="Phone" type="text" name="orderphone" tabindex="3" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' placeHolder="Phone" title="+xx(xx)xxxx-xxxx"  required />
 					</div>
 					<div class="clearfix"></div>
 				</div>

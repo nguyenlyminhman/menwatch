@@ -1,5 +1,6 @@
 let Product = require('../../model/Product');
 let { getManyFieldnameUpload } = require('../../utils/ImageUpload');
+let { removeSpace } = require('../../utils/Tools');
 
 let upload = getManyFieldnameUpload('image1', 'image2', 'image3');
 module.exports = (req, res, next) => {

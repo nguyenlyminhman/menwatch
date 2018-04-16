@@ -50,10 +50,10 @@
 				<div class="col-md-9 contact-right">
 					<form action="/contact" method="POST">
 						<input type="email" name="email" placeholder="Email" required>
-						<input type="text" name="fullname" placeholder="Fullname" required>
-						<input placeholder="Phone " type="text" name="phone" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}'
-						title="+xx(xx)xxxx-xxxx" required>
-						<textarea name="message" placeholder="Message" required=""></textarea>
+						<input type="text" minlength="10" maxlength="100" name="fullname" placeholder="Fullname" required>
+						<input placeholder="Phone " type="text" name="phone" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' title="+xx(xx)xxxx-xxxx"
+						 required/>
+						<textarea name="message" minlength="10" maxlength="1500" placeholder="Message" required=""></textarea>
 						<input type="hidden" name="_csrf" value="<%=csrfToken%>">
 						<div class="submit-btn">
 							<input type="submit" value="SUBMIT">
@@ -67,7 +67,8 @@
 	<!--contact-end-->
 	<!--map-start-->
 	<div class="map">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4178.813389673628!2d-0.01051082402494004!3d51.48133599663479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s24+Nelson+Rd%2C+Greenwich%2C+London+SE10+9JB%2C+UK!5e0!3m2!1sen!2s!4v1521044759330" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d4178.813389673628!2d-0.01051082402494004!3d51.48133599663479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s24+Nelson+Rd%2C+Greenwich%2C+London+SE10+9JB%2C+UK!5e0!3m2!1sen!2s!4v1521044759330"
+		 width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 	</div>
 	<!--map-end-->
 	<!--footer-->

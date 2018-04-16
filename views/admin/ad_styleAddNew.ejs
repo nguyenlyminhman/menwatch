@@ -26,7 +26,7 @@
                         <input type="hidden" name="_token" value="{{csrf_token()}}" />
                         <div class="form-group">
                             <label for="email">Style name:</label>
-                            <input type="text" class="form-control" name="stylename" placeHolder="Style name" required />
+                            <input type="text" minlength="4" maxlength="50" class="form-control" name="stylename" placeHolder="Style name" required />
                         </div>
                         <button type="submit" class="btn btn-default">Add</button>
                         <button type="reset" class="btn btn-default">Reset</button>

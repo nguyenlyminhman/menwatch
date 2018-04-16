@@ -64,19 +64,19 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Name</label>
-                            <input type="text" name="name" class="form-control" value="<%=product.name%>" required/>
+                            <input type="text" name="name" minlength="4" maxlength="50" class="form-control" value="<%=product.name%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Price</label>
-                            <input type="text" name="price" class="form-control" value="<%=product.price%>" required/>
+                            <input type="number" name="price" min="1" max="10000" class="form-control" value="<%=product.price%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Quantity</label>
-                            <input type="text" name="quantity" class="form-control" value="<%=product.quantity%>" required/>
+                            <input type="number" min="1" max="500" name="quantity" class="form-control" value="<%=product.quantity%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Description</label>
-                            <textarea name="description" class="form-control" rows="5" required><%=product.description%></textarea>
+                            <textarea name="description" minlength="25" maxlength="1500"class="form-control" rows="5" required><%=product.description%></textarea>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -92,19 +92,19 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Case Size</label>
-                            <input type="text" name="cs" class="form-control" value="<%=product.details[Object.keys(product.details)[0]]%>" required/>
+                            <input type="text" name="cs" minlength="2" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[0]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Movement Type</label>
-                            <input type="text" name="mt" class="form-control" value="<%=product.details[Object.keys(product.details)[1]]%>" required/>
+                            <input type="text" name="mt" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[1]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Water Resistant</label>
-                            <input type="text" name="wr" class="form-control" value="<%=product.details[Object.keys(product.details)[3]]%>" required/>
+                            <input type="text" name="wr" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[3]]%>" required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Strap Materialt</label>
-                            <input type="text" name="sm" class="form-control" value="<%=product.details[Object.keys(product.details)[2]]%>" required/>
+                            <input type="text" name="sm" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[2]]%>" required/>
                         </div>
                         <div class="clearfix"></div>
                     </div>

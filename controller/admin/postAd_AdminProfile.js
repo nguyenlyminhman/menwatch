@@ -1,11 +1,12 @@
 const Staff = require('../../model/Staff');
+let { removeSpace } = require('../../utils/Tools');
 
 module.exports = async (req, res, next) => {
     //get parameter from ad_staffinformation ejs page.
     let { firstname, lastname, address, phone } = req.body;
     let { id } = req.params;
     //init Staff model
-    let staff = new Staff(firstname, lastname, undefined, undefined, undefined, address, phone);
+    let staff = new Staff(removeSpace(firstname), removeSpace(lastname), undefined, undefined, undefined, removeSpace(address), phone);
     //using updateInformation to update new information.
     staff.updateInformation(id)
         .then(result => {

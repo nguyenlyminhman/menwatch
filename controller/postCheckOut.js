@@ -4,7 +4,8 @@ const OrderDetails = require('../model/OrderDetails');
 const Product = require('../model/Product');
 const Cart = require('../model/Cart');
 let { sendEmail } = require('../utils/Mailer');
-let { check } = require('../utils/Tools')
+let {removeSpace } = require('../utils/Tools');
+
 
 
 module.exports = async (req, res) => {
@@ -67,7 +68,7 @@ module.exports = async (req, res) => {
 
                 //init Customer model to contact with database.
                 var order = new Order(OrderNo, customer.rows[0].id, currentDate, undefined, cart.totalPrice,
-                    orderphone, orderaddress, charge.id, 'Pending', receiver);
+                    orderphone, removeSpace(orderaddress), charge.id, 'Pending', removeSpace(receiver));
                 //using addNewOrder() to insert order info into database
                 order.addNewOrder().then(rs => {
                     //loop throught cart product to get value of cart

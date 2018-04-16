@@ -1,4 +1,5 @@
 const Customer = require('../model/Customer');
+let {removeSpace } = require('../utils/Tools');
 
 module.exports = async (req, res, next) => {
     // get address, phone value from shipping address form.
@@ -6,7 +7,7 @@ module.exports = async (req, res, next) => {
     //get customer email address after authenticated with passportjs
     let email = req.user.email;
     //init Customer model
-    let customer = new Customer(undefined, undefined, email, undefined, address, phone);
+    let customer = new Customer(undefined, undefined, email, undefined, removeSpace(address), phone);
     //Using updateCustomerShippingAddress() to save new information.
     customer.updateCustomerShippingAddress()
         .then(result => {

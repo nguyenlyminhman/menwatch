@@ -1,5 +1,7 @@
 const Staff = require('../../model/Staff');
 let { sendEmail } = require('../../utils/Mailer');
+let { removeSpace } = require('../../utils/Tools');
+
 
 
 module.exports = async (req, res, next) => {
@@ -30,7 +32,7 @@ module.exports = async (req, res, next) => {
                             <h4>Have nice day !</h4>
                             <h4><strong>Luxury Watch - FPT</strong></h4>
                         `;
-                let _staff = new Staff(firstname, lastname, email, password, role, address, phone);
+                let _staff = new Staff(removeSpace(firstname), removeSpace(lastname), email, password, role, removeSpace(address), phone);
                 _staff.signupStaff().then(
                     sendEmail(email, content).then(
                         req.flash('info', 'The new user has been added.'),

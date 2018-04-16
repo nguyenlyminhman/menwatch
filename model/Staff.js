@@ -52,7 +52,7 @@ class Staff {
     //update staff information.
     updateInformation(idStaff) {
         const sql = 'UPDATE public."Staff" SET firstname=$1, lastname=$2, address=$3, phone=$4 where id=$5';
-        return queryDB(sql, [this.firstname, this.lastname, this.phone, this.address, idStaff])
+        return queryDB(sql, [this.firstname, this.lastname,  this.address, this.phone, idStaff])
     }
 }
 

@@ -1,8 +1,9 @@
 const Style = require('../../model/Style');
+let { removeSpace } = require('../../utils/Tools');
 
 module.exports = async (req, res, next) => {
     let { stylename } = req.body;
-    let style = new Style(undefined, stylename);
+    let style = new Style(undefined, removeSpace(stylename));
     style.checkExistStyle()
         .then(result => {
             if (result.rowCount) {
@@ -11,8 +12,8 @@ module.exports = async (req, res, next) => {
             } else {
                 style.addNewStyle()
                     .then(
-                    req.flash('info', stylename + ' was successfully added.'),
-                    res.redirect('/admin/style/add-new')
+                        req.flash('info', stylename + ' was successfully added.'),
+                        res.redirect('/admin/style/add-new')
                     )
             }
         })
