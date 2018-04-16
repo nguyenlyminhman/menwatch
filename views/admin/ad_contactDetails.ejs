@@ -26,7 +26,7 @@ function formatDate(date) {
 
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="email">Contact No.:</label>
+                                <label for="email">Contact No.</label>
                                 <p class="form-control">
                                     <%=data.id%>
                                 </p>
@@ -38,16 +38,28 @@ function formatDate(date) {
                                 </p>
                             </div>
                             <div class="form-group">
-                                <label for="email">Emal</label>
+                                <label for="email">Email</label>
                                 <p class="form-control">
                                     <%=data.email%>
-
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label for="email">Phone:</label>
                                 <p class="form-control">
                                     <%=data.phone%>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Send date</label>
+                                <p class="form-control">
+                                    <%=formatDate(data.contact_date)%>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Message</label>
+                                <p class="form-control" style="height: 178px">
+                                    <%=data.message%>
                                 </p>
                             </div>
 
@@ -64,18 +76,22 @@ function formatDate(date) {
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label for="email">Send date</label>
-                                <p class="form-control">
-                                    <%=formatDate(data.contact_date)%>
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Message</label>
-                                <p class="form-control" style="height: 178px">
-                                    <%=data.message%>
-                                </p>
-                            </div>
+                            <form action="admin" method="POST">
+                                <div class="form-group">
+                                    <label for="email">To:</label>
+                                    <input type="email" name="email" class="form-control" value="<%=data.email%>" id="email" required>
+                                </div>
+                                <%})%>
+                                    <div class="form-group">
+                                        <label for="comment">Content:</label>
+                                        <textarea class="form-control" rows="15" name="content" id="content" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                            <button type="submit" value="" class="btn btn-default">Send</button>
+                                            <button type="reset" class="btn btn-default">Clear</button>
+                                            <button type="submit" class="btn btn-default">Mask as Read</button>
+                                        </div>
+                            </form>
                             <div class="clearfix"></div>
                         </div>
                         <!-- /.panel-body -->
@@ -83,55 +99,6 @@ function formatDate(date) {
                     </div>
                     <!-- /.panel -->
                 </div>
-                <%})%>
-        </div>
-        <!-- <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center">
-                        <h3>Order List </h3>
-                    </div>
-                    <!-- /.panel-heading 
-                    <div class="panel-body">
-                        <div class="account-main">
-                            <div class="col-md-12 account-left">
-                                <div class="col-md-2 account-left">
-                                    <h3>OrderCode</h3>
-                                </div>
-                                <div class="col-md-3 account-right account-left">
-                                    <h3>OrderDate</h3>
-                                </div>
-                                <div class="col-md-3 account-right account-left">
-                                    <h3>Amount</h3>
-                                </div>
-                                <div class="col-md-3 account-right account-left">
-                                    <h3>Status</h3>
-                                </div>
-                                <div class="col-md-1 account-right account-left">
-                                    <h3></h3>
-                                </div>
-                            </div>
-                            <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
 
-                            <div class="col-md-12">
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-2">
-                                    <img src="images/tracking.png" />
-                                </div>
-                            </div>
-                            <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
-                        </div>
-                    </div>
-                    <!-- /.panel-body 
-                </div>
-                <!-- /.panel 
-            </div>
-        </div> -->
+        </div>
         <% include ad_footer%>

@@ -1,4 +1,6 @@
 const express = require('express');
+const router = express.Router();
+
 const favicon = require('serve-favicon')
 const passport = require('passport');
 const parser = require('body-parser').urlencoded({ extended: true });
@@ -38,5 +40,6 @@ app.use(flash());
 app.use('/', customer);
 app.use('/api/', api);
 app.use('/admin/', admin);
+// router.use(require('./controller/getErrorPage'));
 
 app.listen(process.env.PORT || 3000, () => console.log('Server is running at port 3000.'));

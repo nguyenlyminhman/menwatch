@@ -52,6 +52,8 @@ router.get('/customer/popular', requireLogin, require('../controller/admin/getAd
 router.get('/customer/view-details/:id', requireLogin, require('../controller/admin/getAd_CustomerDetails'));
 
 router.get('/order/view-all', requireLogin, require('../controller/admin/getAd_OrderViewAll'));
+router.get('/order/view-pending', requireLogin, require('../controller/admin/getAd_OrderViewPending'));
+router.get('/order/view-finish', requireLogin, require('../controller/admin/getAd_OrderViewFinish'));
 router.get('/order/view-details/:id', requireLogin, require('../controller/admin/getAd_OrderDetails'));
 
 router.get('/contact/view-all', requireLogin, require('../controller/admin/getAd_ContactViewAll'));

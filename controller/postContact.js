@@ -1,4 +1,6 @@
 const Contact = require('../model/Contact');
+let {removeSpace } = require('../utils/Tools');
+
 
 module.exports = async (req, res) => {
     //get current date.
@@ -6,7 +8,7 @@ module.exports = async (req, res) => {
     //get all value from contact form.
     let { email, fullname, phone, message } = req.body;
     //init Contact model.
-    let contact = new Contact(undefined, email, fullname, phone, message, "Pending", currentdate);
+    let contact = new Contact(undefined, email, removeSpace(fullname), phone, removeSpace(message), "Pending", currentdate);
     //Using addNewContact() method to save.
     contact.addNewContact().then(result => {
         //result.rowCount > 0, that's mean, the contact content was sent.

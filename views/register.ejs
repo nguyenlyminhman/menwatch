@@ -40,9 +40,10 @@
 					<div class="col-md-6 account-left">
 						<input placeholder="First name" type="text" name="firstname" tabindex="4" required> (*)
 						<input placeholder="Last name" type="text" name="lastname" tabindex="5" required>(*)
-						<input placeholder="Address" type="text" name="address" tabindex="6" required>(*)
-						<input placeholder="Phone" type="text" name="phone" tabindex="7" required>(*)
-						<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+						<input placeholder="Address" type="text" name="address" tabindex="6"  required>(*)
+						<input placeholder="Phone " type="text" name="phone" tabindex="7" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}'
+						title="+xx(xx)xxxx-xxxx" required>(*)
+						<!-- <input type="hidden" name="_csrf" value="<%=csrfToken%>"> -->
 					</div>
 					<div class="clearfix"></div>
 				</div>

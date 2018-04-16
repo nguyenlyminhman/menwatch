@@ -35,14 +35,14 @@ module.exports = async (req, res) => {
         //             res.redirect('/shopping-cart');
         //             res.end();
         //             return;
-        //         } else {
-        //             res.setHeader("Content-Type", "text/html");
-        //             res.redirect('/shopping-cart/checkout');
-        //             res.end();
-        //         }
+        //         } 
+        //         // else {
+        //         //     res.setHeader("Content-Type", "text/html");
+        //         //     res.redirect('/shopping-cart/checkout');
+        //         //     res.end();
+        //         // }
         //     });
         // });
-
         //using stripe key.
         var stripe = require("stripe")("sk_test_WS82X0y5C4q3y6X3eCTlCuRo");
         var d = new Date();
