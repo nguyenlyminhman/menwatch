@@ -89,7 +89,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/admin/login');
 });
 
-router.use(require('../controller/getErrorPage'));
+router.use(require('../controller/admin/getAdErrorPage'));
 
 module.exports = router;
 

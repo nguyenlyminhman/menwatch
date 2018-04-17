@@ -88,7 +88,7 @@ router.get('/logout', (req, res) => {
 
 // router.get('/admin/login', require('../controller/admin/agetLoginPage'));
 
-// router.use(require('../controller/getErrorPage'));
+router.use(require('../controller/getErrorPage'));
 
 
 

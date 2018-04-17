@@ -37,9 +37,10 @@ app.use((req, res, next) => {
 });
 app.use(flash());
 
+app.use('/admin/', admin);
 app.use('/', customer);
 app.use('/api/', api);
-app.use('/admin/', admin);
-// router.use(require('./controller/getErrorPage'));
+
+router.use(require('./controller/getErrorPage'));
 
 app.listen(process.env.PORT || 3000, () => console.log('Server is running at port 3000.'));
