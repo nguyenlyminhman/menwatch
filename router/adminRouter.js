@@ -21,7 +21,7 @@ router.get('/home', requireLogin, require('../controller/admin/getAdHomePage'));
 
 router.get('/brand/view-all', requireLogin, require('../controller/admin/getAd_BrandViewAll'));
 router.get('/brand/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_BrandAddNew'));
-router.post('/brand/add-new', require('../controller/admin/postAd_BrandAddNew'));
+router.post('/brand/add-new', requireLogin, require('../controller/admin/postAd_BrandAddNew'));
 router.get('/brand/edit/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_BrandEdit'));
 router.post('/brand/edit/:id', requireLogin, require('../controller/admin/postAd_BrandEdit'));
 router.get('/brand/delete/:id', requireLogin, require('../controller/admin/deleteAd_Brand'));
@@ -38,7 +38,7 @@ router.get('/product/view-active', requireLogin, require('../controller/admin/ge
 router.get('/product/view-disable', requireLogin, require('../controller/admin/getAd_ProductViewDisable'));
 router.get('/product/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductAddNew'));
 router.post('/product/add-new', requireLogin, require('../controller/admin/postAd_ProductAddNew'));
-router.get('/product/edit/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
+router.get('/product/edit/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
 
 // router.get('/product/disable/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
@@ -67,7 +67,7 @@ router.post('/staff/add-new', requireLogin, require('../controller/admin/postAd_
 router.get('/staff/process-order/view-all', requireLogin, require('../controller/admin/getStaff_ProcessingOrderViewAll'));
 router.get('/staff/handling-order/view-all', requireLogin, require('../controller/admin/getStaff_OrderViewAll'));
 router.get('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_OrderDetails'));
-router.post('/staff/handling-order/view-details/:id', require('../controller/admin/postStaff_OrderDetails'));
+router.post('/staff/handling-order/view-details/:id', requireLogin,require('../controller/admin/postStaff_OrderDetails'));
 router.post('/staff/handling-order/update/:id', requireLogin, require('../controller/admin/postStaff_UpdateOrder'));
 router.get('/staff/finish-order/view-all', requireLogin, require('../controller/admin/getStaff_FinishOrderViewAll'));
 router.get('/staff/finish-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_FinishOrderDetails'));
@@ -76,15 +76,15 @@ router.get('/change-password-staff/:id', requireLogin, csurfProtection, require(
 router.post('/change-password-staff/:id', requireLogin, require('../controller/admin/postAd_StaffPassword'));
 
 router.get('/profile-staff/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffProfile'));
-router.post('/profile-staff/:id', require('../controller/admin/postAd_StaffProfile'));
+router.post('/profile-staff/:id', requireLogin,require('../controller/admin/postAd_StaffProfile'));
 
 router.get('/change-password-admin/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_AdminPassword'));
-router.post('/change-password-admin/:id', require('../controller/admin/postAd_AdminPassword'));
+router.post('/change-password-admin/:id', requireLogin, require('../controller/admin/postAd_AdminPassword'));
 
 router.get('/profile-admin/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_AdminProfile'));
-router.post('/profile-admin/:id', require('../controller/admin/postAd_AdminProfile'));
+router.post('/profile-admin/:id', requireLogin, require('../controller/admin/postAd_AdminProfile'));
 
-router.get('/access-denied', require('../controller/admin/getAd_AccessDenied'))
+router.get('/access-denied', requireLogin, require('../controller/admin/getAd_AccessDenied'))
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/admin/login');

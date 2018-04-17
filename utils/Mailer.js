@@ -3,16 +3,16 @@ const nodemailer = require('nodemailer');
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-      user: 'mannlmgt60850@fpt.edu.vn',
+      user: 'menwatch001@gmail.com',
       pass: 'Yokk@ichi8'
   }
 });
 
 let sendEmail = async (to_email,msg) => {
   let mailOptions = {
-      from: '"Luxury Watch - Please do not reply" <mannlmgt60850@fpt.edu.vn>',
+      from: '"MenWatches - Please do not reply" <menwatch001@gmail.com>',
       to: `${to_email}`,
-      subject: 'Email from Luxury Watch',
+      subject: 'Email from MenWatches',
       text: 'Mail Auto',
       html: `${msg}`
   };

@@ -52,10 +52,10 @@ router.get('/reset-password', csurfProtection, require('../controller/getResetPa
 router.post('/reset-password', require('../controller/postResetPassword'))
 
 router.get('/profile/information', requireLogin, require('../controller/getCustomerInfoPage'));
-router.post('/profile/information', require('../controller/postCustomerInfoPage'));
+router.post('/profile/information',requireLogin, require('../controller/postCustomerInfoPage'));
 
 router.get('/profile/shipping-address', requireLogin, require('../controller/getCustomerShippingAddress'));
-router.post('/profile/shipping-address', require('../controller/postCustomerShippingAddress'));
+router.post('/profile/shipping-address', requireLogin, require('../controller/postCustomerShippingAddress'));
 
 router.get('/tracking-order/:id', requireLogin, require('../controller/getTrackingOrder'));
 
@@ -89,9 +89,6 @@ router.get('/logout', (req, res) => {
 // router.get('/admin/login', require('../controller/admin/agetLoginPage'));
 
 router.use(require('../controller/getErrorPage'));
-
-
-
 
 module.exports = router;
 function returnOldUrl(req, res, next) {
