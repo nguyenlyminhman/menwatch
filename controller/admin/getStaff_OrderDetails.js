@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
                                             idOrder: id,
                                             status: odetails.rows[0].status,
                                             orderDate: odetails.rows[0].orderdate,
+                                            aaa: odetails.rows[0].receivedate,
                                             total: odetails.rows[0].total,
                                             receiver: odetails.rows[0].receiver,
                                             orderaddress: odetails.rows[0].orderaddress,

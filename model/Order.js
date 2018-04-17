@@ -63,7 +63,7 @@ class Order {
     }
     //get all order with Finish status. Staff using this method
     static getFinishOrder(idStaff) {
-        const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
+        const sql = `SELECT b."id" as id, b.orderdate, b.receivedate, b.receiver, b.no, b.total, a.fistname, a.lastname, a.email, b.status 
         FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
         WHERE a."id" = b."idCustomer"
         AND b."id" = c."idOrder"
@@ -100,8 +100,8 @@ class Order {
     }
     //update order receiver information. staff using.
     updateReceiverInfo() {
-        const sql = `UPDATE public."Order" SET orderphone=$1, orderaddress=$2, receiver=$3 where id=$4`;
-        return queryDB(sql, [this.orderphone, this.orderaddress, this.receiver, this.id]);
+        const sql = `UPDATE public."Order" SET orderphone=$1, orderaddress=$2, receiver=$3, receivedate=$4 where id=$5`;
+        return queryDB(sql, [this.orderphone, this.orderaddress, this.receiver, this.receivedate, this.id]);
     }
 }
 

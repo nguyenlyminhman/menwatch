@@ -28,6 +28,10 @@
 <script>
     $(document).ready(function () {
         //using responsive data table
+        $('#dataTablesOrderStaffFn').DataTable({
+            "responsive": true,
+            "aaSorting": [[0, "desc"]]
+        })
         $('#dataTables-example').DataTable({
             "responsive": true,
             "aaSorting": [[0, "desc"]]
