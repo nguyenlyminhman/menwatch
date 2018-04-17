@@ -58,6 +58,7 @@ router.get('/order/view-details/:id', requireLogin, require('../controller/admin
 
 router.get('/contact/view-all', requireLogin, require('../controller/admin/getAd_ContactViewAll'));
 router.get('/contact/view-details/:id', requireLogin, require('../controller/admin/getAd_ContactDetails'));
+router.post('/contact/view-details/:id', requireLogin, require('../controller/admin/postAd_ContactReply'));
 
 router.get('/staff/view-all', requireLogin, require('../controller/admin/getAd_StaffViewAll'));
 router.get('/staff/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffAddNew'));

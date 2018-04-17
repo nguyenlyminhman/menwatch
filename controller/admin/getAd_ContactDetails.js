@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
         let contact = new Contact(id);
         contact.getContactById().then(result => {
             res.render('ad_contactDetails', {
+                message: req.flash('info'),
                 user: req.user,
                 contact: result.rows,
                 title: 'Contact',

@@ -29,6 +29,11 @@ class Contact {
         const sql = 'SELECT * FROM public."Contact" where id=$1;'
         return queryDB(sql, [this.id]);
     }
+    //this method using for get contact by id.
+    updateContactStatus() {
+        const sql = `Update public."Contact" set "status" = 'Finish' where id=$1;`
+        return queryDB(sql, [this.id]);
+    }
     //this method using for delete contact by id.
     deleteContact() {
         const sql = 'DELETE FROM public."Contact" where id=$1;'
