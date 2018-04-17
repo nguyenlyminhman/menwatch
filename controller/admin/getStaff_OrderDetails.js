@@ -26,8 +26,8 @@ module.exports = async (req, res) => {
                                             product: odetails.rows,
                                             idOrder: id,
                                             status: odetails.rows[0].status,
-                                            orderDate: odetails.rows[0].orderdate,
-                                            aaa: odetails.rows[0].receivedate,
+                                            orderDate: odetails.rows[0].receivedate,
+                                            receiveDate: odetails.rows[0].receivedate,
                                             total: odetails.rows[0].total,
                                             receiver: odetails.rows[0].receiver,
                                             orderaddress: odetails.rows[0].orderaddress,
@@ -36,6 +36,7 @@ module.exports = async (req, res) => {
                                             lastname: odetails.rows[0].lastname,
                                             address: odetails.rows[0].address,
                                             phone: odetails.rows[0].phone,
+                                            
                                             title: 'Order details',
                                             breadcrumb: 'Order No. ' + id
                                         });
@@ -57,6 +58,7 @@ module.exports = async (req, res) => {
                             idOrder: id,
                             status: odetails.rows[0].status,
                             orderDate: odetails.rows[0].orderdate,
+                            receiveDate: odetails.rows[0].receivedate,
                             total: odetails.rows[0].total,
                             receiver: odetails.rows[0].receiver,
                             orderaddress: odetails.rows[0].orderaddress,

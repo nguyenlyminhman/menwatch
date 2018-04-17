@@ -51,7 +51,7 @@ class Order {
     }
     //get all order with Proccessing status. Staff using this method
     static getProccessingOrder(idStaff) {
-        const sql = `SELECT b."id" as id, b.orderdate, b.total, a.fistname, a.lastname, a.email, b.status 
+        const sql = `SELECT b."id" as id, b.no, b.orderdate, b.total, a.fistname, a.lastname, b.orderphone, b.status 
         FROM public."Customer" a, public."Order" b, public."StaffOrder" c, public."Staff" d 
         WHERE a."id" = b."idCustomer"
         AND b."id" = c."idOrder"

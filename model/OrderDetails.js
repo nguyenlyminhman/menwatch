@@ -43,7 +43,7 @@ module.exports = OrderDetails;
 
 // let ot = new OrderDetails(undefined,'201841412149669');
 // ot.getOrderDetailsByOrderId().then(rs=>{
-//     console.log(rs.rows[0].receivedate)
+//     console.log(rs.rows[0])
 // })
 // ot.checkExistProduct().then(rs => {
 //     console.log(rs.rowCount)

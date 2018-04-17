@@ -34,12 +34,15 @@ router.post('/style/edit/:id', requireLogin, require('../controller/admin/postAd
 router.get('/style/delete/:id', requireLogin, require('../controller/admin/deleteAd_Style'));
 
 router.get('/product/view-all', requireLogin, require('../controller/admin/getAd_ProductViewAll'));
+router.post('/product/view-all', require('../controller/admin/printReportProduct'));
 router.get('/product/view-active', requireLogin, require('../controller/admin/getAd_ProductViewActive'));
 router.get('/product/view-disable', requireLogin, require('../controller/admin/getAd_ProductViewDisable'));
 router.get('/product/add-new', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductAddNew'));
 router.post('/product/add-new', requireLogin, require('../controller/admin/postAd_ProductAddNew'));
 router.get('/product/edit/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
+router.get('/product/report', requireLogin, require('../controller/admin/getAd_ProductReport'));
+router.post('/product/report', requireLogin, require('../controller/admin/postAd_ProductReport'));
 
 // router.get('/product/disable/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 // router.post('/product/disable/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
@@ -55,6 +58,7 @@ router.get('/order/view-all', requireLogin, require('../controller/admin/getAd_O
 router.get('/order/view-pending', requireLogin, require('../controller/admin/getAd_OrderViewPending'));
 router.get('/order/view-finish', requireLogin, require('../controller/admin/getAd_OrderViewFinish'));
 router.get('/order/view-details/:id', requireLogin, require('../controller/admin/getAd_OrderDetails'));
+
 
 router.get('/contact/view-all', requireLogin, require('../controller/admin/getAd_ContactViewAll'));
 router.get('/contact/view-details/:id', requireLogin, require('../controller/admin/getAd_ContactDetails'));
