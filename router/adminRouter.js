@@ -67,6 +67,12 @@ router.post('/staff/add-new', requireLogin, require('../controller/admin/postAd_
 router.get('/staff/process-order/view-all', requireLogin, require('../controller/admin/getStaff_ProcessingOrderViewAll'));
 router.get('/staff/handling-order/view-all', requireLogin, require('../controller/admin/getStaff_OrderViewAll'));
 router.get('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_OrderDetails'));
+
+
+router.get('/staff/handling-order/view-details/print/:id', requireLogin, require('../controller/admin/print_OrderDetails'));
+
+
+
 router.post('/staff/handling-order/view-details/:id', requireLogin,require('../controller/admin/postStaff_OrderDetails'));
 router.post('/staff/handling-order/update/:id', requireLogin, require('../controller/admin/postStaff_UpdateOrder'));
 router.get('/staff/finish-order/view-all', requireLogin, require('../controller/admin/getStaff_FinishOrderViewAll'));
