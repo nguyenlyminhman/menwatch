@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-lg-12">
             <!--add new menu item-->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <%if (message.length > 0 ){%>
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success">
                         <h4>
                             <%= message%>
                         </h4>
@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form action="/admin/product/edit/<%= product.id %>" method="POST">
+            <form action="/admin/product/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
                 <!--add new menu item-->
                 <div id="addMenu" class="col-lg-6">
                     <!-- begin_style_brand -->
@@ -76,11 +76,35 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Description</label>
-                            <textarea name="description" minlength="25" maxlength="1500"class="form-control" rows="5" required><%=product.description%></textarea>
+                            <textarea name="description" minlength="25" maxlength="1500" class="form-control" rows="5" required><%=product.description%></textarea>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <!--end_name_price_quantity -->
+                    <!-- Status -->
+                    <div class="panel panel-primary">
+                            <div class="panel-heading text-center">
+                                Status
+                            </div>
+                            <fieldset class="form-group">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="status" id="optionsRadios1" value="true" <%if(product.status==true){%>
+                                        <%='checked'%>
+                                            <%}%> > Active
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="status" id="optionsRadios2" value="false" <%if(product.status==false){%>
+                                        <%='checked'%>
+                                            <%}%> > Disable
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- end-status -->
 
                 </div>
                 <!--end add new menu item-->
@@ -92,19 +116,23 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Case Size</label>
-                            <input type="text" name="cs" minlength="2" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[0]]%>" required/>
+                            <input type="text" name="cs" minlength="2" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[0]]%>"
+                                required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Movement Type</label>
-                            <input type="text" name="mt" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[1]]%>" required/>
+                            <input type="text" name="mt" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[1]]%>"
+                                required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Water Resistant</label>
-                            <input type="text" name="wr" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[3]]%>" required/>
+                            <input type="text" name="wr" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[3]]%>"
+                                required/>
                         </div>
                         <div class="form-group">
                             <label for="email">Strap Materialt</label>
-                            <input type="text" name="sm" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[2]]%>" required/>
+                            <input type="text" name="sm" minlength="4" maxlength="50" class="form-control" value="<%=product.details[Object.keys(product.details)[2]]%>"
+                                required/>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -121,6 +149,7 @@
                                         <label for="email">Image 1</label>
                                         <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[0]]%>"
                                             alt="" />
+                                        <input type="hidden" name="hdimg01" value="<%= product.image[Object.keys(product.image)[0]]%>" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -128,6 +157,7 @@
                                         <label for="email">Image 2</label>
                                         <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[1]]%>"
                                             alt="" />
+                                        <input type="hidden" name="hdimg02" value="<%= product.image[Object.keys(product.image)[1]]%>" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -135,43 +165,28 @@
                                         <label for="email">Image 3</label>
                                         <img class="img-responsive zoom-img" style="width: 100%; height: 100%" src="images/<%= product.image[Object.keys(product.image)[2]]%>"
                                             alt="" />
+                                        <input type="hidden" name="hdimg03" value="<%= product.image[Object.keys(product.image)[2]]%>" />
+
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <a href="admin/product/edit/image/<%=product.id%>" type="button" class="btn btn-warning">Change Image</a>
+                                        <label for="email">Image 1</label>
+                                        <input type="file" name="image1" id="image1" class="form-control" />
+                                        <label for="email">Image 2</label>
+                                        <input type="file" name="image2" id="image2" class="form-control" />
+                                        <label for="email">Image 3</label>
+                                        <input type="file" name="image3" id="image3" class="form-control" />
                                 </div>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <!-- end-image -->
-                    <!-- image -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading text-center">
-                            Status
-                        </div>
-                        <fieldset class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="optionsRadios1" value="true" <%if(product.status==true){%>
-                                    <%='checked'%>
-                                        <%}%> > Active
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="optionsRadios2" value="false" <%if(product.status==false){%>
-                                    <%='checked'%>
-                                        <%}%> > Disable
-                                </label>
-                            </div>
-                        </fieldset>
-                        <div class="clearfix"></div>
-                    </div>
-                    <!-- end-image -->
+                    
                     <!--action-button-->
                     <div>
                         <div class="form-group">

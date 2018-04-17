@@ -149,10 +149,9 @@ class Product {
     }
     //Using for Staff proccess customer order.
     updateProductInfo() {
-        let sql = 'UPDATE public."Product" SET  "idStyle"=$1, "idBrand"=$2, "name"=$3, "price"=$4, "quantity"=$5, "description"=$6, "details"=$7, "status" =$8 WHERE "id"=$9;';
-        return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.details, this.status, this.id])
+        let sql = 'UPDATE public."Product" SET  "idStyle"=$1, "idBrand"=$2, "name"=$3, "price"=$4, "quantity"=$5, "description"=$6, "details"=$7, "image"=$8, "status"=$9 WHERE "id"=$10;';
+        return queryDB(sql, [this.idStyle, this.idBrand, this.name, this.price, this.quantity, this.description, this.details, this.image, this.status, this.id])
     }
-     
 }
 
 module.exports = Product;
