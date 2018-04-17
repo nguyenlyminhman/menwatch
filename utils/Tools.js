@@ -1,4 +1,17 @@
-function removeSpace(str){
+// var pdf = require('pdfkit');
+// var fs = require('fs');
+
+// var myDoc = new pdf();
+
+// myDoc.pipe(fs.createWriteStream('demo.pdf'));
+// myDoc.font('Times-Roman')
+//   .fontSize(24)
+//   .text(`This is an example.\n <h1>Welll</h1>`)
+//   .save()
+// myDoc.end();
+
+
+function removeSpace(str) {
   // xóa dấu
   // str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
   // str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
@@ -20,6 +33,9 @@ function removeSpace(str){
   return str.trim();
 }
 
-module.exports = {removeSpace}
-let a = '      ad a    asd  ƯEEvv      '
-console.log(removeSpace(a));
+function generatePDF() {
+
+}
+
+
+module.exports = { removeSpace }

@@ -17,6 +17,7 @@ module.exports = (req, res, next) => {
         let img1 = req.files['image1'] ? req.files['image1'][0].filename : hdimg01;
         let img2 = req.files['image2'] ? req.files['image2'][0].filename : hdimg02;
         let img3 = req.files['image3'] ? req.files['image3'][0].filename : hdimg03;
+
         let image = '{"img3":"' + img3 + '","img2":"' + img2 + '","img1":"' + img1 + '"}';
 
         let details = '{"cs":"' + removeSpace(cs) + '","mt":"' + removeSpace(mt) + '","wr":"' + removeSpace(wr) + '","sm":"' + removeSpace(sm) + '"}';

@@ -1,7 +1,7 @@
 const Order = require('../../model/Order');
 
 module.exports = async (req, res, next) => {
-    let order = await Order.getFinishOrder();
+    let order = await Order.getFinishOrderAd();
     //Check user role. If user is not admin role, redirect to access denied page.
     if (req.user.role !== 'Admin') {
         res.redirect('/admin/access-denied');

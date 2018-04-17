@@ -35,7 +35,7 @@ class Order {
         return queryDB(sql, [])
     }
     //get all order. Admin using this method.
-    static getFinishOrder() {
+    static getFinishOrderAd() {
         const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status 
         FROM public."Order" a, public."Customer" b 
         WHERE b."id" = a."idCustomer" AND a.status = 'Finish'`;

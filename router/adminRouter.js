@@ -68,12 +68,11 @@ router.get('/staff/handling-order/view-all', requireLogin, require('../controlle
 router.get('/staff/handling-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_OrderDetails'));
 router.post('/staff/handling-order/view-details/:id', require('../controller/admin/postStaff_OrderDetails'));
 router.post('/staff/handling-order/update/:id', requireLogin, require('../controller/admin/postStaff_UpdateOrder'));
-
 router.get('/staff/finish-order/view-all', requireLogin, require('../controller/admin/getStaff_FinishOrderViewAll'));
 router.get('/staff/finish-order/view-details/:id', requireLogin, require('../controller/admin/getStaff_FinishOrderDetails'));
 
 router.get('/change-password-staff/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffPassword'));
-router.post('/change-password-staff/:id', require('../controller/admin/postAd_StaffPassword'));
+router.post('/change-password-staff/:id', requireLogin, require('../controller/admin/postAd_StaffPassword'));
 
 router.get('/profile-staff/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_StaffProfile'));
 router.post('/profile-staff/:id', require('../controller/admin/postAd_StaffProfile'));
