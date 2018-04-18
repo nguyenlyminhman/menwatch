@@ -38,30 +38,30 @@ module.exports = async (req, res, next) => {
 
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('No. ' +i++ + '------------------------------------------', { align: "left" });
+                .text('No. ' + i++ + '------------------------------------------', { align: "left" });
 
-                doc.font('Times-Roman', 18)
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Product ID: '+ data.id);
-                doc.font('Times-Roman', 18)
+                .text('Product ID: ' + data.id);
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Product: '+ data.name);
+                .text('Product: ' + data.name);
 
-                doc.font('Times-Roman', 18)
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Brand: '+ data.brandname);
-                doc.font('Times-Roman', 18)
+                .text('Brand: ' + data.brandname);
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Style: '+ data.stylename);
-                doc.font('Times-Roman', 18)
+                .text('Style: ' + data.stylename);
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Price: '+ data.price);
-                doc.font('Times-Roman', 18)
+                .text('Price: ' + data.price);
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( 'Sold quantity: '+ data.sumquantity);
-                doc.font('Times-Roman', 18)
+                .text('Sold quantity: ' + data.sumquantity);
+            doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text( ' ');
+                .text(' ');
 
         })
     })

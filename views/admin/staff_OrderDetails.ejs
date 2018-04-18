@@ -139,19 +139,18 @@
                     <div class="col-lg-6">
                     </div>
                     <div class="col-lg-6">
-                        <div class="form-group">
+                        <div class="form-group text-center">
 
                             <form action="/admin/staff/handling-order/view-details/<%=idOrder%>" method="POST">
                                 <input type="hidden" name="idOrder" value="<%=idOrder%>" />
                                 <input type="submit" class="btn btn-success" value="Confirm">
+                                <a class="btn btn-info" href="/admin/staff/handling-order/view-details/print/<%=idOrder%>">Export to PDF </a>
                             </form>
                             <br/>
-                            <a href="/admin//staff/handling-order/view-details/print/<%=idOrder%>">
-                                Print </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="clearfix"></div>
                 <br/>
                 <br/>

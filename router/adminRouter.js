@@ -74,7 +74,7 @@ router.get('/staff/handling-order/view-details/:id', requireLogin, require('../c
 router.post('/staff/handling-order/view-details/:id', requireLogin,require('../controller/admin/postStaff_OrderDetails'));
 
 
-router.get('/staff/handling-order/view-details/print/:id', requireLogin, require('../controller/admin/print_OrderDetails'));
+router.get('/staff/handling-order/view-details/print/:id', requireLogin, require('../controller/admin/postStaff_OrderDetailsPrint'));
 
 
 

@@ -37,6 +37,22 @@ class OrderDetails {
         AND "Order"."id"= $1`;
         return queryDB(sql, [this.idOrder])
     }
+    //get report order details by order id.
+    static getPrintOrderDetailsByOrderId(id) {
+        const sql = `Select "Product"."id" as idproduct, "Product"."image", "Product"."name",
+		"Order"."status", "Order"."id","Order"."orderdate", 
+        "Order"."receivedate", "Order"."total", "Order"."receiver", 
+        "Order"."orderaddress", "Order"."orderphone",
+        "OrderDetails"."quantity", "OrderDetails"."price",
+        "Customer"."fistname","Customer"."lastname","Customer"."phone", "Customer"."address"
+
+        FROM public."OrderDetails", public."Order", public."Product", public."Customer"
+        WHERE "OrderDetails"."idOrder" = "Order"."id" 
+        AND "Customer"."id" = "Order"."idCustomer"
+        AND "OrderDetails"."idProduct" = "Product"."id"
+        AND "Order"."id"= $1`;
+        return queryDB(sql, [id]).then(result=> result.rows);
+    }
     
 }
 module.exports = OrderDetails;
