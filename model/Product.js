@@ -56,14 +56,18 @@ class Product {
     }
     //get Best Selling Product. This method using for report c
     static getReportBestSellProduct(year, month, record) {
-        let sql = `Select pr.id, br.brandname, st.stylename,pr.name, pr.price from public."Product" pr, public."Brand" br, public."Style" st
-                    WHERE br.id = pr."idBrand"
+        let sql = ` Select pr.id, br.brandname, st.stylename,pr.name, pr.price, sum(od.quantity) as sumquantity
+                    from public."Product" pr, public."Brand" br, public."Style" st, public."OrderDetails" od
+                    where br.id = pr."idBrand"
                     AND st.id = pr."idStyle"
+                    AND pr.id = od."idProduct"
                     AND pr."id" in (select "idProduct" as total_order from public."OrderDetails" odt, public."Order" od
                     where odt."idOrder" = od.id
                     AND EXTRACT(YEAR FROM od.orderdate) = $1
                     AND EXTRACT(MONTH FROM od.orderdate) = $2  
-                    group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT $3)`;
+                    group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT $3)
+                    Group by pr.id, br.brandname, st.stylename,pr.name, pr.price
+                    Order by sumquantity DESC`;
         return queryDB(sql, [year, month, record]).then(result => result.rows)
     }
     //get latest product, but limit 3 product, this method using for index and details page

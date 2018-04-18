@@ -15,7 +15,7 @@ class OrderDetails {
         const sql = 'Select * FROM public."OrderDetails" WHERE "idProduct"=$1';
         return queryDB(sql, [this.idProduct]);
     }
-
+        
     //add new order details to db.
     addNewOrderDetails() {
         const sql = 'INSERT INTO public."OrderDetails" ("idOrder", "idProduct", quantity, price) VALUES ($1, $2, $3, $4)';
@@ -41,8 +41,8 @@ class OrderDetails {
 }
 module.exports = OrderDetails;
 
-// let ot = new OrderDetails(undefined,'201841412149669');
-// ot.getOrderDetailsByOrderId().then(rs=>{
+// let ot = new OrderDetails(undefined,undefined, 21);
+// ot.getSumProductQuanity().then(rs=>{
 //     console.log(rs.rows[0])
 // })
 // ot.checkExistProduct().then(rs => {

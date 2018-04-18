@@ -36,10 +36,10 @@ app.use((req, res, next) => {
     next();
 });
 app.use(flash());
-
+app.use('/api/', api);
 app.use('/admin/', admin);
 app.use('/', customer);
-app.use('/api/', api);
+
 
 router.use(require('./controller/getErrorPage'));
 
