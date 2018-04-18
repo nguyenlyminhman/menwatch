@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     //get the latest product
     let product = await Product.getAllProduct();
     //get best deller product.
-    let hotProduct = await Product.getBestSellProduct();
+    let hotProduct = await Product.getBestSellProduct(3);
     try {
         res.render('index', { // render index ejs page
             brand,

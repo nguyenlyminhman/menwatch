@@ -59,10 +59,16 @@
             "responsive": true,
         });
         //using responsive data table for popular customer.
+        
         $('#dataTablesActive').DataTable({
             "responsive": true,
             "ordering": false
             // "aaSorting": [[0, "asc"]]
+        });
+        $('#dataTablesBestProduct').DataTable({
+            // "responsive": true,
+            // "ordering": false,
+            "aaSorting": [[0, "asc"]]
         });
         //using responsive data table for popular customer.
         $('#dataTablesPost').DataTable({

@@ -42,6 +42,7 @@ router.post('/product/add-new', requireLogin, require('../controller/admin/postA
 router.get('/product/edit/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
 router.get('/product/report', requireLogin, require('../controller/admin/getAd_ProductReport'));
+
 router.post('/product/report', requireLogin, require('../controller/admin/postAd_ProductReport'));
 
 // router.get('/product/disable/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));

@@ -48,11 +48,11 @@ class Product {
         return queryDB(sql, [])
     }
     //get Best Selling Product. This method using for index page
-    static getBestSellProduct() {
+    static getBestSellProduct(number) {
         let sql = 'Select * from public."Product" where status = true AND "id" in (' +
             'select "idProduct" as total_order from public."OrderDetails"' +
-            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT 3)';
-        return queryDB(sql, [])
+            'group by "idProduct" ORDER BY SUM(quantity) DESC LIMIT $1)';
+        return queryDB(sql, [number])
     }
     //get Best Selling Product. This method using for report c
     static getReportBestSellProduct(year, month, record) {
