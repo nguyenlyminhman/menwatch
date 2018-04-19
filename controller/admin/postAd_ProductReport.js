@@ -43,9 +43,6 @@ module.exports = async (req, res, next) => {
 
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Product ID: ' + data.id);
-            doc.font('Times-Roman', 18)
-                .fontSize(12)
                 .text('     Product: ' + data.name);
 
             doc.font('Times-Roman', 18)
@@ -56,7 +53,7 @@ module.exports = async (req, res, next) => {
                 .text('     Style: ' + data.stylename);
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Price: ' + data.price);
+                .text('     Price: $' + data.price);
             doc.font('Times-Roman', 18)
                 .fontSize(12)
                 .text('     Sold quantity: ' + data.sumquantity);
