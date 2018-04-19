@@ -50,27 +50,29 @@ module.exports = async (req, res) => {
                     }
                 })
             } else {
-                orderDetails.getOrderDetailsByOrderId().then(odetails => {
-                    req.session.product = odetails.rows,
-                        res.render('staff_OrderDetails', {
-                            user: req.user,
-                            product: odetails.rows,
-                            idOrder: id,
-                            status: odetails.rows[0].status,
-                            orderDate: odetails.rows[0].orderdate,
-                            receiveDate: odetails.rows[0].receivedate,
-                            total: odetails.rows[0].total,
-                            receiver: odetails.rows[0].receiver,
-                            orderaddress: odetails.rows[0].orderaddress,
-                            orderphone: odetails.rows[0].orderphone,
-                            fistname: odetails.rows[0].fistname,
-                            lastname: odetails.rows[0].lastname,
-                            address: odetails.rows[0].address,
-                            phone: odetails.rows[0].phone,
-                            title: 'Order details',
-                            breadcrumb: 'Order No. ' + id
-                        });
-                });
+                // orderDetails.getOrderDetailsByOrderId().then(odetails => {
+                //     req.session.product = odetails.rows,
+                //         res.render('staff_OrderDetails', {
+                //             user: req.user,
+                //             product: odetails.rows,
+                //             idOrder: id,
+                //             status: odetails.rows[0].status,
+                //             orderDate: odetails.rows[0].orderdate,
+                //             receiveDate: odetails.rows[0].receivedate,
+                //             total: odetails.rows[0].total,
+                //             receiver: odetails.rows[0].receiver,
+                //             orderaddress: odetails.rows[0].orderaddress,
+                //             orderphone: odetails.rows[0].orderphone,
+                //             fistname: odetails.rows[0].fistname,
+                //             lastname: odetails.rows[0].lastname,
+                //             address: odetails.rows[0].address,
+                //             phone: odetails.rows[0].phone,
+                //             title: 'Order details',
+                //             breadcrumb: 'Order No. ' + id
+                //         });
+                // });
+                req.flash('info', 'Please, get the other order item.');
+                res.redirect('/admin/staff/handling-order/view-all');
             }
         })
 

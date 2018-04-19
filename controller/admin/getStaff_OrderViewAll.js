@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
         let order = await Order.getPendingOrder();
 
         res.render('staff_orderViewAll', {
+            message: req.flash('info'),
             order: order.rows,
             user: req.user,
             title: 'Order',
