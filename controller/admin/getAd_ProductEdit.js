@@ -24,8 +24,8 @@ module.exports = async (req, res, next) => {
                 id: id,
                 product: result.rows[0],
                 message: req.flash('info'),
-                title: 'Edit product details ',
-                breadcrumb: 'Update product details',
+                title: 'Product details ',
+                breadcrumb: 'Update Product Details',
                 // pages
             })
         })

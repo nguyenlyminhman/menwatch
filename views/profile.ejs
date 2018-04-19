@@ -120,10 +120,15 @@
 								<%=data.total%>
 							</div>
 							<div class="col-md-2 account-left">
-								<%=data.status%>
+								<%if(data.status === 'Proccessing'){%>
+									Pending
+									<%}else{%>
+										<%=data.status%>
+											<%}%>
 							</div>
 							<div class="col-md-2 account-left">
-								<img src="images/tracking.png" /><a href="tracking-order/<%=data.id%>">Tracking order</a>
+								<img src="images/tracking.png" />
+								<a href="tracking-order/<%=data.id%>">Tracking order</a>
 							</div>
 						</div>
 						<hr style="border-style: solid; border-width: 1px; color: #73b6e1" />

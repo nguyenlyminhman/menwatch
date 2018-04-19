@@ -17,7 +17,9 @@ module.exports = async (req, res, next) => {
             //update cart and add to cart session.
             req.session.cart = cart;
             //redirect to shopping-cart link.
+            res.setHeader("Content-Type", "text/html");
             res.redirect('/shopping-cart');
+            res.end();
         }
     })
 }

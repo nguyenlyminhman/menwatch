@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
             contact: contact.rows,
             user: req.user,
             title: 'Contact ',
-            breadcrumb: 'View all contact',
+            breadcrumb: 'The Contact List',
             // pages
         })
     } catch (err) {

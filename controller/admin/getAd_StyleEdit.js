@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
                 stylename: result.rows[0].stylename,
                 message: req.flash('info'),
                 title: 'Style ',
-                breadcrumb: 'Edit style',
+                breadcrumb: 'Update Style',
             })
         })
 

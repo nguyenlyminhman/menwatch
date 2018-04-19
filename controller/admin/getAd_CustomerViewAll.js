@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
             customer: customer.rows,
             user: req.user,
             title: 'Customer',
-            breadcrumb: 'View all customer ',
+            breadcrumb: 'The Customer List ',
         })
     } catch (err) {
         res.send('getAdHomePage error : ' + err);

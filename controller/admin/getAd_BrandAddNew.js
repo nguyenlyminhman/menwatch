@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
             // csrfToken: req.csrfToken(),
             user: req.user,
             message: req.flash('info'),
-            title: 'Add new brand ',
+            title: 'Brand ',
             breadcrumb: 'Add new brand',
         })
     } catch (err) {

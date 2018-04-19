@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
                 brandname: result,
                 message: req.flash('info'),
                 title: 'Brand ',
-                breadcrumb: 'Edit brand',
+                breadcrumb: 'Update brand',
                 // pages
             })
         })

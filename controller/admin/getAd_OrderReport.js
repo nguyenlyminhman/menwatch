@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
             user: req.user,
             product: orderMonth.rows,
             title: 'Report',
-            breadcrumb: '',
+            breadcrumb: 'The Order Report',
         })
     } catch (err) {
         res.send('getAd_OrderReport error : ' + err);

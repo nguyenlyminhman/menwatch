@@ -12,40 +12,35 @@ let { check } = require('../utils/Tools')
 module.exports = async (req, res) => {
     //init Cart model
     let cart = new Cart(req.session.cart);
-    //get value from checkout page
-    const { receiver, orderaddress, orderphone } = req.body;
+    //check cart
     if (!req.session.cart || req.session.cart == null) {
         return res.redirect('/shopping-cart');
     } else {
-        'use strict';
-        cart.getItems().forEach(product => {
+        await cart.getItems().forEach(product => {
             let _product = new Product(product.item.rows[0].id);
-            'use strict';
             _product.getProductById().then(resId => {
+                //checking the quantity before checkout
                 if (parseInt(product.quantity) > parseInt(resId.rows[0].quantity)) {
                     res.setHeader("Content-Type", "text/html");
-                    req.flash('info', `The ${resId.rows[0].name}  only has ${resId.rows[0].quantity} item(s) at this time.
-                                    Maybe, there is someone else check-out quicker than you.
-                                    Please, update your cart again, then check out as soon as possible.`);
+                    req.flash('info', `The ${resId.rows[0].name}  only has ${resId.rows[0].quantity} item(s).`);
                     res.redirect('/shopping-cart');
                     res.end();
-                    return;
+                    return false;
+                     //checking the price before checkout
                 } else if (parseInt(product.pprice) !== parseInt(resId.rows[0].price)) {
                     res.setHeader("Content-Type", "text/html");
                     req.flash('info', `The ${resId.rows[0].name} has changed the price.
                     Would you like to buy this product?
                     Please, remove it from your cart, then update your cart again.`);
+                    res.redirect('/shopping-cart');
                     res.end();
-                    return res.redirect('/shopping-cart');
+                    return false;
                 } else {
                     res.setHeader("Content-Type", "text/html");
                     res.redirect('/shopping-cart/checkout');
                     res.end();
-                    return;
                 }
-
-            });
+            })
         });
-
     }
 }

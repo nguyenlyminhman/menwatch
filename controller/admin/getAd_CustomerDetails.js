@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
                     order: orderResult.rows,
                     customer: result.rows,
                     title: 'Customer details',
-                    breadcrumb: 'Customer details'
+                    breadcrumb: 'The Customer details'
                 });
             });
         });

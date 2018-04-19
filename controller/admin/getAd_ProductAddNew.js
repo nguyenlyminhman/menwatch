@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
             style,
             message: req.flash('info'),
             title: 'Add new product ',
-            breadcrumb: 'Add new product',
+            breadcrumb: 'Add New Product',
 
         })
     } catch (err) {

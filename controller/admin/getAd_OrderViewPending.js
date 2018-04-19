@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
             order: order.rows,
             user: req.user,
             title: 'Order',
-            breadcrumb: 'View pending order ',
+            breadcrumb: 'The Pending Order List',
         })
     } catch (err) {
         res.send('ad_orderViewPending error : ' + err);

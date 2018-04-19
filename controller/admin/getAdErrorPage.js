@@ -6,6 +6,6 @@ module.exports = async (req, res, next) => {
             breadcrumb: 'Error page.',
         })
     } catch (err) {
-        res.send('getAdHomePage error : ' + err);
+        res.send('ad_error error : ' + err);
     }
 }

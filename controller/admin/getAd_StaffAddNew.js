@@ -9,10 +9,10 @@ module.exports = async (req, res, next) => {
             user: req.user,
             csrfToken: req.csrfToken(),
             message: req.flash('info'),
-            title: 'Add new staff ',
-            breadcrumb: 'Add new staff',
+            title: 'staff ',
+            breadcrumb: 'Add New Staff',
         })
     } catch (err) {
-        res.send('getAdHomePage error : ' + err);
+        res.send('ad_staffAddNew error : ' + err);
     }
 }

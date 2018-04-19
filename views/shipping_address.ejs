@@ -46,7 +46,8 @@
                     <div class="account-bottom">
                         <form action="/profile/shipping-address" method="POST">
                             <input placeholder="Address" type="text" name="address" id="address" tabindex="1" required>
-                            <input placeholder="Phone" type="text" name="phone" id="phone" tabindex="2" required>
+                            <input placeholder="Phone" type="text" name="phone" id="phone" tabindex="2" 
+                            pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' title="+xx(xx)xxxx-xxxx" required>
                             <div class="address">
                                 <!-- <a class="forgot" href="#">Forgot Your Password?</a> -->
                                 <input type="submit" value="Change">

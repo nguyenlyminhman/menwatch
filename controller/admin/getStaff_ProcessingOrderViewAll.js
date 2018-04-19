@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
             order: order.rows,
             user: req.user,
             title: 'Order',
-            breadcrumb: 'View all processing order ',
+            breadcrumb: 'The Processing Order List ',
         })
     } catch (err) {
         res.send('getAd_OrderViewAll error : ' + err);

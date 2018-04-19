@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
                 user: req.user,
                 contact: result.rows,
                 title: 'Contact',
-                breadcrumb: 'Contact details'
+                breadcrumb: 'The Contact Details'
             });
         });
     } catch (err) {

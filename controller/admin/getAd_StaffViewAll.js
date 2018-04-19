@@ -6,10 +6,10 @@ module.exports = async (req, res, next) => {
         res.render('ad_staffViewAll', {
             staff: staff.rows,
             user: req.user,
-            title: 'View all style',
-            breadcrumb: 'All style',
+            title: 'Staff',
+            breadcrumb: 'The Staff List' ,
         })
     } catch (err) {
-        res.send('getAdHomePage error : ' + err);
+        res.send('getAd_StaffViewAll error : ' + err);
     }
 }

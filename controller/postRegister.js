@@ -3,7 +3,7 @@ let {removeSpace } = require('../utils/Tools');
 
 module.exports = async (req, res, next) => {
     let { email, password, firstname, lastname, address, phone } = req.body;
-    let customer = new Customer(removeSpace(firstname), removeSpace(lastname), removeSpace(email), removeSpace(password), removeSpace(address), removeSpace(phone));
+    let customer = new Customer(removeSpace(firstname), removeSpace(lastname), email, password, removeSpace(address), phone);
     customer.checkExistEmail()
         .then(result => {
             if (result.rowCount) {

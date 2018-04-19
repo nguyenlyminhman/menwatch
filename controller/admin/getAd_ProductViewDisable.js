@@ -14,8 +14,8 @@ module.exports = async (req, res, next) => {
             message: req.flash('info'),
             product: product.rows,
             user: req.user,
-            title: 'View all product ',
-            breadcrumb: 'View all product ',
+            title: 'Product ',
+            breadcrumb: 'The Disabled Product List',
             // pages
         })
     } catch (err) {

@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
             user: req.user,
             message: req.flash('info'),
             title: 'View all style',
-            breadcrumb: 'All style',
+            breadcrumb: 'The Style List',
         })
     } catch (err) {
         res.send('getAdHomePage error : ' + err);

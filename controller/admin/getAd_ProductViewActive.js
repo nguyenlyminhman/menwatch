@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
             product: product.rows,
             user: req.user,
             title: 'The active product ',
-            breadcrumb: 'The active product ',
+            breadcrumb: 'The Active Product List',
             // pages
         })
     } catch (err) {

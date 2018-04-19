@@ -13,8 +13,8 @@ module.exports = async (req, res, next) => {
             brand,
             user: req.user,
             message: req.flash('info'),
-            title: 'View all brand',
-            breadcrumb: 'All brand',
+            title: 'Brand',
+            breadcrumb: 'The Brand List',
         })
     } catch (err) {
         res.send('getAdHomePage error : ' + err);

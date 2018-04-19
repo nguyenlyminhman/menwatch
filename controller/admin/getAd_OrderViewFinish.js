@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
             order: order.rows,
             user: req.user,
             title: 'Order',
-            breadcrumb: 'View finish order ',
+            breadcrumb: 'The Finish Order List',
         })
     } catch (err) {
         res.send('ad_orderViewFinish error : ' + err);
