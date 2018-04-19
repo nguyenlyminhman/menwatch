@@ -28,6 +28,28 @@ class Order {
         return queryDB(sql, [])
     }
     //get all order. Admin using this method.
+    static getReportAllOrderInMonth() {
+        const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, b.phone, a.status 
+        FROM public."Order" a, public."Customer" b 
+        WHERE b."id" = a."idCustomer" 
+        AND Extract(YEAR FROM a.orderdate) = Extract(YEAR FROM current_date)
+        AND Extract(MONTH FROM a.orderdate) = Extract(MONTH FROM current_date)
+        ORDER BY no DESC`;
+        return queryDB(sql, [])
+    }
+    //get all order. Admin using this method.
+    static getPrintReportOrder(year, month, status, record) {
+        const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, b.phone, a.status 
+        FROM public."Order" a, public."Customer" b 
+        WHERE b."id" = a."idCustomer" 
+        AND Extract(YEAR FROM a.orderdate) = $1
+        AND Extract(MONTH FROM a.orderdate) = $2
+        AND a.status = $3
+        ORDER BY no DESC
+        LIMIT $4`;
+        return queryDB(sql, [year, month, status, record]).then(result=>result.rows)
+    }
+    //get all order. Admin using this method.
     static getPendingOrderAd() {
         const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status 
         FROM public."Order" a, public."Customer" b 
@@ -39,7 +61,7 @@ class Order {
         const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status 
         FROM public."Order" a, public."Customer" b 
         WHERE b."id" = a."idCustomer" AND a.status = 'Finish'`;
-        return queryDB(sql, [])
+        return queryDB(sql, []);
     }
     //get all order with Pending status. Staff using this method
     static getPendingOrder() {

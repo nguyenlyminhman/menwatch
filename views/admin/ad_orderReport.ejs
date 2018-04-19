@@ -1,0 +1,119 @@
+<% include ad_header %>
+
+    <div class="panel panel-default">
+        <div class="panel-heading ">
+            <div class="row">
+                <h2>The Order in This Month</h2>
+            </div>
+            <div class="row text-center">
+                <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+                <form action="/admin/order/report" method="POST">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="email">Year</label>
+                            <input type="number" class="form-control" min="2000" max="3000" name="year" placeHolder="Year" required />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="email">Month</label>
+                            <input type="number" class="form-control" min="1" max="12" name="month" placeholder="Month" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="email">Status</label>
+                            <select class="form-control" id="status" name="status" required>
+                                <option value="">Select</option>
+                                <option disabled>──────────</option>
+                                <option value="Finish">Finish</option>
+                                <option disabled>──────────</option>
+                                <option value="Proccessing">Proccessing</option>
+                                <option disabled>──────────</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="email">Number of records</label>
+                            <input type="number" class="form-control" min="1" max="100" name="record" placeHolder="Number of record" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <br/>
+                            <input type="submit" class="btn btn-success" value="Export to PDF">
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                    </div>
+                </form>
+            </div>
+            <hr style="border-style: solid; border-width: 1px; color: #73b6e1" />
+            <div class="panel-body">
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTablesOrder">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Order No.</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%product.forEach(data=>{%>
+                            <tr>
+                                <td>
+                                    <%=data.no %>
+                                </td>
+                                <td style="width: 100px">
+                                    <%=data.id %>
+                                </td>
+                                <td>
+                                    <div>
+                                        <%=data.fistname %>
+                                            <%=data.lastname %>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div>
+                                        <%=data.phone %>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="<%if(data.status==='Pending'){%> bg-danger <%}else if(data.status==='Finish'){%>bg-success text-success<%} else{%>bg-info text-info<%}%>">
+                                        <%=data.status %>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div>
+                                        <%=data.total %>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <a href="admin/product/edit/<%=data.id%>" type="button" class="btn btn-info">View Details</a>
+
+                                    <!-- <a href="admin/product/delete/<%#=data.id%>" type="button" class="btn btn-danger" onclick='return confirm("Lưu Ý: Sau khi xóa dữ liệu liên quan cũng sẽ mất.\n           Có chắc muốn xóa dòng này?");'>
+                                        Disable
+                                    </a> -->
+                                </td>
+                            </tr>
+                            <%})%>
+                    </tbody>
+                </table>
+                <!-- /.table-responsive -->
+            </div>
+        </div>
+    </div>
+
+    <% include ad_footer%>

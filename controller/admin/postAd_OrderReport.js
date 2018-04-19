@@ -1,14 +1,14 @@
-let Product = require('../../model/Product');
-let OrderDetails = require('../../model/OrderDetails');
+let Order = require('../../model/Order');
+let { formatDate } = require('../../utils/Tools')
 let PdfTable = require('voilab-pdf-table');
 let PdfDocument = require('pdfkit');
 
 
 module.exports = async (req, res, next) => {
-    const { year, month, record } = req.body;
+    const { year, month, status, record } = req.body;
     const doc = new PdfDocument();
 
-    var title = year + '-' + month + '-' + record;
+    var title = year + '-' + month + '-' + record + '-' + status;
     var filename = title + '.pdf';
     res.setHeader('Content-disposition', 'attachment; filename="' + filename + '"');
     res.setHeader('Content-type', 'application/pdf');
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
 
     doc.font('Times-Roman', 18)
         .fontSize(24)
-        .text('The Best Seller Product', { align: 'center' });
+        .text('The ' + status + ' Order', { align: 'center' });
 
     doc.font('Times-Roman', 18)
         .fontSize(24)
@@ -34,7 +34,7 @@ module.exports = async (req, res, next) => {
         .text('--------------------' + '', { align: 'center' });
 
     var i = 1;
-    await Product.getReportBestSellProduct(year, month, record).then(rs => {
+    await Order.getPrintReportOrder(year, month, status, record).then(rs => {
         rs.forEach(data => {
 
             doc.font('Times-Roman', 18)
@@ -43,23 +43,16 @@ module.exports = async (req, res, next) => {
 
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Product ID: ' + data.id);
+                .text('     Order No. ' + data.id);
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Product: ' + data.name);
-
+                .text('     Order date: ' + formatDate(data.orderdate));
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Brand: ' + data.brandname);
+                .text('     Customer: ' + data.fistname + ' ' + data.lastname);
             doc.font('Times-Roman', 18)
                 .fontSize(12)
-                .text('     Style: ' + data.stylename);
-            doc.font('Times-Roman', 18)
-                .fontSize(12)
-                .text('     Price: ' + data.price);
-            doc.font('Times-Roman', 18)
-                .fontSize(12)
-                .text('     Sold quantity: ' + data.sumquantity);
+                .text('     Total: $' + data.total);
             doc.font('Times-Roman', 18)
                 .fontSize(12)
                 .text(' ');

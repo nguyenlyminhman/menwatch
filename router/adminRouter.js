@@ -42,7 +42,6 @@ router.post('/product/add-new', requireLogin, require('../controller/admin/postA
 router.get('/product/edit/:id', requireLogin, csurfProtection, require('../controller/admin/getAd_ProductEdit'));
 router.post('/product/edit/:id', requireLogin, require('../controller/admin/postAd_ProductUpdate'));
 router.get('/product/report', requireLogin, require('../controller/admin/getAd_ProductReport'));
-
 router.post('/product/report', requireLogin, require('../controller/admin/postAd_ProductReport'));
 
 // router.get('/product/disable/:id', csurfProtection, require('../controller/admin/getAd_ProductEdit'));
@@ -59,6 +58,8 @@ router.get('/order/view-all', requireLogin, require('../controller/admin/getAd_O
 router.get('/order/view-pending', requireLogin, require('../controller/admin/getAd_OrderViewPending'));
 router.get('/order/view-finish', requireLogin, require('../controller/admin/getAd_OrderViewFinish'));
 router.get('/order/view-details/:id', requireLogin, require('../controller/admin/getAd_OrderDetails'));
+router.get('/order/report', requireLogin, require('../controller/admin/getAd_OrderReport'));
+router.post('/order/report', requireLogin, require('../controller/admin/postAd_OrderReport'));
 
 
 router.get('/contact/view-all', requireLogin, require('../controller/admin/getAd_ContactViewAll'));

@@ -33,9 +33,22 @@ function removeSpace(str) {
   return str.trim();
 }
 
+function formatDate(date) {
+  if (date == null) {
+      return "";
+  } else {
+      var date = new Date(date);
+      var d = date.getDate();
+      var m = date.getMonth() + 1;
+      var y = date.getFullYear();
+      return m + '/' + d + '/' + y;
+  }
+
+}
+
 function generatePDF() {
 
 }
 
 
-module.exports = { removeSpace }
+module.exports = { removeSpace, formatDate }
