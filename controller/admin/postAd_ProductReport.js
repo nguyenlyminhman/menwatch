@@ -60,7 +60,6 @@ module.exports = async (req, res, next) => {
             doc.font('Times-Roman', 18)
                 .fontSize(12)
                 .text(' ');
-
         })
     })
 
