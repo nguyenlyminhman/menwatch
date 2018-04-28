@@ -68,7 +68,7 @@ class Order {
         const sql = `SELECT a.no, a."id" as id, a.orderdate, a.total, b.fistname, b.lastname, b.email, a.status 
         FROM public."Order" a, public."Customer" b 
         WHERE b."id" = a."idCustomer" AND a.status = 'Pending' AND a."id" NOT IN (select "idOrder" from public."StaffOrder")
-        Order by a.no ASC LIMIT 3`;
+        Order by a.no ASC LIMIT 5`;
         return queryDB(sql, []);
     }
     //get all order with Proccessing status. Staff using this method

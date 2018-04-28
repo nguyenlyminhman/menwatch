@@ -38,9 +38,8 @@
         });
         //using responsive data table
         $('#dataTablesProductViewAll').DataTable({
-            buttons: [
-                'pdf'
-            ]
+            "responsive": true,
+            "aaSorting": [[0, "desc"]]
         })
         //using responsive data table for Order.
         $('#dataTablesOrder').DataTable({
@@ -63,7 +62,7 @@
         $('#dataTablesActive').DataTable({
             "responsive": true,
             "ordering": false
-            // "aaSorting": [[0, "asc"]]
+            // "aaSorting": [[0, "asc"]] dataTablesProductViewAll
         });
         $('#dataTablesBestProduct').DataTable({
             // "responsive": true,

@@ -12,9 +12,9 @@ module.exports = (req, res, next) => {
         let img3 = req.files['image3'] ? req.files['image3'][0].filename : "null";
         let image = '{"img3":"' + img3 + '","img2":"' + img2 + '","img1":"' + img1 + '"}';
         //'{"img3":"FS5380_3.jpg","img2":"FS5380_2.jpg","img1":"FS5380_1.jpg"}'
-        let details = '{"cs":"' + cs + '","mt":"' + mt + '","wr":"' + wr + '","sm":"' + sm + '"}';
+        let details = '{"cs":"' + removeSpace(cs) + '","mt":"' + removeSpace(mt) + '","wr":"' + removeSpace(wr) + '","sm":"' + (sm) + '"}';
         //{"cs":"42mm","mt":"Quartz Chronograph","wr":"5 ATM","sm":"Leather"}
-        let product = new Product(undefined, idStyle, idBrand, name, price, quantity, removeSpace(description), image, details);
+        let product = new Product(undefined, idStyle, idBrand, removeSpace(name), price, quantity, removeSpace(description), image, details);
         product.checkExistProduct().then(result => {
             if (result.rowCount > 0) {
                 req.flash('info', 'This product name was existed.'),

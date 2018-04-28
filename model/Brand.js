@@ -1,4 +1,5 @@
 const queryDB = require('../utils/DatabaseConnection');
+const { removeSpace } = require('../utils/Tools')
 
 class Brand {
     //contructor for Brand Model.
@@ -20,7 +21,7 @@ class Brand {
     //this method using for add new brand.
     addNewBrand() {
         const sql = 'INSERT INTO public."Brand" (brandname) VALUES ($1)';
-        return queryDB(sql, [this.brandname])
+        return queryDB(sql, [removeSpace(this.brandname)])
     }
     //this method using for remove a brand
     deleteBrand() {
@@ -30,7 +31,7 @@ class Brand {
     //this method using for update brand information.
     updateBrand() {
         const sql = 'UPDATE public."Brand" SET brandname = $1 WHERE id = $2';
-        return queryDB(sql, [this.brandname, this.id])
+        return queryDB(sql, [removeSpace(this.brandname), this.id])
     }
     //this method using for breadcrumb.
     getBrandById() {

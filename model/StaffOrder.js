@@ -16,8 +16,8 @@ class StaffOrder {
     }
     //this method use to check order id is existed or not.
     checkOrderId() {
-        const sql = 'SELECT * FROM public."StaffOrder" where "idOrder"=$1;'
-        return queryDB(sql, [this.idOrder]);
+        const sql = 'SELECT * FROM public."StaffOrder" where "idOrder"=$1 and "idStaff"=$2;'
+        return queryDB(sql, [this.idOrder, this.idStaff]);
     }
     //this method use to check order id is existed or not.
     getStaffNameOnOrder(){

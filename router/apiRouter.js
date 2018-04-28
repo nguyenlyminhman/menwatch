@@ -9,8 +9,9 @@ const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
 const Contact = require('../model/Contact');
 let { sendEmail } = require('../utils/Mailer');
+let { removeSpace } = require('../utils/Tools')
 
-
+//get brand information. 
 router.get('/brand', (req, res) => {
     Brand.getAllBrand().then(result => {
         res.status(200).json({
@@ -20,7 +21,7 @@ router.get('/brand', (req, res) => {
         })
     }).catch()
 });
-
+//get style information
 router.get('/style', (req, res) => {
     Style.getAllStyle().then(result => {
         res.status(200).json({
@@ -30,7 +31,7 @@ router.get('/style', (req, res) => {
         })
     }).catch()
 });
-
+//get product base on its brand.
 router.get('/product/brand/:brandid', (req, res) => {
     let idBrand = req.params.brandid;
     // console.log("idbrand " + idBrand + " page " + page)
@@ -43,7 +44,7 @@ router.get('/product/brand/:brandid', (req, res) => {
         })
     }).catch()
 })
-
+//get product base on its style.
 router.get('/product/style/:styleid', (req, res) => {
     let idStyle = req.params.styleid;
     let product = new Product(undefined, idStyle);
@@ -55,7 +56,7 @@ router.get('/product/style/:styleid', (req, res) => {
         })
     }).catch()
 })
-
+//get all product
 router.get('/product/all', (req, res) => {
     Product.getAllProduct().then(result => {
         res.status(200).json({
@@ -65,7 +66,7 @@ router.get('/product/all', (req, res) => {
         })
     }).catch()
 })
-
+//Check the customer information to login.
 router.post('/customer/login/', (req, res) => {
     //let {email, password} = req.body;
     var email = req.body.email;
@@ -83,7 +84,7 @@ router.post('/customer/login/', (req, res) => {
         })
     })
 })
-
+//post the customer cart to order.
 router.post('/customer/checkout', (req, res) => {
 
     var { ReceiverName, ReceiverAddress, ReceiverPhone } = req.body;
@@ -102,7 +103,6 @@ router.post('/customer/checkout', (req, res) => {
     //get current date
     const currentDate = d.getFullYear() + "-" + parseInt(d.getMonth() + 1) + "-" + d.getDate()
 
-
     JSON.parse(OrderDetail).forEach(product => {
         let _product = new Product(product[Object.keys(product)[0]]);
         _product.getProductById().then(resId => {
@@ -112,12 +112,14 @@ router.post('/customer/checkout', (req, res) => {
                     data: 'The '+ resId.rows[0].name +' only has '+ resId.rows[0].quantity +' item(s).\n Please, update your cart items again.',
                     sms: 'fail checkout'
                 })
+                return false;
             } else if (parseInt(product[Object.keys(product)[2]]) !== parseInt(resId.rows[0].price)) {
                 res.status(200).json({
                     status: 'fail',
                     data: 'The '+ resId.rows[0].name +' has changed its price.\n Please, update your cart items again.',
                     sms: 'fail checkout'
                 })
+                return false;
             } else{
 
                 //using stripe get information from card payment
@@ -137,9 +139,9 @@ router.post('/customer/checkout', (req, res) => {
         <h3>Total: $ ${totalPrice}</h3>
         <h3>The receiver information</h3>
         <ul>
-            <li> Name: ${ReceiverName}</li>
+            <li> Name: ${removeSpace(ReceiverName)}</li>
             <br/>
-            <li> Address: ${ReceiverAddress}</li>
+            <li> Address: ${removeSpace(ReceiverAddress)}</li>
             <br/>
             <li> Phone: ${ReceiverPhone}</li>
         </ul>
@@ -149,13 +151,13 @@ router.post('/customer/checkout', (req, res) => {
                     //send email to customer.
                     sendEmail(CustomerEmail, content);
                     // init Customer model to contact with database.
-                    var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice, ReceiverPhone, ReceiverAddress, StripeId, 'Pending', ReceiverName);
+                    var order = new Order(OrderNo, CustomerId, currentDate, undefined, totalPrice, ReceiverPhone, removeSpace(ReceiverAddress) , StripeId, 'Pending', removeSpace(ReceiverName));
                     //using addNewOrder() to insert order info into database
                     order.addNewOrder().then(resultOrder => {
                         //loop throught cart product to get value of cart
                         JSON.parse(OrderDetail).forEach(product => {
                             //init OrderDetails model to contact with database.
-                            var orderDetails = new OrderDetails(undefined, OrderNo, product[Object.keys(product)[0]], product[Object.keys(product)[1]]);
+                            var orderDetails = new OrderDetails(undefined, OrderNo, product[Object.keys(product)[0]], product[Object.keys(product)[1]],product[Object.keys(product)[2]]);
                             // Using addNewOrderDetails() method to insert into database.
                             orderDetails.addNewOrderDetails();
                             //update product quantity.
@@ -173,7 +175,7 @@ router.post('/customer/checkout', (req, res) => {
         })
     })
 });
-
+//Add new customer information
 router.post('/customer/register', (req, res) => {
     let { email, password, firstname, lastname, address, phone } = req.body;
     let customer = new Customer(firstname, lastname, email, password, address, phone);
@@ -197,6 +199,7 @@ router.post('/customer/register', (req, res) => {
             }
         })
 });
+//Add new customer information
 router.post('/customer/contact', (req, res) => {
 
     //get current date.

@@ -4,21 +4,20 @@ const passport = require('passport');
 const requireLogin = require('connect-ensure-login').ensureLoggedIn();
 
 const Customer = require('../model/Customer');
-const Car = require('../model/Cart');
-const csurf = require('csurf');
-const csurfProtection = csurf();
-
+const Cart = require('../model/Cart');
 const Product = require('../model/Product');
 const Order = require('../model/Order');
 const OrderDetails = require('../model/OrderDetails');
 
+const csurf = require('csurf');
+const csurfProtection = csurf();
+
 require('../utils/Passport')(passport);
-
-// router.use(csurfProtection);
-//define the home page router
+//get home page
 router.get('/', returnOldUrl, require('../controller/getHomePage'));
-
+//get login page
 router.get('/login', csurfProtection, require('../controller/getLoginPage'));
+//post to login. using passport local
 router.post('/login', passport.authenticate('local_customer',
     { failureRedirect: '/login', failureFlash: true }),
     function (req, res, next) {
@@ -30,9 +29,11 @@ router.post('/login', passport.authenticate('local_customer',
             res.redirect('/');
         }
     });
-
+//get facefook login page
 router.get('/auth/fb', passport.authenticate('facebook', { scope: ['email'] }));
-router.get('/auth/fb/cb', passport.authenticate('facebook', { failureRedirect: '/login', failureFlash: true }),
+//get facebook login page. 
+router.get('/auth/fb/cb', passport.authenticate('facebook',
+    { failureRedirect: '/login', failureFlash: true }),
     function (req, res, next) {
         if (req.session.oldUrl) {
             var oldUrl = req.session.oldUrl;
@@ -42,6 +43,7 @@ router.get('/auth/fb/cb', passport.authenticate('facebook', { failureRedirect: '
             res.redirect('/');
         }
     });
+//get register page
 router.get('/register', csurfProtection, require('../controller/getRegisterPage'));
 router.post('/register', require('../controller/postRegister'));
 router.get('/thank-register', require('../controller/getThankRegister'));
@@ -52,7 +54,7 @@ router.get('/reset-password', csurfProtection, require('../controller/getResetPa
 router.post('/reset-password', require('../controller/postResetPassword'))
 
 router.get('/profile/information', requireLogin, require('../controller/getCustomerInfoPage'));
-router.post('/profile/information',requireLogin, require('../controller/postCustomerInfoPage'));
+router.post('/profile/information', requireLogin, require('../controller/postCustomerInfoPage'));
 
 router.get('/profile/shipping-address', requireLogin, require('../controller/getCustomerShippingAddress'));
 router.post('/profile/shipping-address', requireLogin, require('../controller/postCustomerShippingAddress'));
