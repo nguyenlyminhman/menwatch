@@ -1,11 +1,11 @@
 # menwatch
 
 
-#System Requirement
+# System Requirement
 
-#1. Hardware
+# 1. Hardware
 
-##Minimal
+## Minimal
 
 * Processor: 2 x 1,6 GHz CPU
 
@@ -20,7 +20,7 @@
 
 * HDD: 1 x 40 GB of free space or more
 
-#2. Software
+# 2. Software
 
 * Operating system: Window 8.1, Window 10, Ubuntu 16.04
 
@@ -32,8 +32,8 @@
 
 * Latest jdk and Java Runtime
 
-#Install instruction
-###The MenWatches Database
+# Install instruction
+### The MenWatches Database
 
 * Login to your PostgreSQL, then create database called menwatch
 
@@ -43,7 +43,7 @@
 
 * Click on Restore button.
 
-###The MenWatches Website
+### The MenWatches Website
 
 * After unzip the file named menwatch-website
 
@@ -75,13 +75,13 @@
 * Click Choose
 
 
-###Admin Role
+### Admin Role
 
 * Email: admin@menwatch.com
 
 * Password: min
 
-###Staff Role
+### Staff Role
 
 * Email: staff@menwatch.com
 
