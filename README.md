@@ -56,9 +56,9 @@
 
 * When finishing, type **nodemon index** to run this website
 
-###The MenWatches Android Application
+### The MenWatches Android Application
 
-####From the Studio project dialog
+#### From the Studio project dialog
 
 * From the project dialog choose the second option: Open an existing Android Studio Project
 
@@ -66,7 +66,7 @@
 
 * Click Choose
 
-####From the file menu
+#### From the file menu
 
 * Choose File/Open from the menu
 
